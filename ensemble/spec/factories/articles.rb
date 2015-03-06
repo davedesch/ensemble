@@ -2,5 +2,11 @@
 
 FactoryGirl.define do
   factory :article do
+    association :outfit
+    association :article_type
+    brand Faker::Company.name
+    url Faker::Internet.url
+    discontinued true
+    vintage false
   end
 end

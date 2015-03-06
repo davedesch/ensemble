@@ -2,5 +2,6 @@
 
 FactoryGirl.define do
   factory :article_type do
+    type_desc 'Blouse'
   end
 end

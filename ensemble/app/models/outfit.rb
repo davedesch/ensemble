@@ -2,6 +2,7 @@ class Outfit < ActiveRecord::Base
   belongs_to :user
   has_many :ratings
   has_many :articles
+  has_many :outfit_tags
   has_many :hashtags, through: :outfit_tags
 
   validates :caption, :image_url, :title, presence: true
@@ -11,10 +12,10 @@ class Outfit < ActiveRecord::Base
 
 	private
 		def check_for_hashtags
-			hashtags = self.content.scan(/#\w+/)
+			hashtags = self.caption.scan(/#\w+/)
 			if hashtags.length > 0
 				hashtags.each do |hashtag|
-					self.tags.create(hashtag: hashtag)
+					self.hashtags.create(hashtag: hashtag)
 				end
 			end
 		end
