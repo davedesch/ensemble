@@ -1,9 +1,10 @@
 
 <script id="single-outfit-template" type="text/x-handlebars-template">
-	<div class="col-12">{{articles}}</div>
-	<div class="col-12">{{ratings}}</div>
-	<div class="col-12">{{caption and hashtags}}</div>
-	<div class="col-12">{{comments from other users}}</div>
+	<img src={{outfit.thumbnail}} id="outfitpicture" class="img-responsive col-12" alt="Your Ensemble!">
+	<div class="col-12">{{outfit.url}}</div>
+	<div class="col-12">{{outfit.score}}</div>
+	<div class="col-12">{{outfit.num_comments}}</div>
+	<div class="col-12">{{outfit.name}}</div>
 </script>
 
 <html>
@@ -43,7 +44,7 @@
 			<div class="col-md-6 col-md-pull-3 col-xs-12" id="feed">
 				<div class="container">
 					<div class="col-12" id="single-outfit">
-						<img src="Prince-purple.jpg" class="img-responsive" alt="Your Ensemble!">
+
 					</div>
 				</div>
 			</div>

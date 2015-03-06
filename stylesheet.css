@@ -33,6 +33,10 @@ body {
 
 }
 
+#outfitpicture {
+	margin: auto;
+}
+
 * {
 	outline: solid 1px;
 }
