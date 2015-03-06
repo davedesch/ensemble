@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150306025103) do
+ActiveRecord::Schema.define(version: 20150306032722) do
 
   create_table "article_types", force: true do |t|
     t.string   "type_desc"
@@ -33,7 +33,7 @@ ActiveRecord::Schema.define(version: 20150306025103) do
   create_table "favorites", force: true do |t|
     t.integer  "user_id"
     t.integer  "fave_id"
-    t.string   "type"
+    t.string   "fave_type"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
