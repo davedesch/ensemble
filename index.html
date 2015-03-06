@@ -1,10 +1,12 @@
 
-<script id="single-outfit-template" type="text/x-handlebars-template">
-	<img src={{outfit.thumbnail}} class="img-responsive col-12" id="outfitpicture" alt="Your Ensemble!">
-	<div class="col-12">{{outfit.url}}</div>
-	<div class="col-12">{{outfit.score}}</div>
-	<div class="col-12">{{outfit.num_comments}}</div>
-	<div class="col-12">{{outfit.name}}</div>
+<script id="all-outfits-template" type="text/x-handlebars-template">
+	{{#each allOutfits}}
+		<img src={{data.thumbnail}} class="img-responsive col-12" id="outfitpicture" alt="Your Ensemble!">
+		<div class="col-12">{{data.url}}</div>
+		<div class="col-12">{{data.score}}</div>
+		<div class="col-12">{{data.num_comments}}</div>
+		<div class="col-12">{{data.name}}</div>
+	{{/each}}
 </script>
 
 <script id="recent-outfits-template" type="text/x-handlebars-template">
@@ -65,7 +67,7 @@
 			</div>
 			<div class="col-md-6 col-md-pull-3 col-xs-12" id="feed">
 				<div class="container">
-					<div class="col-12" id="single-outfit">
+					<div class="col-12" id="all-outfits">
 						<!-- single-outfit-template goes here.... -->
 					</div>
 				</div>
