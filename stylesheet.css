@@ -16,3 +16,13 @@ body {
 #sign_in {
 	/*margin-left: 50%;*/
 }
+
+.container {
+	width: 100%;
+}
+
+#searchbar {
+	text-align: center;
+	/*margin: auto;*/
+	border: solid;
+}
