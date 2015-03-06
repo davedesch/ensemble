@@ -2,5 +2,8 @@
 
 FactoryGirl.define do
   factory :rating do
+    association :user, factory: :outfit
+    comment Faker::Name.say_something_smart
+    stars 3.5
   end
 end

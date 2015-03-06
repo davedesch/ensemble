@@ -11,10 +11,10 @@ class Outfit < ActiveRecord::Base
 
 	private
 		def check_for_hashtags
-			hashtags = self.content.scan(/#\w+/)
+			hashtags = self.caption.scan(/#\w+/)
 			if hashtags.length > 0
 				hashtags.each do |hashtag|
-					self.tags.create(hashtag: hashtag)
+					self.hashtag.create(hashtag: hashtag)
 				end
 			end
 		end
