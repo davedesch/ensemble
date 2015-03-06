@@ -2,6 +2,7 @@ class User < ActiveRecord::Base
   has_many :outfits
   has_many :ratings
   has_many :favorites, as: :fave
+  has_many :users, as: :fave
 
 include BCrypt
 
