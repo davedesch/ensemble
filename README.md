@@ -1,11 +1,12 @@
 # ensemble
 Dev Bootcamp Phase 3 Final Project.
+TEAM: Dave Descheneaux, Saleh Rastani, Peter Fitzpatrick, Jessie Rushing
 
 DB Schema
 ![db](/schema.png)
 
 
-Layout- 
+Layout-
 navbar gets:
 	- home
 	- add/upload new ensemble
@@ -36,7 +37,7 @@ get '/users/:id' - show dashboard
 
 	- my recent outfits widget
 	- trending widget
-	
+
 get '/users/user_id/ensembles/new'
 	upload a new outfit
 
@@ -63,4 +64,4 @@ get 'users/user_id/favorites/outfits'
 	list of trending hashtags
 
 ? get 'hashtags/id/ensembles'
-	list of ensembles with 
+	list of ensembles with
