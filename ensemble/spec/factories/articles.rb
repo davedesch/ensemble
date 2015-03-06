@@ -2,7 +2,7 @@
 
 FactoryGirl.define do
   factory :article do
-    association :outfit
+    association :outfit, :without_hashtags
     association :article_type
     brand {Faker::Company.name}
     url {Faker::Internet.url}
