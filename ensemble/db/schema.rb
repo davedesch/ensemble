@@ -24,8 +24,8 @@ ActiveRecord::Schema.define(version: 20150306032722) do
     t.integer  "article_type_id"
     t.string   "brand"
     t.string   "url"
-    t.boolean  "discontinued"
-    t.boolean  "vintage"
+    t.boolean  "discontinued",    default: false
+    t.boolean  "vintage",         default: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
