@@ -1,6 +1,18 @@
+
+<script id="single-outfit-template" type="text/x-handlebars-template">
+	<div class="col-12">{{articles}}</div>
+	<div class="col-12">{{ratings}}</div>
+	<div class="col-12">{{caption and hashtags}}</div>
+	<div class="col-12">{{comments from other users}}</div>
+</script>
+
 <html>
 <head>
 	<title>ensemble</title>
+	<script src="https://code.jquery.com/jquery-2.1.3.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/3.0.0/handlebars.min.js"></script>
+
+	<script src="mockup.js"></script>
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
 	<link type="text/css" rel="stylesheet" href="stylesheet.css"/>
@@ -29,12 +41,10 @@
 
 			<div class="col-md-3 col-md-push-6 col-xs-6">TRENDING</div>
 			<div class="col-md-6 col-md-pull-3 col-xs-12" id="feed">
-				<img src="Prince-purple.jpg" class="img-responsive" alt="Your Ensemble!">
 				<div class="container">
-					<div class="col-12">Articles</div>
-					<div class="col-12">Ratings</div>
-					<div class="col-12">Caption & Hashtags</div>
-					<div class="col-12">Comments from Other Users</div>
+					<div class="col-12" id="single-outfit">
+						<img src="Prince-purple.jpg" class="img-responsive" alt="Your Ensemble!">
+					</div>
 				</div>
 			</div>
 		</div>
