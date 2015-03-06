@@ -1,6 +1,7 @@
 $(document).ready(function(){
   console.log('ready!')
   addNewOutfit();
+  displayRecentOutfits();
 
 
 })
@@ -19,7 +20,21 @@ function addNewOutfit(){
   })
 }
 
+function displayRecentOutfits (){
+  var source = $("#recent-outfits-template").html();
+  var template =Handlebars.compile(source);
+  var context = {allOutfits: []};
 
+  $.ajax({
+    url: "http://www.reddit.com/r/aww/top/.json"
+  }).done(function(data){
+    // console.log(data.data.children);
+    context.allOutfits = data.data.children;
+    console.log(context.allOutfits)
+    // context = {outfits: data[0].data.children[0].data}
+    $('#recent-outfits').html(template(context));
+  })
+}
 
 
 
