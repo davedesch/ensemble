@@ -1,16 +1,16 @@
 body {
-	background-image: url("http://favim.com/orig/201108/04/bedroom-closet-clothes-fashion-walk-in-closet-Favim.com-120026.jpg");
+/*	background-image: url("http://favim.com/orig/201108/04/bedroom-closet-clothes-fashion-walk-in-closet-Favim.com-120026.jpg");
 	background-repeat: no-repeat;
 	background-size: cover;
-	opacity: .85;
+	opacity: .85;*/
 }
 
 #title {
-	margin-left: 30%;
+/*	margin-left: 30%;
 	margin-top: 30%;
 	font-family: 'Lobster', cursive;
-	font-size: 75pt;
-	color: white;
+	font-size: 75pt;*/
+	color: black;
 }
 
 #sign_in {
