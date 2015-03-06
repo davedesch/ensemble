@@ -33,6 +33,13 @@ body {
 
 }
 
+#outfitpicture {
+	margin: auto;
+}
+
 * {
 	outline: solid 1px;
+}
+#recent-outfits{
+	display: inline-block;
 }
