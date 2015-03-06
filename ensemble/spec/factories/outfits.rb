@@ -4,15 +4,15 @@ FactoryGirl.define do
   factory :outfit do
     image_url 'http://lorempixel.com/400/200/people'
     association :user
-    title Faker::Name.title
+    title { Faker::Name.title}
     gender 'Ladies'
 
     trait :without_hashtags do
-      caption Faker::Hacker.say_something_smart
+      caption {Faker::Hacker.say_something_smart}
     end
 
     trait :with_hashtags do
-      caption Faker::Hacker.say_something_smart + " #something"
+      caption {Faker::Hacker.say_something_smart + " #something" }
     end
   end
 end

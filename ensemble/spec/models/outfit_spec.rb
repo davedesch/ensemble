@@ -3,6 +3,7 @@ require 'rails_helper'
 RSpec.describe Outfit, type: :model do
 
   after(:all) do
+    User.destroy_all
     Outfit.destroy_all
   end
 
@@ -38,7 +39,6 @@ RSpec.describe Outfit, type: :model do
   end
 
   it "creates hashtags when they are in the caption" do
-    puts "you are in this test"
     outfit = FactoryGirl.create :outfit, :with_hashtags
     hashtag = outfit.hashtags.first
     expect(hashtag.class).to be(Hashtag)
