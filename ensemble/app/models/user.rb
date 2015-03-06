@@ -4,6 +4,13 @@ class User < ActiveRecord::Base
   has_many :favorites, as: :fave
   has_many :users, as: :fave
 
+  validates :username,  presence: true
+  validates :username uniqness: true
+  validates :email, presence: true
+  validates :email, uniqness: true
+   validates_format_of :email, :with => /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i, :on => :create
+
+
 include BCrypt
 
   def password
