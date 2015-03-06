@@ -5,10 +5,10 @@ class User < ActiveRecord::Base
   has_many :users, as: :fave
 
   validates :username,  presence: true
-  validates :username uniqness: true
+  validates :username, uniqueness: true
   validates :email, presence: true
-  validates :email, uniqness: true
-  validates_format_of :email, :with => /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i, :on => :create
+  validates :email, uniqueness: true
+  validates_format_of :email, :with => /\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}/
 
 
 include BCrypt
