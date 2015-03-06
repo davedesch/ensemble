@@ -2,6 +2,7 @@ $(document).ready(function(){
 
   addNewOutfit();
   displayRecentOutfits();
+  displayTrendingHashtags();
 
 })
 
@@ -34,6 +35,20 @@ function displayRecentOutfits (){
   })
 }
 
+function displayTrendingHashtags (){
+  var source = $("#trending-hashtags-template").html();
+  var template =Handlebars.compile(source);
+  var context = {trendingHashtags: []};
+
+  $.ajax({
+    url: "http://www.reddit.com/r/aww/top/.json"
+  }).done(function(data){
+    context.trendingHashtags = data.data.children;
+    // console.log(context.trendingHashtags)
+    // context = {outfits: data[0].data.children[0].data}
+    $('#trending-hashtags').html(template(context));
+  })
+}
 
 
 
