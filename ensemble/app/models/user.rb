@@ -8,7 +8,7 @@ class User < ActiveRecord::Base
   validates :username uniqness: true
   validates :email, presence: true
   validates :email, uniqness: true
-   validates_format_of :email, :with => /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i, :on => :create
+  validates_format_of :email, :with => /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i, :on => :create
 
 
 include BCrypt

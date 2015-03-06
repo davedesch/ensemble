@@ -5,8 +5,8 @@ class CreateArticles < ActiveRecord::Migration
       t.integer :article_type_id
       t.string :brand
       t.string :url
-      t.boolean :discontinued
-      t.boolean :vintage
+      t.boolean :discontinued, :default => false
+      t.boolean :vintage, :default => false
 
       t.timestamps
     end
