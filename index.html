@@ -1,6 +1,6 @@
 
 <script id="single-outfit-template" type="text/x-handlebars-template">
-	<img src={{outfit.thumbnail}} id="outfitpicture" class="img-responsive col-12" alt="Your Ensemble!">
+	<img src={{outfit.thumbnail}} class="img-responsive col-12" id="outfitpicture" alt="Your Ensemble!">
 	<div class="col-12">{{outfit.url}}</div>
 	<div class="col-12">{{outfit.score}}</div>
 	<div class="col-12">{{outfit.num_comments}}</div>
@@ -8,15 +8,15 @@
 </script>
 
 <script id="recent-outfits-template" type="text/x-handlebars-template">
-	{{#each allOutfits}}
+	{{#each recentOutfits}}
 	<div class="container">
-	<div class="col-md-3">
-	<img src={{data.thumbnail}} id="outfitpicture" class="img-thumbnail" alt="Your Ensemble!">
-	</div>
+		<img src={{data.thumbnail}} class="img-thumbnail col-md-3" alt="Your Ensemble!">
 		<div class="col-md-9">{{data.title}}, Score: {{data.score}}</div>
-		</div>
+	</div>
 	{{/each}}
 </script>
+
+
 
 <html>
 <head>
@@ -53,7 +53,9 @@
 			<div class="col-md-3 col-xs-6" id="recent-outfits">
 				<!-- recent-outfits-template goes here.... -->
 			</div>
-			<div class="col-md-3 col-md-push-6 col-xs-6">TRENDING</div>
+			<div class="col-md-3 col-md-push-6 col-xs-6" id="trending-hashtags">
+				<!-- trending-hashtags-template goes here... -->
+			</div>
 			<div class="col-md-6 col-md-pull-3 col-xs-12" id="feed">
 				<div class="container">
 					<div class="col-12" id="single-outfit">
