@@ -24,10 +24,15 @@ body {
 #searchbar {
 	text-align: center;
 	/*margin: auto;*/
-	border: solid;
+	/*border: solid;*/
 }
 
 .dashboard {
 	text-align: center;
+	/*border: dashed;*/
 
+}
+
+* {
+	outline: solid 1px;
 }
