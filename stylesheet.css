@@ -4,3 +4,15 @@ body {
 	background-size: cover;
 	opacity: 0.75;
 }
+
+#title {
+	margin-left: 30%;
+	margin-top: 30%;
+	font-family: 'Lobster', cursive;
+	font-size: 75pt;
+	color: white;
+}
+
+#sign_in {
+	/*margin-left: 50%;*/
+}

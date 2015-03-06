@@ -32,6 +32,7 @@ get '/users/:id' - show dashboard
 		- hanger to "favorite" this outfit
 		- list of ratings?
 		- empty stars to add your review, on click slides out a review box
+	list can be sorted by date(created at), popularity(rating count * average stars), ratings(highest avg stars)
 
 	- my recent outfits widget
 	- trending widget
