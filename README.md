@@ -21,7 +21,7 @@ Routes-
 post '/login' -reidrect to main page
 get 'users/new' -new user sign up form
 
-get '/users/:id' - show dashboard
+get '/users/:username' - show dashboard
 	dashboard gets:
 	- search box = start with hashtags
 	- long scroll timeline (recently uploaded outfits from other users)
@@ -38,30 +38,32 @@ get '/users/:id' - show dashboard
 	- my recent outfits widget
 	- trending widget
 
-get '/users/user_id/ensembles/new'
-	upload a new outfit
+get '/ensembles' 
+	renders json of all ensembles
 
-get 'users/user_id/ensembles'
-	list of user's outfits
+get '/users/username/ensembles/new'
+	upload a new outfit form
 
-post 'users/user_id/ensembles'
+post 'users/username/ensembles/'
 	saves a new outfit for that user
 
-post 'users/user_id/ensembles/ensemble_id/reviews/new'
-	saves a new review
+get 'users/username/ensembles'
+	render json list of all user's outfits
 
-get 'users/user_id/favorites/users'
-	list of a users favorite users
+post 'users/username/ensembles/ensemble_id/reviews'
+	saves a new review - no get route because form is hard coded as hidden div
 
-get 'users/user_id/favorites/hashtags'
-	list of a users favorite hashtags
+get 'users/username/favorites/users'
+	render json list of a users favorite users
 
-get 'users/user_id/favorites/outfits'
-	list of a users favorite outfits
+get 'users/username/favorites/hashtags'
+	render json list of a users favorite hashtags
 
+get 'users/username/favorites/outfits'
+	render json list of a users favorite outfits
 
-? get 'hashtags'
-	list of trending hashtags
+get 'hashtags'
+	json list of trending hashtags
 
-? get 'hashtags/id/ensembles'
-	list of ensembles with
+get 'hashtags/id/ensembles'
+	json list of ensembles with that hashtag (json format matches /ensembles )
