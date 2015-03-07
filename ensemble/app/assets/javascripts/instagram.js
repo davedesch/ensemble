@@ -2,14 +2,9 @@ $(document).ready(function() {
     console.log('working')
     $('#instagram').on('click', function(){
     	console.log('clicked')
-    	CLIENT-ID=
-    	REDIRECT=
-    	code
-
     	$.ajax({
-    		url: '/instagram/new'
+    		url: '/instagram/oauth/connect',
     		type: 'Get',
-    		dataType: 'html',
     	})
     	.done(function() {
     		console.log("success");

@@ -6,7 +6,9 @@ Rails.application.routes.draw do
    root 'instagrams#index'
 
   # Example of regular route:
-   get 'instagram' => 'instagram#index'
+   get 'instagram' => 'instagrams#index'
+   get 'instagram/oauth/connect' => 'instagrams#login'
+   get 'instagram/oauth/callback' => 'instagrams#authorized'
 
   # Example of named route that can be invoked with purchase_url(id: product.id)
   #   get 'products/:id/purchase' => 'catalog#purchase', as: :purchase
