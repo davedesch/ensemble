@@ -4,7 +4,7 @@ class CreateRatings < ActiveRecord::Migration
       t.integer :user_id
       t.integer :outfit_id
       t.text :comment
-      t.decimal :stars
+      t.integer :stars
 
       t.timestamps
     end

@@ -5,6 +5,6 @@ FactoryGirl.define do
     association :user
     association :outfit, :without_hashtags
     comment { Faker::Hacker.say_something_smart }
-    stars 3.5
+    stars 4
   end
 end
