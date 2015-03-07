@@ -83,11 +83,11 @@ body {
     color: yellow;
 }
 
-/*.star-ctr li a {
+.star-ctr li a {
 	color: silver;
 }
 
 .star-ctr li a:hover {
-	color: yellow;
-}*/
+	color: #FFD800;
+}
 

@@ -1,8 +1,17 @@
 class UsersController < ApplicationController
 
-  # def index
-    #erb :index (includes signin signup page. This action is also set as the root route in routes)
-  # end
+  def index
+    # erb :index (includes signin signup page. This action also set as the root route in routes)
+    # checks if logged in - redirect to users/:username(users#show)
+  end
+
+  def login
+    # create session
+  end
+
+  def logout
+    # delete session
+  end
 
   def new
     # nothing: show/hide registration form
@@ -19,6 +28,8 @@ class UsersController < ApplicationController
   def ensembles
     # render json (all outfits as objects)
   end
+
+
 
 
 
