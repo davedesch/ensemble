@@ -17,12 +17,11 @@ class UsersController < ApplicationController
   end
 
   def ensembles
-    # render json (every outfit as objects)
+    # render json (all outfits as objects)
   end
 
-  def
 
-  end
+
 
 
 
