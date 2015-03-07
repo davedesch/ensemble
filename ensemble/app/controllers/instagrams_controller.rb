@@ -16,9 +16,15 @@ class InstagramsController < ApplicationController
 
   #handles 'oauth/callback'
   def authorized
+    #get token from teh server
     response = Instagram.get_access_token(params[:code], :redirect_uri => CALLBACK_URL)
+    create_or_login(response)
     
-    redirect "/nav"
+    # user = User.find_or_create_by(username: response.user.username, avatar: response.user.profile_picture, auth_token: response.access_token, instagram_name: response.user.full_name)
+
+    # session[:user_id] = user.id
+
+    # redirect_to user_path(user.id)
   end
 
 
