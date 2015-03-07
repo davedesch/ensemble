@@ -17,9 +17,12 @@ navbar gets:
 		- hashtags
 	- logout
 
+
 Routes-
-post '/login' -reidrect to main page
+
 get 'users/new' -new user sign up form
+
+post '/login' -reidrect to main page
 
 get '/users/:username' - show dashboard
 	dashboard gets:
@@ -38,7 +41,7 @@ get '/users/:username' - show dashboard
 	- my recent outfits widget
 	- trending widget
 
-get '/ensembles' 
+get '/ensembles'
 	renders json of all ensembles
 
 get '/users/username/ensembles/new'
@@ -65,5 +68,5 @@ get 'users/username/favorites/outfits'
 get 'hashtags'
 	json list of trending hashtags
 
-get 'hashtags/id/ensembles'
+get 'hashtags/:id'
 	json list of ensembles with that hashtag (json format matches /ensembles )
