@@ -2,8 +2,7 @@ class UsersController < ApplicationController
 
 
   def index
-    # erb :index (includes signin signup page. This action also set as the root route in routes)
-    # checks if logged in - redirect to users/:username(users#show)
+    render :index
   end
 
 
@@ -16,7 +15,7 @@ class UsersController < ApplicationController
   end
 
   def show
-    render :index
+    #render dashboard
   end
 
   def ensembles
