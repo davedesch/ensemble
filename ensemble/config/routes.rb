@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
-   root 'welcome#index'
+   root 'users#index'
 
   # Example of regular route:
    get 'instagram' => 'instagrams#index'
@@ -27,6 +27,8 @@ Rails.application.routes.draw do
   #       get 'sold'
   #     end
   #   end
+  post '/login', to: 'users#login', as: 'login'
+  delete '/logout', to: 'users#logout', as: 'logout'
 
   get '/ensembles' => 'users#ensembles'
 
@@ -35,8 +37,6 @@ Rails.application.routes.draw do
 
       get 'new'
       post 'post'
-      post 'login'
-      delete 'logout'
       resources :reviews do
 
       end
