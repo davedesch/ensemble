@@ -31,13 +31,14 @@ Rails.application.routes.draw do
   get '/ensembles' => 'users#ensembles'
 
   resources :users do
-    resources :ensembles, as: :outfits, controller: :outfits do 
+    resources :ensembles, as: :outfits, controller: :outfits do
 
       get 'new'
       post 'post'
       post 'login'
+      delete 'logout'
       resources :reviews do
-       
+
       end
 
 
@@ -46,6 +47,7 @@ Rails.application.routes.draw do
       get 'users'
       get 'hashtags'
       get 'outfits'
+      get 'articles'
     end
 
   end
