@@ -40,6 +40,54 @@ body {
 * {
 	outline: solid 1px;
 }
+
+
+
+
+
 #recent-outfits{
 	display: inline-block;
 }
+
+
+.star-ctr {
+    display: inline-block;
+    position: relative;
+}
+
+.star-ctr ul {
+    white-space: nowrap;
+    list-style: none outside none;
+    padding-left: 0;
+    overflow: hidden;
+}
+
+.star-fg {
+    top: 0;
+    position: absolute;
+}
+
+.star-ctr li {
+    display: inline-block;
+}
+
+.star-ctr a > span {
+    font-size: 3em;
+}
+
+.star-bg a > span {
+    color: silver
+}
+
+.star-fg a > span {
+    color: yellow;
+}
+
+/*.star-ctr li a {
+	color: silver;
+}
+
+.star-ctr li a:hover {
+	color: yellow;
+}*/
+
