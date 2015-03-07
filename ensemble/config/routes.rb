@@ -3,10 +3,12 @@ Rails.application.routes.draw do
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
-  # root 'welcome#index'
+   root 'welcome#index'
 
   # Example of regular route:
-  #   get 'products/:id' => 'catalog#view'
+   get 'instagram' => 'instagrams#index'
+   get 'instagram/oauth/connect' => 'instagrams#login'
+   get 'instagram/oauth/callback' => 'instagrams#authorized'
 
   # Example of named route that can be invoked with purchase_url(id: product.id)
   #   get 'products/:id/purchase' => 'catalog#purchase', as: :purchase
@@ -25,6 +27,31 @@ Rails.application.routes.draw do
   #       get 'sold'
   #     end
   #   end
+
+  get '/ensembles' => 'users#ensembles'
+
+  resources :users do
+    resources :ensembles, as: :outfits, controller: :outfits do 
+
+      get 'new'
+      post 'post'
+      post 'login'
+      resources :reviews do
+       
+      end
+
+
+    end
+    resources :favorites do
+      get 'users'
+      get 'hashtags'
+      get 'outfits'
+    end
+
+  end
+
+  resources :hashtags
+
 
   # Example resource route with sub-resources:
   #   resources :products do
