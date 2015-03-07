@@ -34,11 +34,15 @@ class UsersController < ApplicationController
     end
   end
 
+
   def logout
     session.clear
   end
 
 
+def give_token
+    session[:user_id] = @user.id
+  end
 
 
 
