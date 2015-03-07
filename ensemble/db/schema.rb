@@ -65,7 +65,7 @@ ActiveRecord::Schema.define(version: 20150306032722) do
     t.integer  "user_id"
     t.integer  "outfit_id"
     t.text     "comment"
-    t.decimal  "stars"
+    t.integer  "stars"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
