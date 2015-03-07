@@ -28,6 +28,31 @@ Rails.application.routes.draw do
   #     end
   #   end
 
+  get '/ensembles' => 'users#ensembles'
+
+  resources :users do
+    resources :ensembles, as: :outfits, controller: :outfits do 
+
+      get 'new'
+      post 'post'
+      post 'login'
+      resources :reviews do
+       
+      end
+
+
+    end
+    resources :favorites do
+      get 'users'
+      get 'hashtags'
+      get 'outfits'
+    end
+
+  end
+
+  resources :hashtags
+
+
   # Example resource route with sub-resources:
   #   resources :products do
   #     resources :comments, :sales
