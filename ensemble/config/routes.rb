@@ -2,12 +2,10 @@ Rails.application.routes.draw do
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
   # You can have the root of your site routed with "root"
-<<<<<<< HEAD
+
    root 'users#index'
 
-=======
-  root 'welcome#index'
->>>>>>> instagram
+
   # Example of regular route:
   get 'instagram' => 'instagrams#index'
   get 'instagram/oauth/connect' => 'instagrams#login'
@@ -27,16 +25,16 @@ Rails.application.routes.draw do
   #       get 'sold'
   #     end
   #   end
-<<<<<<< HEAD
+
   post '/login', to: 'users#login', as: 'login'
   delete '/logout', to: 'users#logout', as: 'logout'
 
-=======
->>>>>>> instagram
+# =======
+# >>>>>>> instagram
   get '/ensembles' => 'users#ensembles'
   resources :users do
-    post 'login'
-    delete 'logout'
+    # post 'login'
+    # delete 'logout'
     resources :ensembles, as: :outfits, controller: :outfits do
       get 'new'
       post 'post'
