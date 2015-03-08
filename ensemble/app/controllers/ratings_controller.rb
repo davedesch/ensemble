@@ -5,6 +5,14 @@ class RatingsController < ApplicationController
   end
 
   def create
-    #recieve params from new review form
+    user = User.find(session[:user_id])
+    outfit = User.find(params[:outfit_id])
+    Rating.create(rating_params)
+  end
+
+  private
+
+  def rating_params
+    params.require(:rating).permit(:user_id, :outfit_id, :comment, :stars)
   end
 end
