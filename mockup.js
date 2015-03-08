@@ -5,9 +5,23 @@ $(document).ready(function(){
   displayTrendingHashtags();
 })
 
+function getRatingStars() {
+  $('#rate-this').on('click', function(event) {
+    event.preventDefault()
+      $('#rating-form').slideDown('slow', function() {
+        //animation complete;
+      });
+  })
+}
+
+function addAverageRating(average) {
+  $('.rating div:lt(average)').css('background', "url('star-full.png')")
+}
+
+
 function addRating() {
   $('.rating').on('click', '.rating-input', function() {
-    $('rating-input').css('background', )
+    // $('rating-input').css('background', )
   })
 }
 
@@ -20,9 +34,8 @@ function displayAllOutfits(){
     url: "http://www.reddit.com/r/aww/top/.json"
   }).done(function(data){
     context = {allOutfits: data.data.children};
-    $('#all-outfits').html(template(context))
-
-      $('.rating input').eq(allOutfits.average_rating).css('background', "url('star-full.png')")
+    $('#all-outfits').html(template(context));
+    addAverageRating();
   })
 }
 
