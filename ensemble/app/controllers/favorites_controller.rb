@@ -43,8 +43,14 @@ class FavoritesController < ApplicationController
   end
 
   def create
-
+    user = User.find(session[:user_id])
+    fav = Favorite.create(favorite_params)
+    user.user_favorites.create(favorite: fav)
   end
 
+  private
+  def favorite_params
+    params.require(:favorite).permit(:fave_id, :fave_type)
+  end
 
 end
