@@ -1,34 +1,28 @@
 class UsersController < ApplicationController
 
-# <<<<<<< HEAD
+
   def index
-    # erb :index (includes signin signup page. This action also set as the root route in routes)
-    # checks if logged in - redirect to users/:username(users#show)
+    render :index
   end
 
-#   def login
-#     # create session
-#   end
-
-#   def logout
-#     # delete session
-#   end
-# =======
-#   # def index
-#   #erb :index (includes signin signup page. This action is also set as the root route in routes)
-#   # end
-# >>>>>>> instagram
-
-  def new
-    # nothing: show/hide registration form
-  end
 
   def create
-    # recieve: username, email, password
+    prospective_user = User.new(user_params)
+    prospective_user.password = params[:password]
+    if prospective_user.save
+      current_user = prospective_user
+      session[:user_id] = current_user.id
+      redirect_to user_path(current_user.id)
+    else
+      @errors = prospective_user.errors
+      render :index
+    end
   end
 
+
+
   def show
-    render :index
+    render :dashboard
   end
 
   def ensembles
@@ -55,9 +49,15 @@ class UsersController < ApplicationController
   end
 
 
-def give_token
+  def give_token
     session[:user_id] = @user.id
   end
+
+  private
+  def user_params
+    params.require(:user).permit(:username, :email, :password, :avatar)
+  end
+
 
 
 
