@@ -1,9 +1,9 @@
 $(document).ready(function(){
   console.log('working!')
   displayAllOutfits();
-  // displayRecentOutfits();
-  // displayTrendingHashtags();
-  // bindEvents();
+  displayRecentOutfits();
+  displayTrendingHashtags();
+  bindEvents();
   $('#instagram').on('click', function(){
       console.log('clicked')
     })
@@ -39,11 +39,12 @@ function displayAllOutfits(){
   var context = {}
 
   $.ajax({
-    url: "http://www.reddit.com/r/aww/top/.json"
+    url: "/ensembles"
   }).done(function(data){
-    context = {allOutfits: data.data.children};
+    console.log(data)
+    context = {allOutfits: data};
     $('#all-outfits').html(template(context));
-    addAverageRating();
+    addAverageRating(data.avg_rating);
   })
 }
 
