@@ -1,5 +1,5 @@
 class UserFavorite < ActiveRecord::Base
   belongs_to :user
-  has_many :favorites
+  belongs_to :favorite
 
 end

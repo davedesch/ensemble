@@ -31,7 +31,6 @@ ActiveRecord::Schema.define(version: 20150308073344) do
   end
 
   create_table "favorites", force: true do |t|
-    t.integer  "user_id"
     t.integer  "fave_id"
     t.string   "fave_type"
     t.datetime "created_at"

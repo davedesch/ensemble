@@ -1,5 +1,6 @@
 class Favorite < ActiveRecord::Base
-  belongs_to :user_favorite
+  has_many :user_favorites
+  has_many :users, through: :user_favorites
   belongs_to :fave, polymorphic: true
 
 end
