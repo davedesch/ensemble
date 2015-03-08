@@ -13,18 +13,15 @@ RSpec.describe UsersController, type: :controller do
     end
   end
 
-  # describe 'POST #create' do
-    # before :each do
-    #   @users = attributes_for(:user)
-    # end
+  describe 'POST #create' do
     context "with valid attributes" do
-      p FactoryGirl.attributes_for(:user)
       it "creates new contact" do
         expect{
           post :create, user: FactoryGirl.attributes_for(:user)
         }.to change(User, :count).by(1)
       end
     end
+  end
 
 
 end

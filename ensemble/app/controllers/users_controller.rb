@@ -7,8 +7,8 @@ class UsersController < ApplicationController
 
 
   def create
-    p params
     prospective_user = User.new(user_params)
+    prospective_user.password = params[:password]
     if prospective_user.save
       current_user = prospective_user
       session[:user_id] = current_user.id
