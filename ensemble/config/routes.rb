@@ -39,7 +39,7 @@ Rails.application.routes.draw do
     resources :ensembles, as: :outfits, controller: :outfits do
       get 'new'
       post 'post'
-      resources :reviews do
+      resources :ratings do
       end
     end
     resources :favorites do

@@ -26,7 +26,16 @@ class UsersController < ApplicationController
   end
 
   def ensembles
-    # render json (all outfits as objects)
+    outfits = Outfit.order('created_at DESC').limit(50)
+    results = []
+    outfits.each do |outfit|
+      types = []
+      outfit.articles each do |article|
+        types.push(article.article_type.type_desc)
+      end
+      results.push({outfit_id: outfit.id , title: outfit.title , image: outfit.image_url, types: types, avg_rating: outfit.average_ratings, caption: outfit.caption, user: outfit.user.username})
+    end
+    render json: results
   end
 
   def login #not logging in with instagram

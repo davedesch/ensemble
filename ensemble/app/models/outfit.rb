@@ -10,6 +10,15 @@ class Outfit < ActiveRecord::Base
 
 	after_save :check_for_hashtags
 
+  def average_ratings
+    avg = 0
+    stars = []
+    self.ratings.each do |rating|
+      stars << rating.stars
+    end
+    avg = stars.inject{ |sum, el| sum + el } / stars.size
+  end
+
 	private
 		def check_for_hashtags
 			hashtags = self.caption.scan(/#\w+/)
