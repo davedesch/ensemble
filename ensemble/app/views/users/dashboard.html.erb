@@ -1,8 +1,9 @@
 <button><a href="/instagram/recent">Get my pix from instagram</a></button>
 <script id="all-outfits-template" type="text/x-handlebars-template">
   {{#each allOutfits}}
-    <img src={{data.image}} class="img-responsive col-12" id="outfitpicture" alt="Your Ensemble!">
-    <div class="col-12">{{data.types}}</div>
+    <img src="{{image}}" class="img-responsive col-12" id="outfitpicture" alt="Your Ensemble!">
+    <div class="col-12">{{title}}</div>
+    <div class="col-12">{{types}}</div>
     <div class="col-12 rating">
       <div class="rating-star"></div>
       <div class="rating-star"></div>
@@ -17,8 +18,7 @@
         <input type="submit" value='Hang It'>
       </form>
     </div>
-    <div class="col-12">{{data.avg_rating}}</div>
-     <div class="col-12">{{data.caption}}</div>
+     <div class="col-12">{{caption}}</div>
   {{/each}}
 </script>
 
@@ -77,5 +77,4 @@
       </div>
     </div>
   </div>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 
