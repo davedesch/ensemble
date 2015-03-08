@@ -5,7 +5,7 @@ class RatingsController < ApplicationController
   end
 
   def create
-    user = User.find(session[:user_id])
+    user = User.find(params[:user_id])
     outfit = User.find(params[:outfit_id])
     Rating.create(rating_params)
   end

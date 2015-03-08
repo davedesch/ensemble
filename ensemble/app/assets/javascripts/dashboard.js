@@ -55,7 +55,7 @@ function displayRecentOutfits (){
   var context = {};
 
   $.ajax({
-    url: "/users/"+ 1 +"/ensembles"
+    url: "/users/"+ 11 +"/ensembles"
   }).done(function(data){
     console.log(data)
     // context = {recentOutfits: data.data.children};
