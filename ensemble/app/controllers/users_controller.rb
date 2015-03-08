@@ -37,7 +37,7 @@ class UsersController < ApplicationController
       else
         redirect_to :user
       end
-    end
+
   end
 
 
