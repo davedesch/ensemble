@@ -26,7 +26,7 @@ class UsersController < ApplicationController
   end
 
   def ensembles
-    outfits = Outfit.order('updated_at DESC').limit(50)
+    outfits = Outfit.order('created_at DESC').limit(50)
     results = []
     outfits.each do |outfit|
       types = []
