@@ -21,3 +21,9 @@
     </form>
     <div class="instagram">Or <a href="/instagram/oauth/connect" id="withinstagram">Login With Instagram <i class="fa fa-instagram"></i></a>
     </div>
+
+    <%= cloudinary_js_config %>
+    <%= form_tag(user_outfit_new_path, :method => :post) do %>
+    <%= cl_image_upload_tag(:image_id) %>
+    <h5>Uploading and stuff</h5>
+    <% end %>
