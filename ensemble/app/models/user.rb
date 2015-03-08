@@ -6,9 +6,9 @@ class User < ActiveRecord::Base
 
   validates :username,  presence: true
   validates :username, uniqueness: true
-  validates :email, presence: true
+  validates :email, presence: true, unless: :auth_token, presence: true
   validates :email, uniqueness: true
-  validates_format_of :email, :with => /\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}/
+  validates_format_of :email, :with => /\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}/ , if: :email, presence: true
 
   def to_param
     username
