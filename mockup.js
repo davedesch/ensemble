@@ -3,7 +3,7 @@ $(document).ready(function(){
   displayAllOutfits();
   displayRecentOutfits();
   displayTrendingHashtags();
-  bindEvents();
+  // bindEvents();
 
 })
 
@@ -40,7 +40,7 @@ function displayAllOutfits(){
   }).done(function(data){
     context = {allOutfits: data.data.children};
     $('#all-outfits').html(template(context));
-    addAverageRating();
+    // addAverageRating();
   })
 }
 
