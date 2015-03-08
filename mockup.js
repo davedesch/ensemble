@@ -3,27 +3,32 @@ $(document).ready(function(){
   displayAllOutfits();
   displayRecentOutfits();
   displayTrendingHashtags();
+  bindEvents();
+
 })
 
-function getRatingStars() {
-  $('#rate-this').on('click', function(event) {
-    event.preventDefault()
-      $('#rating-form').slideDown('slow', function() {
-        //animation complete;
-      });
-  })
+function bindEvents(){
+
+  function getRatingStars() {
+    $('#rate-this').on('click', function(event) {
+      event.preventDefault()
+    $('#rating-form').css('display', 'block');
+    })
+  }
+
+  function addRating() {
+    $('.rating').on('click', '.rating-input', function() {
+      // $('rating-input').css('background', )
+    })
+  }
+
 }
+
 
 function addAverageRating(average) {
   $('.rating div:lt(average)').css('background', "url('star-full.png')")
 }
 
-
-function addRating() {
-  $('.rating').on('click', '.rating-input', function() {
-    // $('rating-input').css('background', )
-  })
-}
 
 function displayAllOutfits(){
   var source = $("#all-outfits-template").html();
@@ -39,20 +44,6 @@ function displayAllOutfits(){
   })
 }
 
-// just in case we want to prepend a newly created outfit...
-
-// function addNewOutfit(){
-//   var source = $("#new-outfit-template").html();
-//   var template =Handlebars.compile(source);
-//   var context = {}
-
-//   $.ajax({
-//     url: "http://www.reddit.com/r/aww/comments/2y3fas/look_at_this_pile_of_30_dogs_posing_and_looking/.json"
-//   }).done(function(data){
-//     context = {outfit: data[0].data.children[0].data}
-//     $('#all-outfits').prepend(template(context))
-//   })
-// }
 
 function displayRecentOutfits (){
   var source = $("#recent-outfits-template").html();
@@ -81,6 +72,22 @@ function displayTrendingHashtags (){
 }
 
 
+
+
+// just in case we want to prepend a newly created outfit...
+
+// function addNewOutfit(){
+//   var source = $("#new-outfit-template").html();
+//   var template =Handlebars.compile(source);
+//   var context = {}
+
+//   $.ajax({
+//     url: "http://www.reddit.com/r/aww/comments/2y3fas/look_at_this_pile_of_30_dogs_posing_and_looking/.json"
+//   }).done(function(data){
+//     context = {outfit: data[0].data.children[0].data}
+//     $('#all-outfits').prepend(template(context))
+//   })
+// }
 
 
 

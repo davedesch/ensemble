@@ -68,9 +68,9 @@ body {
  /*     .rating-input:checked ~ .rating-star {
         background: url('star-full.png');
       }*/
-
-      .bottle {
-        float: right;
-        background: url('star-full.png');
-      }
+/*
+/**/
+#rating-form {
+  display: none;
+}
 
