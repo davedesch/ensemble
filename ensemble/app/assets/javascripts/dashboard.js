@@ -55,9 +55,9 @@ function displayRecentOutfits (){
   var context = {};
 
   $.ajax({
-    url: "/users/"+ 11 +"/ensembles"
+    url: window.location.pathname + "/ensembles"
   }).done(function(data){
-    console.log(data)
+    console.log(window.location.pathname)
     context = {recentOutfits: data};
     $('#recent-outfits').html(template(context));
   })
@@ -69,9 +69,10 @@ function displayTrendingHashtags (){
   var context = {};
 
   $.ajax({
-    url: "http://www.reddit.com/r/aww/top/.json"
+    url: "/hashtags"
   }).done(function(data){
-    context = {trendingHashtags: data.data.children};
+    console.log(data)
+    context = {trendingHashtags: data};
     $('#trending-hashtags').html(template(context));
   })
 }
