@@ -4,18 +4,19 @@
     <img src="clothing1.svg" id="hanger">
     <h1>ENSEMBLE.</h1>
     <h2>Sign up now and start rating<h2>
-    <form action="post" id="registernew">
+    <form action="/users" method="post"  id="registernew">
+      <input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden"/>
       Username:<br>
-      <input type="text" name="username" value="username">
+      <input type="text" name="user[username]" placeholder="username">
       <br>
-      Confirm Email:<br>
-      <input type="text" name="password" value="email">
+      Email:<br>
+      <input type="text" name="user[email]" placeholder="email">
       <br>
       Password:<br>
-      <input type="text" name="password" value="password">
+      <input type="password" name="user[password]" placeholder="password">
       <br>
       Confirm Password:<br>
-      <input type="text" name="password" value="confirmpassword">
+      <input type="password" name="user[confirm_password]" placeholder="confirm password">
       <br><br>
       <input type="submit" value="Submit">
     </form>

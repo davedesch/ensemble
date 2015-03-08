@@ -4,12 +4,13 @@
     <img src="clothing1.svg" id="hanger">
     <h1>ENSEMBLE.</h1>
     <h2>Let's get you signed in<h2>
-    <form action="post" id="register">
-      Email:<br>
-      <input type="text" name="password" value="email">
+    <form action="/login" method="post" id="register">
+      <input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden"/>
+      Username:<br>
+      <input type="text" name="username" placeholder="username">
       <br>
       Password:<br>
-      <input type="text" name="password" value="password">
+      <input type="password" name="password" placeholder="password">
       <br><br>
       <input type="submit" value="Submit">
     </form>

@@ -8,6 +8,7 @@ class UsersController < ApplicationController
 
   def create
     prospective_user = User.new(user_params)
+    p user_params
     prospective_user.password = params[:password]
     if prospective_user.save
       current_user = prospective_user
@@ -15,7 +16,7 @@ class UsersController < ApplicationController
       redirect_to user_path(current_user.id)
     else
       @errors = prospective_user.errors
-      render :index
+      redirect_to :index
     end
   end
 
@@ -39,12 +40,13 @@ class UsersController < ApplicationController
   end
 
   def login #not logging in with instagram
-    @user = User.find(params[:username])
+    @user = User.find_by_username(params[:username])
+    p @user
       if @user.password == params[:password]
         session[:user_id] = @user.id
         redirect_to user_path(@user)
       else
-        redirect_to :user
+        redirect_to "/"
       end
 
   end
@@ -52,6 +54,7 @@ class UsersController < ApplicationController
 
   def logout
     session.clear
+    redirect_to "/"
   end
 
 

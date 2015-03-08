@@ -41,7 +41,7 @@ function displayAllOutfits(){
   $.ajax({
     url: "/ensembles"
   }).done(function(data){
-    console.log(data)
+    // console.log(data)
     context = {allOutfits: data};
     $('#all-outfits').html(template(context));
     addAverageRating(data.avg_rating);
@@ -55,10 +55,11 @@ function displayRecentOutfits (){
   var context = {};
 
   $.ajax({
-    url: "http://www.reddit.com/r/aww/top/.json"
+    url: "/users/"+ 1 +"/ensembles"
   }).done(function(data){
-    context = {recentOutfits: data.data.children};
-    $('#recent-outfits').html(template(context));
+    console.log(data)
+    // context = {recentOutfits: data.data.children};
+    // $('#recent-outfits').html(template(context));
   })
 }
 

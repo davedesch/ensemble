@@ -28,10 +28,9 @@ Rails.application.routes.draw do
   #   end
 
   post '/login', to: 'users#login', as: 'login'
-  delete '/logout', to: 'users#logout', as: 'logout'
+  get '/logout', to: 'users#logout', as: 'logout'
 
-# =======
-# >>>>>>> instagram
+
   get '/ensembles' => 'users#ensembles'
   resources :users do
     # post 'login'
