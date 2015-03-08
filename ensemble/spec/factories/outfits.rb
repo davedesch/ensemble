@@ -12,7 +12,7 @@ FactoryGirl.define do
     end
 
     trait :with_hashtags do
-      caption {Faker::Hacker.say_something_smart + " #something" }
+      caption {Faker::Hacker.say_something_smart + " #" + Faker::Hacker.ingverb }
     end
   end
 end
