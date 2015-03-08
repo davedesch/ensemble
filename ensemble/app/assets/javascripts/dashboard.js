@@ -58,8 +58,8 @@ function displayRecentOutfits (){
     url: "/users/"+ 11 +"/ensembles"
   }).done(function(data){
     console.log(data)
-    // context = {recentOutfits: data.data.children};
-    // $('#recent-outfits').html(template(context));
+    context = {recentOutfits: data};
+    $('#recent-outfits').html(template(context));
   })
 }
 

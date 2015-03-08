@@ -14,10 +14,13 @@ class Outfit < ActiveRecord::Base
   def average_ratings
     avg = 0
     stars = []
-    self.ratings.each do |rating|
-      stars << rating.stars
+    if self.ratings.count > 0
+      self.ratings.each do |rating|
+        stars << rating.stars
+      end
+      avg = stars.inject{ |sum, el| sum + el } / stars.size
     end
-    avg = stars.inject{ |sum, el| sum + el } / stars.size
+    return avg
   end
 
 	private

@@ -25,8 +25,8 @@
 <script id="recent-outfits-template" type="text/x-handlebars-template">
   {{#each recentOutfits}}
     <div class="container">
-      <img src={{data.thumbnail}} class="img-thumbnail col-md-3" alt="Your Ensemble!">
-      <div class="col-md-9">{{data.title}}, Score: {{data.score}}</div>
+      <img src={{image}} class="img-thumbnail col-md-3" alt="Your Ensemble!">
+      <div class="col-md-9">{{title}}, Rating: {{avg_rating}}</div>
     </div>
   {{/each}}
 </script>
