@@ -4,6 +4,7 @@ class Outfit < ActiveRecord::Base
   has_many :articles
   has_many :outfit_tags
   has_many :hashtags, through: :outfit_tags
+  has_many :favorites, as: :fave
 
   validates :caption, :image_url, :title, presence: true
   validates :user, presence: true

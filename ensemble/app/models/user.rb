@@ -1,8 +1,8 @@
 class User < ActiveRecord::Base
   has_many :outfits
   has_many :ratings
-  has_many :favorites, as: :fave
-  has_many :users, as: :fave
+  has_many :user_favorites
+  has_many :favorites, through: :user_favorites
 
   validates :username,  presence: true
   validates :username, uniqueness: true
@@ -13,7 +13,7 @@ class User < ActiveRecord::Base
   def to_param
     username
   end
-  
+
 
 include BCrypt
 
