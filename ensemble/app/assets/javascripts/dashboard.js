@@ -1,9 +1,12 @@
 $(document).ready(function(){
-
+  console.log('working!')
   displayAllOutfits();
-  displayRecentOutfits();
-  displayTrendingHashtags();
-  bindEvents();
+  // displayRecentOutfits();
+  // displayTrendingHashtags();
+  // bindEvents();
+  $('#instagram').on('click', function(){
+      console.log('clicked')
+    })
 
 })
 
