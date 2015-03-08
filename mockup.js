@@ -1,30 +1,38 @@
-$(document).ready(function(){
-
+var ready = function(){
   displayAllOutfits();
   displayRecentOutfits();
   displayTrendingHashtags();
-  bindEvents();
-
-})
-
-function bindEvents(){
-
-  function getRatingStars() {
-    $('#rate-this').on('click', function(event) {
-      event.preventDefault()
-    $('#rating-form').css('display', 'block');
-    })
-  }
-
-  function addRating() {
-    $('.rating').on('click', '.rating-input', function() {
-      // $('rating-input').css('background', )
-    })
-  }
+  // addAverageRating();
+  // bindEvents();
+  getRatingStars();
 
 }
 
+$(document).ready(ready);
+$(document).on('page:load', ready);
 
+
+
+  function getRatingStars() {
+    // selector selects an array with button inside and also cannot run method on button
+    $('#rate-this').on('click', function(){
+      $('#rating-form').css('display', 'block');
+    })
+  }
+
+
+function bindEvents(){
+
+  function addRating() {
+    $('.rating').on('click', '.rating-input', function() {
+      // we will need the jquery in the addAverageRaitng function to change the css background of ratings to star-full.png
+    })
+  }
+
+}// closing bindEvents braces
+
+
+// adds static rating on dashboard load
 function addAverageRating(average) {
   $('.rating div:lt(average)').css('background', "url('star-full.png')")
 }
@@ -40,7 +48,7 @@ function displayAllOutfits(){
   }).done(function(data){
     context = {allOutfits: data.data.children};
     $('#all-outfits').html(template(context));
-    addAverageRating();
+    // addAverageRating();
   })
 }
 
