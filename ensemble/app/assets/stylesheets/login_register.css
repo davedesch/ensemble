@@ -1,0 +1,121 @@
+#element1 {
+  position: relative;
+  z-index: 1;
+  top: 125px;
+  /* border:solid; */
+  /*width: 900px;*/
+  background-image: url(closet.jpg);
+  height: 575px;
+  color: blue;
+  background-color: blue;
+  opacity: 0.4;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: center;
+}
+
+#content1 {
+  position: relative;
+  z-index: 2;
+  top: -375px;
+  /* border: solid; */
+  background-color: black;
+  height: 450px;
+  opacity: 0.65;
+}
+
+#login {
+  position: relative;
+  z-index: 3;
+  top: -700px;
+  text-align: center;
+  height: 324px;
+  /* border: solid; */
+  /*margin: 24px;*/
+  color: white;
+}
+
+#hanger {
+ -webkit-filter: invert(100%);
+
+ height: 70px;
+ margin-bottom: -25px;
+}
+
+
+
+html, body {
+  height: 50%;
+  min-height: 50%
+}
+
+body {
+  background-image: url(norwegian_rose.png);
+}
+
+#signup {
+  /*height: 300px;*/
+  overflow: hidden;
+  position: relative;
+  z-index: 3;
+  top: -820px;
+  text-align: center;
+  height: 530px;
+  /* border: solid; */
+  /*margin: 24px;*/
+  color: white;
+  font-family: 'Raleway', sans-serif;
+}
+
+#register {
+  font-size: .6em;
+  margin-top: 1%;
+
+}
+
+
+h1 {
+  font-family: 'Josefin Sans', sans-serif;
+}
+
+h2 {
+  margin-top: -10px;
+  padding-bottom: 6px;
+}
+
+input {
+  color: #999999;
+  font-family: 'Lato', sans-serif;
+
+}
+
+/*#withinstagram {
+  font-family: 'Lato', sans-serif;
+
+}*/
+
+.instagram {
+  margin-top: 5px;
+  font-family: 'Lato', sans-serif;
+}
+
+.instagram a {
+  padding-left: 10px;
+  color: rgb(86, 214, 249);
+}
+
+
+.registernow {
+  font-size: .75em;
+  margin-top: 15px;
+}
+
+.registernow a{
+  padding-left: 10px;
+  font-family: 'Lato', sans-serif;
+  color: rgb(86, 214, 249);
+}
+
+#registernew {
+  font-size: .55em;
+}

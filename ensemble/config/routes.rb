@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   get 'instagram' => 'instagrams#index'
   get 'instagram/oauth/connect' => 'instagrams#login'
   get 'instagram/oauth/callback' => 'instagrams#authorized'
+  get 'instagram/recent' => 'instagrams#recent'
   # Example of named route that can be invoked with purchase_url(id: product.id)
   #   get 'products/:id/purchase' => 'catalog#purchase', as: :purchase
   # Example resource route (maps HTTP verbs to controller actions automatically):
@@ -38,7 +39,7 @@ Rails.application.routes.draw do
     resources :ensembles, as: :outfits, controller: :outfits do
       get 'new'
       post 'post'
-      resources :reviews do
+      resources :ratings do
       end
     end
     resources :favorites do

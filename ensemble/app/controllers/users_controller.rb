@@ -26,21 +26,27 @@ class UsersController < ApplicationController
   end
 
   def ensembles
-    # render json (all outfits as objects)
+    outfits = Outfit.order('created_at DESC').limit(50)
+    results = []
+    outfits.each do |outfit|
+      types = []
+      outfit.articles each do |article|
+        types.push(article.article_type.type_desc)
+      end
+      results.push({outfit_id: outfit.id , title: outfit.title , image: outfit.image_url, types: types, avg_rating: outfit.average_ratings, caption: outfit.caption, user: outfit.user.username})
+    end
+    render json: results
   end
 
-  def login
-    if params[:code]
-      @user = User.find_or_create_by(:username)
-
-    else
-      @user = User.find_by_username(params[:username])
+  def login #not logging in with instagram
+    @user = User.find(params[:username])
       if @user.password == params[:password]
-        give_token
+        session[:user_id] = @user.id
+        redirect_to user_path(@user)
       else
         redirect_to :user
       end
-    end
+
   end
 
 
@@ -49,18 +55,11 @@ class UsersController < ApplicationController
   end
 
 
-  def give_token
-    session[:user_id] = @user.id
-  end
 
   private
   def user_params
     params.require(:user).permit(:username, :email, :password, :avatar)
   end
-
-
-
-
 
 
 end

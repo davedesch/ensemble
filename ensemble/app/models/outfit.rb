@@ -4,11 +4,21 @@ class Outfit < ActiveRecord::Base
   has_many :articles
   has_many :outfit_tags
   has_many :hashtags, through: :outfit_tags
+  has_many :favorites, as: :fave
 
   validates :caption, :image_url, :title, presence: true
   validates :user, presence: true
 
 	after_save :check_for_hashtags
+
+  def average_ratings
+    avg = 0
+    stars = []
+    self.ratings.each do |rating|
+      stars << rating.stars
+    end
+    avg = stars.inject{ |sum, el| sum + el } / stars.size
+  end
 
 	private
 		def check_for_hashtags
