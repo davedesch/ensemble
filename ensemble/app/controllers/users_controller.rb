@@ -21,8 +21,8 @@ class UsersController < ApplicationController
 
 
 
-def show
-    #render dashboard
+  def show
+    render :dashboard
   end
 
   def ensembles

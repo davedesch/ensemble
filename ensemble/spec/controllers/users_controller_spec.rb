@@ -37,6 +37,19 @@ RSpec.describe UsersController, type: :controller do
     end
   end
 
+  describe 'GET #show' do
+    it 'renders the :dashboard template' do
+     get :show, id: 1
+      expect(response).to render_template :dashboard
+    end
+
+    it 'returns a 200 status' do
+      get :show, id: 1
+      expect(response.status).to eq(200)
+    end
+  end
+
+
 
 
 end
