@@ -1,4 +1,4 @@
-class ReviewsController < ApplicationController
+class RatingsController < ApplicationController
 
   def new
     # form is hidden in front end
