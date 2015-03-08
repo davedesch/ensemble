@@ -2,23 +2,23 @@
 <script id="all-outfits-template" type="text/x-handlebars-template">
 	{{#each allOutfits}}
 		<img src={{data.thumbnail}} class="img-responsive col-12" id="outfitpicture" alt="Your Ensemble!">
-			<div class="col-12">{{data.url}}</div>
-          <div class="col-12 rating">
-            <div class="rating-star"></div>
-            <div class="rating-star"></div>
-            <div class="rating-star"></div>
-            <div class="rating-star"></div>
-            <div class="rating-star"></div>
-            <button type="button" id='rate-this'>Rate This</button>
-          </div>
-        <div>
-          <form action="/addnewreview">
-            <input type="text-area" name="review" placeholder='Leave a nice comment...'>
-            <input type="submit" value="Hang It">
-            </form>
-        </div>
-			<div class="col-12">{{data.num_comments}}</div>
-		<div class="col-12">{{data.name}}</div>
+		<div class="col-12">{{data.url}}</div>
+    <div class="col-12 rating">
+      <div class="rating-star"></div>
+      <div class="rating-star"></div>
+      <div class="rating-star"></div>
+      <div class="rating-star"></div>
+      <div class="rating-star"></div>
+      <button type="button" id='rate-this'>Rate This</button>
+    </div>
+    <div id='rating-form'>
+      <form action="/users/+"session[:id]"+/ensembles/:outfit_id/reviews">
+        <textarea rows="4" cols="50">Leave a fuckin nice Review../textarea><br>
+        <input type="submit" value='Hang It'>
+      </form>
+    </div>
+		<div class="col-12">{{data.num_comments}}</div>
+		 <div class="col-12">{{data.name}}</div>
 	{{/each}}
 </script>
 
