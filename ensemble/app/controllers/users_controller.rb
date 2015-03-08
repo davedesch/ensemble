@@ -29,14 +29,11 @@ class UsersController < ApplicationController
     # render json (all outfits as objects)
   end
 
-  def login
-    if params[:code]
-      @user = User.find_or_create_by(:username)
-
-    else
-      @user = User.find_by_username(params[:username])
+  def login #not logging in with instagram
+    @user = User.find(params[:username])
       if @user.password == params[:password]
-        give_token
+        session[:user_id] = @user.id
+        redirect_to user_path(@user)
       else
         redirect_to :user
       end
@@ -49,18 +46,11 @@ class UsersController < ApplicationController
   end
 
 
-  def give_token
-    session[:user_id] = @user.id
-  end
 
   private
   def user_params
     params.require(:user).permit(:username, :email, :password, :avatar)
   end
-
-
-
-
 
 
 end

@@ -4,9 +4,6 @@ class InstagramsController < ApplicationController
   
   CLIENT = ENV['CLIENT_ID']
 
-  def index
-  end
-
   #handles 'oauth/connect'
   def login
     redirect_to "https://api.instagram.com/oauth/authorize/?client_id=#{CLIENT}&redirect_uri=#{CALLBACK_URL}&response_type=code"    
@@ -14,16 +11,20 @@ class InstagramsController < ApplicationController
 
   #handles 'oauth/callback'
   def authorized
-    #get token from the server
     response = Instagram.get_access_token(params[:code], :redirect_uri => CALLBACK_URL)
     user = create_or_login(response)
-    p user.errors
-    # user = User.find_or_create_by(username: response.user.username, avatar: response.user.profile_picture, auth_token: response.access_token, instagram_name: response.user.full_name)
-
     session[:user_id] = user.id
-
     redirect_to user_path(user.id)
   end
+
+  def recent
+    current_user = User.find(session[:user_id])
+    client = Instagram.client(access_token: current_user.auth_token)
+    user = client.user 
+    @image = client.user_recent_media[0].images.standard_resolution.url
+    render file: '/app/views/users/itworked'
+  end
+
 
 private
 
