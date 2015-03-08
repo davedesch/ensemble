@@ -21,7 +21,22 @@ RSpec.describe UsersController, type: :controller do
         }.to change(User, :count).by(1)
       end
     end
+
+    context "with invalid attributes" do
+      it "does not save the new user in the database" do
+        expect{
+          post :create,
+          user: {username: 'dave', email: 'badbadbad'}
+        }.not_to change(User, :count)
+      end
+      it "re-renders the :index template" do
+        post :create,
+        user: {username: 'dave', email: 'badbadbad'}
+        expect(response).to render_template :index
+      end
+    end
   end
+
 
 
 end

@@ -13,6 +13,9 @@ class UsersController < ApplicationController
       current_user = prospective_user
       session[:user_id] = current_user.id
       redirect_to user_path(current_user.id)
+    else
+      @errors = prospective_user.errors
+      render :index
     end
   end
 
