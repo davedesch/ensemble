@@ -1,5 +1,7 @@
 <h1>it worked look here</h1>
-<% if @image %>
-	<img src="<%= @image %>">
+<% if @images %>
+	<% @images.each do |image| %>
+	<img src="<%= image %>">
+	<% end %>
 <% end %>
 	
