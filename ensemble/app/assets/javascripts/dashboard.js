@@ -87,7 +87,7 @@ function displayAllOutfits(){
       var thisOutfitsRatingForm = $(this).parent()[0]
       var outfitIndex = thisOutfitsRatingForm.id.substring(10)
       $("#newrating-" + outfitIndex + " div:lt("+ starNumber +")").css('background', "url('../star-full.png')")
-
+      $("#form-" + outfitIndex)[0][0].value = starNumber
     })
   }
 

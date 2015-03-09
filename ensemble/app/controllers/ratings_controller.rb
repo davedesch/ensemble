@@ -6,8 +6,9 @@ class RatingsController < ApplicationController
 
   def create
     user = User.find(params[:user_id])
-    outfit = User.find(params[:outfit_id])
+    outfit = Outfit.find(params[:outfit_id])
     Rating.create(rating_params)
+    redirect_to user_path(user)
   end
 
   private
