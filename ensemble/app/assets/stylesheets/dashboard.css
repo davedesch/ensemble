@@ -58,13 +58,13 @@ body {
 }
 .new-rating-stars {
   display: inline-block;
-  float: right;
+  float: left;
   width: 33px;
   height: 33px;
   background: url('../star-empty.png');
 }
 
-.new-rating-stars:hover ~ .new-rating-stars,
+/*.new-rating-stars:hover ~ .new-rating-stars,*/
 .new-rating-stars:hover{
   background: url('../star-full.png');
 }

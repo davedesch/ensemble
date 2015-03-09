@@ -83,15 +83,10 @@ function displayAllOutfits(){
   function newRatingStarsClick(){
     $('.new-rating-stars').on('click', function(event){
       console.log('clicked on a star')
-      var n = event.currentTarget.id.substring(4)
-      var starNumber = Math.abs(n - 4)
+      var starNumber = event.currentTarget.id.substring(4)
       var thisOutfitsRatingForm = $(this).parent()[0]
       var outfitIndex = thisOutfitsRatingForm.id.substring(10)
-      console.log("this is outfit index " + outfitIndex)
-      console.log("you clicked start # " + n)
-      console.log("we are math to this " + starNumber)
-      // $('.new-rating-stars').css('background', "url('../star-empty.png')")
-      $("#newrating-" + outfitIndex + " div:gt("+ starNumber +")").css('background', "url('../star-full.png')")
+      $("#newrating-" + outfitIndex + " div:lt("+ starNumber +")").css('background', "url('../star-full.png')")
 
     })
   }
