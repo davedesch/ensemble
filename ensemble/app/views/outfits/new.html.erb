@@ -4,6 +4,7 @@
 <button>OPEN SOME FUCKING PICTURES</button>
 </div>
 <div id="upload_with_instagram"><a href="/instagram/recent"><button >Upload your outfit from Instagram<i class="fa fa-instagram"></i></button></a></div>
+<div id="newoutfitthumbnail"></div>
 <br>
 <%= form_for :outfit, url: new_user_outfit_path do |f| %>
 <p>
@@ -13,7 +14,7 @@
 
 <p>
   <%= f.label :description %><br>
-  <%= f.text_area :caption %>
+  <%= f.text_area :caption, placeholder: "Tell us about your ensemble, don't forget your hashtags!"  %>
 </p>
 
 <p>
