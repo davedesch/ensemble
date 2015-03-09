@@ -72,3 +72,11 @@ body {
   display: none;
 }
 
+.newbuttons {
+  padding: 5px;
+  color: white;
+}
+
+.outfitform {
+  margin-top: 1px;
+}

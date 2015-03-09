@@ -170,7 +170,7 @@ var magic = null
 function uploadImage() {
  document.getElementById("upload_widget_opener").addEventListener("click", function() {
 
-    cloudinary.openUploadWidget({ cloud_name: 'dzxyyevk0', upload_preset: 'iiv6os2n', max_files: 1},
+    cloudinary.openUploadWidget({ cloud_name: 'dzxyyevk0', upload_preset: 'iiv6os2n', max_files: 1, cropping_aspect_ratio: 1, },
       function(error, result) { console.log(error, result)
         magic = result;
           console.log('still working');
