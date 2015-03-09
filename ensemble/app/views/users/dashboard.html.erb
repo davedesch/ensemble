@@ -9,13 +9,22 @@
       <div class="rating-star"></div>
       <div class="rating-star"></div>
       <div class="rating-star"></div>
-      <button type="button" id='rate-this'>Rate This</button>
-    </div>
-    <div id='rating-form'>
-      <form action="/users/+"session[:id]"+/ensembles/:outfit_id/reviews">
-        <textarea rows="4" cols="50">Leave a fuckin nice Review..</textarea><br>
-        <input type="submit" value='Hang It'>
-      </form>
+      <button type="button" class='rate-this-button' id='rate-this-{{@index}}'>Rate This</button>
+      <div class='rating-form'>
+      <br> <br>
+        <form action="/users/+"session[:id]"+/ensembles/:outfit_id/reviews">
+          <textarea rows="4" cols="50" placeholder="leave a fantastic review"></textarea><br>
+          <div class="col-12 rating" id="newrating-{{@index}}">
+            <p>click the stars to rate</p>
+            <div class="rating-star"></div>
+            <div class="rating-star"></div>
+            <div class="rating-star"></div>
+            <div class="rating-star"></div>
+            <div class="rating-star"></div>
+          </div>
+          <input type="submit" value='Save Rating'>
+        </form><br><br>
+      </div>
     </div>
      <div class="col-12">{{caption}}</div>
   {{/each}}

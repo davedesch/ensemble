@@ -24,14 +24,9 @@ $(document).on('page:load', ready)
 
 function bindEvents(){
 
-  // function getRatingStars() {
-  //   $('#rate-this').on('click', function(event) {
-  //     event.preventDefault()
-  //   $('#rating-form').css('display', 'block');
-  //   })
-  // }
 
-  // function addRating() {
+
+  // function addRatingStars() {
   //   $('.rating').on('click', '.rating-input', function() {
   //     // $('rating-input').css('background', )
   //   })
@@ -84,9 +79,17 @@ function displayAllOutfits(){
     console.log(data)
     $('#all-outfits').append(template(context));
     addAverageRating(data);
+    addRatingListener();
   })
 }
 
+  function addRatingListener() {
+    $('.rate-this-button').on('click', function(event) {
+      console.log("clicked rate this")
+      console.log(this);
+    $(this).next('.rating-form').css('display', 'block');
+    })
+  }
 
 function displayRecentOutfits (){
   var source = $("#recent-outfits-template").html();
