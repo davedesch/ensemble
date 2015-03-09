@@ -72,3 +72,8 @@ body {
   display: none;
 }
 
+.newbuttons {
+  padding: 5px;
+  color: white;
+}
+

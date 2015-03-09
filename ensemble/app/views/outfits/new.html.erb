@@ -1,12 +1,12 @@
 <h1>Add an outfit.</h1>
 
 <div id="upload_widget_opener">
-<button>OPEN SOME FUCKING PICTURES</button>
+<button class="btn btn-1 btn-1a">OPEN SOME FUCKING PICTURES</button>
 </div>
-<div id="upload_with_instagram"><a href="/instagram/recent"><button >Upload your outfit from Instagram<i class="fa fa-instagram"></i></button></a></div>
+<div id="upload_with_instagram"><a href="/instagram/recent"><button class="btn btn-1 btn-1a" >Upload from Instagram<i class="fa fa-instagram"></i></button></a></div>
 <div id="newoutfitthumbnail"></div>
 <br>
-<%= form_for :outfit, as: :post, url: user_outfits_path do |f| %>
+<%= form_for :outfit, as: :post, html: { class: "outfitform"}, url: user_outfits_path do |f| %>
 <p>
   <%= f.label :title %><br>
   <%= f.text_field :title %>
@@ -14,7 +14,7 @@
 
 <p>
   <%= f.label :description %><br>
-  <%= f.text_area :caption, placeholder: "Tell us about your ensemble, don't forget your hashtags!"  %>
+  <%= f.text_area :caption, placeholder: "Tell us about your ensemble, don't forget your hashtags!", :size => "40x10"  %>
 </p>
 
 <p>
@@ -27,7 +27,7 @@
 </p>
 
 <p>
-  <%= f.submit 'create your outfit', :id => 'newoutfit'%>
+  <%= f.submit 'create your outfit', :class => "btn btn-1 btn-1a", :id => 'newoutfit'%>
 </p>
 
 <% end %>
