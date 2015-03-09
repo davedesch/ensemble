@@ -4,6 +4,7 @@ var ready = function(){
   displayAllOutfits();
   displayRecentOutfits();
   displayTrendingHashtags();
+
   bindEvents();
   $('#instagram').on('click', function(){
       console.log('clicked')
@@ -14,8 +15,7 @@ var ready = function(){
       console.log("form submitted");
       displaySearchedOutfits();
     })
-
-
+    // newOutfit();
 }
 
 $(document).ready(ready);
@@ -139,6 +139,12 @@ function displayHashtagOutfits(event) {
 //   })
 // }
 
+
+function newOutfit() {
+  $('#newoutfit').on('click', function(){
+    console.log('clicked!');
+  });
+}
 
 
 

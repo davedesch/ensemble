@@ -1,2 +1,27 @@
-This is the new outfit form
-<%= cloudinary_js_config %>
+<h1>Add an outfit.</h1>
+
+<div id="upload_widget_opener">
+<button>OPEN SOME FUCKING PICTURES</button>
+</div>
+<div id="upload_with_instagram"><button href="/instagram/recent">Upload your outfit from Instagram<i class="fa fa-instagram"></i></button></div>
+<br>
+<%= form_for :outfit, url: outfits_path do |f| %>
+<p>
+  <%= f.label :title %><br>
+  <%= f.text_field :title %>
+</p>
+
+<p>
+  <%= f.label :description %><br>
+  <%= f.text_area :description %>
+</p>
+
+<p>
+  <%= f.hidden_field :url %>
+</p>
+
+<p>
+  <%= f.submit 'create your outfit', :id => 'newoutfit'%>
+</p>
+
+<% end %>
