@@ -15,7 +15,7 @@ var ready = function(){
       console.log("form submitted");
       displaySearchedOutfits();
     })
-    // newOutfit();
+    newOutfit();
 }
 
 $(document).ready(ready);
@@ -141,8 +141,9 @@ function displayHashtagOutfits(event) {
 
 
 function newOutfit() {
-  $('#newoutfit').on('click', function(){
+  $('#newoutfit').on("click", function(event){
     console.log('clicked!');
+    event.preventDefault();
   });
 }
 
