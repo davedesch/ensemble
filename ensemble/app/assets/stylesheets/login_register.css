@@ -125,3 +125,9 @@ input {
   color: white;
   font-size: 1em;
 }
+
+#signinsta:hover{
+  color: #1277FF;
+  text-decoration: none;
+  padding: 30px 30px;
+}
