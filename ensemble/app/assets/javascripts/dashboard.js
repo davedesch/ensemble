@@ -4,7 +4,7 @@ var ready = function(){
   displayAllOutfits();
   displayRecentOutfits();
   displayTrendingHashtags();
-    newOutfit();
+  newOutfit();
 
 
   bindEvents();
@@ -24,16 +24,6 @@ $(document).on('page:load', ready)
 
 function bindEvents(){
 
-
-
-  // function addRatingStars() {
-  //   $('.rating').on('click', '.rating-input', function() {
-  //     // $('rating-input').css('background', )
-  //   })
-  // }
-
-
-
 }
 
 function displaySearchedOutfits(event) {
@@ -49,7 +39,8 @@ function displaySearchedOutfits(event) {
   .done(function(data) {
     context = {allOutfits: data};
     $('#all-outfits').html(template(context));
-    addAverageRating(data.avg_rating);
+    addAverageRating(data);
+    addRatingListener();
   })
 }
 
@@ -58,9 +49,6 @@ function addAverageRating(data) {
  for (var i = 0; i < data.length ; i++ ) {
   var rating = data[i].avg_rating
   if (rating > 0) {
-    // var ratingdiv = $("#rating-"+ i + "")
-    // var stardiv = $(ratingdiv + "div:lt(" + rating + ")")
-    // $(stardiv).css('background', "url('star-full.png')")
     $("#rating-" + i + " div:lt("+ rating +")").css('background', "url('../star-full.png')")
   }
  }
@@ -80,14 +68,24 @@ function displayAllOutfits(){
     $('#all-outfits').append(template(context));
     addAverageRating(data);
     addRatingListener();
+
   })
 }
 
   function addRatingListener() {
     $('.rate-this-button').on('click', function(event) {
-      console.log("clicked rate this")
-      console.log(this);
     $(this).next('.rating-form').css('display', 'block');
+      newRatingStarsClick();
+    })
+  }
+
+  function newRatingStarsClick(){
+    $('.new-rating-stars').on('click', function(event){
+      console.log('clicked on a star')
+      var starNumber = event.currentTarget.id.substring(4)
+      var thisOutfitsRatingForm = $(this).parent()[0]
+      console.log(thisOutfitsRatingForm.id.substring(10))
+       $(thisOutfitsRatingForm[3] + "div:gt(" + starNumber + ")").css('background', "url('../star-full.png')")
     })
   }
 
@@ -134,10 +132,13 @@ function displayHashtagOutfits(event) {
   .done(function(data) {
     context = {allOutfits: data};
     $('#all-outfits').html(template(context));
-    addAverageRating(data.avg_rating);
+    addAverageRating(data);
+    addRatingListener();
 
   })
 }
+
+
 
 
 // just in case we want to prepend a newly created outfit...
