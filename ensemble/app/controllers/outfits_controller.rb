@@ -1,7 +1,8 @@
 class OutfitsController < ApplicationController
 
   def index
-    user = User.find(session[:user_id])
+    user = User.find(params[:user_id])
+    p user
     outfits = Outfit.where(user_id: user.id).order('updated_at DESC').limit(10)
     results = []
     outfits.each do |outfit|
@@ -15,7 +16,7 @@ class OutfitsController < ApplicationController
   end
 
   def create
-    user = User.find(session[:user_id])
+    user = User.find(params[:user_id])
     Outfit.create(outfit_params)
     redirect_to user_path(user)
   end

@@ -10,9 +10,9 @@ class User < ActiveRecord::Base
   validates :email, uniqueness: true
   validates_format_of :email, :with => /\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}/ , if: :email, presence: true
 
-  def to_param
-    username
-  end
+  # def to_param
+  #   username
+  # end
 
 
 include BCrypt

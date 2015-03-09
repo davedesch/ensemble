@@ -15,13 +15,14 @@ class UsersController < ApplicationController
       redirect_to user_path(current_user.id)
     else
       @errors = prospective_user.errors
-      render :index
+      redirect_to :index
     end
   end
 
 
 
   def show
+    @user_id = session[:user_id]
     render :dashboard
   end
 
@@ -30,7 +31,7 @@ class UsersController < ApplicationController
     results = []
     outfits.each do |outfit|
       types = []
-      outfit.articles each do |article|
+      outfit.articles.each do |article|
         types.push(article.article_type.type_desc)
       end
       results.push({outfit_id: outfit.id , title: outfit.title , image: outfit.image_url, types: types, avg_rating: outfit.average_ratings, caption: outfit.caption, user: outfit.user.username})
@@ -39,12 +40,13 @@ class UsersController < ApplicationController
   end
 
   def login #not logging in with instagram
-    @user = User.find(params[:username])
+    @user = User.find_by_username(params[:username])
+    p @user
       if @user.password == params[:password]
         session[:user_id] = @user.id
         redirect_to user_path(@user)
       else
-        redirect_to :user
+        redirect_to "/"
       end
 
   end
@@ -52,6 +54,7 @@ class UsersController < ApplicationController
 
   def logout
     session.clear
+    redirect_to "/"
   end
 
 

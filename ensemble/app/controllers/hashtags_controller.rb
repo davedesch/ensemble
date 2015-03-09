@@ -11,17 +11,32 @@ class HashtagsController < ApplicationController
   end
 
   def show
-    hashtag = Hashtag.find(params[:hashtag_id])
+    hashtag = Hashtag.find(params[:id])
     outfits = hashtag.outfits.order('created_at DESC').limit(50)
     results = []
     outfits.each do |outfit|
       types = []
-      outfit.articles each do |article|
+      outfit.articles.each do |article|
         types.push(article.article_type.type_desc)
       end
       results.push({outfit_id: outfit.id , title: outfit.title , image: outfit.image_url, types: types, avg_rating: outfit.average_ratings, caption: outfit.caption, user: outfit.user.username})
     end
     render json: results
   end
+
+  def search
+    hashtag = Hashtag.find_by_hashtag(params[:hashtag])
+    outfits = hashtag.outfits.order('created_at DESC').limit(50)
+    results = []
+    outfits.each do |outfit|
+      types = []
+      outfit.articles.each do |article|
+        types.push(article.article_type.type_desc)
+      end
+      results.push({outfit_id: outfit.id , title: outfit.title , image: outfit.image_url, types: types, avg_rating: outfit.average_ratings, caption: outfit.caption, user: outfit.user.username})
+    end
+    render json: results
+  end
+
 
 end

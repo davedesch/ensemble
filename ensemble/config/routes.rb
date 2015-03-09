@@ -28,10 +28,9 @@ Rails.application.routes.draw do
   #   end
 
   post '/login', to: 'users#login', as: 'login'
-  delete '/logout', to: 'users#logout', as: 'logout'
+  get '/logout', to: 'users#logout', as: 'logout'
 
-# =======
-# >>>>>>> instagram
+
   get '/ensembles' => 'users#ensembles'
   resources :users do
     # post 'login'
@@ -50,6 +49,7 @@ Rails.application.routes.draw do
     end
   end
   resources :hashtags
+  get 'search' => 'hashtags#search'
   # Example resource route with sub-resources:
   #   resources :products do
   #     resources :comments, :sales
