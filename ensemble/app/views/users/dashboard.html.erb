@@ -62,7 +62,12 @@
 
     <div class="row searchbar">
       <div class="col-md-4 col-md-offset-4" id="searchbar">
-        <input class="col-12" type="search" placeholder="Search hashtags"></div>
+        <form action="/search" method="get" class="col-12" id="search-form">
+          <input id="search-box" type="text" placeholder="Search hashtags" name="hashtag">
+          <input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden"/>
+          <input type="submit" value="search">
+        </form>
+        </div>
       <div class="col-md-4 col-md-offset-4">SORT_BY FIELD</div>
     </div>
 

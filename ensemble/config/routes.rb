@@ -49,6 +49,7 @@ Rails.application.routes.draw do
     end
   end
   resources :hashtags
+  get 'search' => 'hashtags#search'
   # Example resource route with sub-resources:
   #   resources :products do
   #     resources :comments, :sales

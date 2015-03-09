@@ -9,6 +9,13 @@ var ready = function(){
       console.log('clicked')
     })
 
+    $('#search-form').on('submit', function(event){
+      event.preventDefault();
+      console.log("form submitted");
+      displaySearchedOutfits();
+    })
+
+
 }
 
 $(document).ready(ready);
@@ -29,8 +36,26 @@ function bindEvents(){
   //   })
   // }
 
+
+
 }
 
+function displaySearchedOutfits(event) {
+    var source = $("#all-outfits-template").html();
+    var template =Handlebars.compile(source);
+    var context = {}
+
+  $.ajax({
+    url: '/search',
+    data: {hashtag: $('#search-box')[0].value},
+
+  })
+  .done(function(data) {
+    context = {allOutfits: data};
+    $('#all-outfits').html(template(context));
+    addAverageRating(data.avg_rating);
+  })
+}
 
 function addAverageRating(average) {
   $('.rating div:lt(average)').css('background', "url('star-full.png')")
@@ -85,13 +110,14 @@ function displayTrendingHashtags (){
 
 
 function displayHashtagOutfits(event) {
+    var source = $("#all-outfits-template").html();
+    var template =Handlebars.compile(source);
+    var context = {}
+
   $.ajax({
     url: event.currentTarget.href,
   })
   .done(function(data) {
-    var source = $("#all-outfits-template").html();
-    var template =Handlebars.compile(source);
-    var context = {}
     context = {allOutfits: data};
     $('#all-outfits').html(template(context));
     addAverageRating(data.avg_rating);
