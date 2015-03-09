@@ -3,19 +3,33 @@
     <img src="{{image}}" class="img-responsive col-12" id="outfitpicture" alt="Your Ensemble!" height="640">
     <div class="col-12">{{title}}</div>
     <div class="col-12">{{types}}</div>
-    <div class="col-12 rating">
+    <div class="col-12 rating" id="rating-{{@index}}">
+    <p>average rating</p>
       <div class="rating-star"></div>
       <div class="rating-star"></div>
       <div class="rating-star"></div>
       <div class="rating-star"></div>
       <div class="rating-star"></div>
-      <button type="button" id='rate-this'>Rate This</button>
-    </div>
-    <div id='rating-form'>
-      <form action="/users/+"session[:id]"+/ensembles/:outfit_id/reviews">
-        <textarea rows="4" cols="50">Leave a fuckin nice Review..</textarea><br>
-        <input type="submit" value='Hang It'>
-      </form>
+      <button type="button" class='rate-this-button' id='rate-this-{{@index}}'>Rate This</button>
+      <div class='rating-form'>
+      <br> <br>
+        <form id="form-{{@index}}" action="/users/<%= session[:user_id] %>/ensembles/{{outfit_id}}/ratings" method="POST">
+          <input type="hidden" name="rating[stars]" value=0>
+          <input type="hidden" name="rating[outfit_id]" value={{outfit_id}}>
+          <input type="hidden" name="rating[user_id]" value=<%= session[:user_id] %>>
+          <input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden">
+          <textarea rows="4" cols="50" placeholder="leave a fantastic review" name="rating[comment]"></textarea><br>
+          <div class="col-12 rating" id="newrating-{{@index}}">
+            <p>click the stars to rate</p>
+            <div id="star1" class="new-rating-stars"></div>
+            <div id="star2" class="new-rating-stars"></div>
+            <div id="star3" class="new-rating-stars"></div>
+            <div id="star4" class="new-rating-stars"></div>
+            <div id="star5" class="new-rating-stars"></div>
+          </div>
+          <input type="submit" value='Save Rating'>
+        </form><br><br>
+      </div>
     </div>
      <div class="col-12">{{caption}}</div>
   {{/each}}

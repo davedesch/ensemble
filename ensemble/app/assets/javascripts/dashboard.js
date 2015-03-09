@@ -4,7 +4,7 @@ var ready = function(){
   displayAllOutfits();
   displayRecentOutfits();
   displayTrendingHashtags();
-    newOutfit();
+  newOutfit();
 
 
   bindEvents();
@@ -24,21 +24,6 @@ $(document).on('page:load', ready)
 
 function bindEvents(){
 
-  // function getRatingStars() {
-  //   $('#rate-this').on('click', function(event) {
-  //     event.preventDefault()
-  //   $('#rating-form').css('display', 'block');
-  //   })
-  // }
-
-  // function addRating() {
-  //   $('.rating').on('click', '.rating-input', function() {
-  //     // $('rating-input').css('background', )
-  //   })
-  // }
-
-
-
 }
 
 function displaySearchedOutfits(event) {
@@ -54,12 +39,20 @@ function displaySearchedOutfits(event) {
   .done(function(data) {
     context = {allOutfits: data};
     $('#all-outfits').html(template(context));
-    addAverageRating(data.avg_rating);
+    addAverageRating(data);
+    addRatingListener();
+    newRatingStarsClick();
   })
 }
 
-function addAverageRating(average) {
-  $('.rating div:lt(average)').css('background', "url('star-full.png')")
+function addAverageRating(data) {
+
+ for (var i = 0; i < data.length ; i++ ) {
+  var rating = data[i].avg_rating
+  if (rating > 0) {
+    $("#rating-" + i + " div:lt("+ rating +")").css('background', "url('../star-full.png')")
+  }
+ }
 }
 
 
@@ -72,11 +65,31 @@ function displayAllOutfits(){
     url: "/ensembles"
   }).done(function(data){
     context = {allOutfits: data};
+    console.log(data)
     $('#all-outfits').append(template(context));
-    addAverageRating(data.avg_rating);
+    addAverageRating(data);
+    addRatingListener();
+    newRatingStarsClick();
   })
 }
 
+  function addRatingListener() {
+    $('.rate-this-button').on('click', function(event) {
+    $(this).next('.rating-form').css('display', 'block');
+
+    })
+  }
+
+  function newRatingStarsClick(){
+    $('.new-rating-stars').on('click', function(event){
+      console.log('clicked on a star')
+      var starNumber = event.currentTarget.id.substring(4)
+      var thisOutfitsRatingForm = $(this).parent()[0]
+      var outfitIndex = thisOutfitsRatingForm.id.substring(10)
+      $("#newrating-" + outfitIndex + " div:lt("+ starNumber +")").css('background', "url('../star-full.png')")
+      $("#form-" + outfitIndex)[0][0].value = starNumber
+    })
+  }
 
 function displayRecentOutfits (){
   var source = $("#recent-outfits-template").html();
@@ -121,10 +134,13 @@ function displayHashtagOutfits(event) {
   .done(function(data) {
     context = {allOutfits: data};
     $('#all-outfits').html(template(context));
-    addAverageRating(data.avg_rating);
-
+    addAverageRating(data);
+    addRatingListener();
+    newRatingStarsClick();
   })
 }
+
+
 
 
 // just in case we want to prepend a newly created outfit...
