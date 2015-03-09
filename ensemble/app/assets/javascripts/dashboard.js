@@ -41,6 +41,7 @@ function displaySearchedOutfits(event) {
     $('#all-outfits').html(template(context));
     addAverageRating(data);
     addRatingListener();
+    newRatingStarsClick();
   })
 }
 
@@ -68,24 +69,30 @@ function displayAllOutfits(){
     $('#all-outfits').append(template(context));
     addAverageRating(data);
     addRatingListener();
-
+    newRatingStarsClick();
   })
 }
 
   function addRatingListener() {
     $('.rate-this-button').on('click', function(event) {
     $(this).next('.rating-form').css('display', 'block');
-      newRatingStarsClick();
+
     })
   }
 
   function newRatingStarsClick(){
     $('.new-rating-stars').on('click', function(event){
       console.log('clicked on a star')
-      var starNumber = event.currentTarget.id.substring(4)
+      var n = event.currentTarget.id.substring(4)
+      var starNumber = Math.abs(n - 4)
       var thisOutfitsRatingForm = $(this).parent()[0]
-      console.log(thisOutfitsRatingForm.id.substring(10))
-       $(thisOutfitsRatingForm[3] + "div:gt(" + starNumber + ")").css('background', "url('../star-full.png')")
+      var outfitIndex = thisOutfitsRatingForm.id.substring(10)
+      console.log("this is outfit index " + outfitIndex)
+      console.log("you clicked start # " + n)
+      console.log("we are math to this " + starNumber)
+      // $('.new-rating-stars').css('background', "url('../star-empty.png')")
+      $("#newrating-" + outfitIndex + " div:gt("+ starNumber +")").css('background', "url('../star-full.png')")
+
     })
   }
 
@@ -134,7 +141,7 @@ function displayHashtagOutfits(event) {
     $('#all-outfits').html(template(context));
     addAverageRating(data);
     addRatingListener();
-
+    newRatingStarsClick();
   })
 }
 
