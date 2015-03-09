@@ -6,7 +6,7 @@
 <div id="upload_with_instagram"><a href="/instagram/recent"><button >Upload your outfit from Instagram<i class="fa fa-instagram"></i></button></a></div>
 <div id="newoutfitthumbnail"></div>
 <br>
-<%= form_for :outfit, url: new_user_outfit_path do |f| %>
+<%= form_for :outfit, as: :post, url: user_outfits_path do |f| %>
 <p>
   <%= f.label :title %><br>
   <%= f.text_field :title %>

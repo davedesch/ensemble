@@ -176,7 +176,7 @@ function uploadImage() {
           console.log('still working');
           console.log(magic)
           var imgURL = magic[0].secure_url;
-          $('#outfit_url').val(imgURL);
+          $('#outfit_image_url').val(imgURL);
 
       });
 

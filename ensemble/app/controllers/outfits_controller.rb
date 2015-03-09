@@ -17,14 +17,14 @@ class OutfitsController < ApplicationController
 
   def create
     user = User.find(params[:user_id])
-    Outfit.create(outfit_params)
+    @dick = user.outfits.create(outfit_params)
     redirect_to user_path(user)
   end
 
   private
 
   def outfit_params
-    params.require(:outfit).permit(:image_url, :user_id, :title, :catpion, :gender)
+    params.require(:outfit).permit(:image_url, :user_id, :title, :caption, :gender, :commit)
   end
 
 end
