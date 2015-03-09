@@ -13,11 +13,16 @@
 
 <p>
   <%= f.label :description %><br>
-  <%= f.text_area :description %>
+  <%= f.text_area :caption %>
 </p>
 
 <p>
-  <%= f.hidden_field :url %>
+  <%= f.hidden_field :image_url %>
+</p>
+
+<p>
+  <% genders = ["Ladies", "Gentlemen", "Doesn't Matter (Unisex)"] %>
+  <%= f.select :gender, options_for_select(genders) %>
 </p>
 
 <p>

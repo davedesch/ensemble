@@ -152,7 +152,6 @@ function newOutfit() {
     })
     .done(function(a) {
       console.log("success");
-      console.log(a);
       $('#all-outfits').prepend(a);
     })
     .fail(function() {
