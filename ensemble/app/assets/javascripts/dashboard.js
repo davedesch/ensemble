@@ -1,10 +1,12 @@
 var ready = function(){
 
-  console.log('working!')
+  console.log('working!');
+  sortByRatings();
   displayAllOutfits();
   displayRecentOutfits();
   displayTrendingHashtags();
   newOutfit();
+
 
 
   bindEvents();
@@ -25,7 +27,8 @@ $(document).on('page:load', ready)
 function bindEvents(){
 
 }
-
+// STAR RATINGS RAN HERE
+// When you search for something it displays all outfits that correllate with hashtag
 function displaySearchedOutfits(event) {
     var source = $("#all-outfits-template").html();
     var template =Handlebars.compile(source);
@@ -55,7 +58,7 @@ function addAverageRating(data) {
  }
 }
 
-
+// Also Calls the Star Ratings because it displays all outfits
 function displayAllOutfits(){
   var source = $("#all-outfits-template").html();
   var template =Handlebars.compile(source);
@@ -65,31 +68,61 @@ function displayAllOutfits(){
     url: "/ensembles"
   }).done(function(data){
     context = {allOutfits: data};
-    console.log(data)
     $('#all-outfits').append(template(context));
     addAverageRating(data);
     addRatingListener();
     newRatingStarsClick();
+    sortByRatings();
   })
 }
 
-  function addRatingListener() {
-    $('.rate-this-button').on('click', function(event) {
-    $(this).next('.rating-form').css('display', 'block');
 
+function sortByRatings() {
+  $('#sort-by-ratings').on('click', function() {
+    var allRatings = $(".rating");
+    console.log(allRatings)
+    var sortedOutfits = allRatings.sort(function(a,b){
+      return a.getAttribute('value') - b.getAttribute('value')
     })
-  }
+    console.log(sortedOutfits)
 
-  function newRatingStarsClick(){
-    $('.new-rating-stars').on('click', function(event){
-      console.log('clicked on a star')
-      var starNumber = event.currentTarget.id.substring(4)
-      var thisOutfitsRatingForm = $(this).parent()[0]
-      var outfitIndex = thisOutfitsRatingForm.id.substring(10)
-      $("#newrating-" + outfitIndex + " div:lt("+ starNumber +")").css('background', "url('../star-full.png')")
-      $("#form-" + outfitIndex)[0][0].value = starNumber
+    // ratingsToSort = []
+    // var context = {}
+    // console.log(allRatings);
+    // for (var i=0; i < allRatings.length; i++) {
+      // ratingsToSort.push(allRatings[i].getAttribute('value'));
+      // console.log(sortByRatings);
+    // }
+      // console.log(ratingsToSort);
+      // console.log(ratingsToSort.sort(function(a, b){return b-a}));
+
+    // var sortedOutfits = source.sort(function(a,b){
+    //   return a-b
     })
-  }
+
+    // context = {allOutfits: sortedOutfits};
+    // $('#all-outfits').html(template(context));
+
+  // })
+}
+
+function addRatingListener() {
+  $('.rate-this-button').on('click', function(event) {
+  $(this).next('.rating-form').css('display', 'block');
+
+  })
+}
+
+function newRatingStarsClick(){
+  $('.new-rating-stars').on('click', function(event){
+    console.log('clicked on a star')
+    var starNumber = event.currentTarget.id.substring(4)
+    var thisOutfitsRatingForm = $(this).parent()[0]
+    var outfitIndex = thisOutfitsRatingForm.id.substring(10)
+    $("#newrating-" + outfitIndex + " div:lt("+ starNumber +")").css('background', "url('../star-full.png')")
+    $("#form-" + outfitIndex)[0][0].value = starNumber
+  })
+}
 
 function displayRecentOutfits (){
   var source = $("#recent-outfits-template").html();
@@ -199,5 +232,22 @@ function uploadImage() {
   }, false);
 
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
