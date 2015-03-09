@@ -58,8 +58,17 @@ function displaySearchedOutfits(event) {
   })
 }
 
-function addAverageRating(average) {
-  $('.rating div:lt(average)').css('background', "url('star-full.png')")
+function addAverageRating(data) {
+
+ for (var i = 0; i < data.length ; i++ ) {
+  var rating = data[i].avg_rating
+  if (rating > 0) {
+    // var ratingdiv = $("#rating-"+ i + "")
+    // var stardiv = $(ratingdiv + "div:lt(" + rating + ")")
+    // $(stardiv).css('background', "url('star-full.png')")
+    $("#rating-" + i + " div:lt("+ rating +")").css('background', "url('../star-full.png')")
+  }
+ }
 }
 
 
@@ -72,8 +81,9 @@ function displayAllOutfits(){
     url: "/ensembles"
   }).done(function(data){
     context = {allOutfits: data};
+    console.log(data)
     $('#all-outfits').append(template(context));
-    addAverageRating(data.avg_rating);
+    addAverageRating(data);
   })
 }
 
