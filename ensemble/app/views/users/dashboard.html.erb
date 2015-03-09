@@ -34,8 +34,8 @@
 <script id="trending-hashtags-template" type="text/x-handlebars-template">
   {{#each trendingHashtags}}
     <div class="container">
-      <div class="col-md-10">{{hashtag}}</div>
-      <div class="col-md-2">{{count}}</div>
+      <a href="../hashtags/{{hashtag_id}}" id={{hashtag_id}} class="hashtag-link"><div class="col-md-10">{{hashtag}}</div>
+      <div class="col-md-2">{{count}}</div></a>
     </div>
   {{/each}}
 </script>

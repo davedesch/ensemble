@@ -16,21 +16,35 @@ $(document).on('page:load', ready)
 
 function bindEvents(){
 
-  function getRatingStars() {
-    $('#rate-this').on('click', function(event) {
-      event.preventDefault()
-    $('#rating-form').css('display', 'block');
-    })
-  }
+  // function getRatingStars() {
+  //   $('#rate-this').on('click', function(event) {
+  //     event.preventDefault()
+  //   $('#rating-form').css('display', 'block');
+  //   })
+  // }
 
-  function addRating() {
-    $('.rating').on('click', '.rating-input', function() {
-      // $('rating-input').css('background', )
-    })
-  }
+  // function addRating() {
+  //   $('.rating').on('click', '.rating-input', function() {
+  //     // $('rating-input').css('background', )
+  //   })
+  // }
 
 }
 
+  function displayHashtagOutfits() {
+    $('.hashtag-link').on('click', function(event){
+      event.preventDefault();
+      console.log(this)
+      // $.ajax({
+
+      //   url: "$(this).attr('id')",
+      //   data: {param1: 'value1'},
+      // })
+      // .done(function() {
+      //   console.log("success");
+      // })
+    })
+  }
 
 function addAverageRating(average) {
   $('.rating div:lt(average)').css('background', "url('star-full.png')")
@@ -61,7 +75,6 @@ function displayRecentOutfits (){
   $.ajax({
     url: window.location.pathname + "/ensembles"
   }).done(function(data){
-    console.log(window.location.pathname)
     context = {recentOutfits: data};
     $('#recent-outfits').html(template(context));
   })
@@ -75,9 +88,14 @@ function displayTrendingHashtags (){
   $.ajax({
     url: "/hashtags"
   }).done(function(data){
-    console.log(data)
     context = {trendingHashtags: data};
     $('#trending-hashtags').html(template(context));
+    console.log($('.hashtag-link'))
+    $('.hashtag-link').on('click', function(event){
+      event.preventDefault();
+      console.log(event);
+
+    })
   })
 }
 
