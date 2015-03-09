@@ -31,20 +31,6 @@ function bindEvents(){
 
 }
 
-  function displayHashtagOutfits() {
-    $('.hashtag-link').on('click', function(event){
-      event.preventDefault();
-      console.log(this)
-      // $.ajax({
-
-      //   url: "$(this).attr('id')",
-      //   data: {param1: 'value1'},
-      // })
-      // .done(function() {
-      //   console.log("success");
-      // })
-    })
-  }
 
 function addAverageRating(average) {
   $('.rating div:lt(average)').css('background', "url('star-full.png')")
@@ -59,7 +45,6 @@ function displayAllOutfits(){
   $.ajax({
     url: "/ensembles"
   }).done(function(data){
-    // console.log(data)
     context = {allOutfits: data};
     $('#all-outfits').html(template(context));
     addAverageRating(data.avg_rating);
@@ -90,25 +75,36 @@ function displayTrendingHashtags (){
   }).done(function(data){
     context = {trendingHashtags: data};
     $('#trending-hashtags').html(template(context));
-    console.log($('.hashtag-link'))
     $('.hashtag-link').on('click', function(event){
       event.preventDefault();
-      console.log(event);
 
+      displayHashtagOutfits(event);
     })
   })
 }
 
 
+function displayHashtagOutfits(event) {
+  $.ajax({
+    url: event.currentTarget.href,
+  })
+  .done(function(data) {
+    var source = $("#all-outfits-template").html();
+    var template =Handlebars.compile(source);
+    var context = {}
+    context = {allOutfits: data};
+    $('#all-outfits').html(template(context));
+    addAverageRating(data.avg_rating);
+
+  })
+}
 
 
 // just in case we want to prepend a newly created outfit...
-
 // function addNewOutfit(){
 //   var source = $("#new-outfit-template").html();
 //   var template =Handlebars.compile(source);
 //   var context = {}
-
 //   $.ajax({
 //     url: "http://www.reddit.com/r/aww/comments/2y3fas/look_at_this_pile_of_30_dogs_posing_and_looking/.json"
 //   }).done(function(data){
