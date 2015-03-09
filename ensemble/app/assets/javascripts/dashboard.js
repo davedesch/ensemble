@@ -4,6 +4,7 @@ var ready = function(){
   displayAllOutfits();
   displayRecentOutfits();
   displayTrendingHashtags();
+    newOutfit();
 
   bindEvents();
   $('#instagram').on('click', function(){
@@ -15,7 +16,6 @@ var ready = function(){
       console.log("form submitted");
       displaySearchedOutfits();
     })
-    newOutfit();
 }
 
 $(document).ready(ready);
@@ -71,7 +71,7 @@ function displayAllOutfits(){
     url: "/ensembles"
   }).done(function(data){
     context = {allOutfits: data};
-    $('#all-outfits').html(template(context));
+    $('#all-outfits').append(template(context));
     addAverageRating(data.avg_rating);
   })
 }
@@ -144,6 +144,24 @@ function newOutfit() {
   $('#newoutfit').on("click", function(event){
     console.log('clicked!');
     event.preventDefault();
+    $.ajax({
+      url: window.location.pathname+'/ensembles/new',
+      type: 'GET',
+      dataType: 'HTML',
+      // data: {param1: 'value1'},
+    })
+    .done(function(a) {
+      console.log("success");
+      console.log(a);
+      $('#all-outfits').prepend(a);
+    })
+    .fail(function() {
+      console.log("error");
+    })
+    .always(function() {
+      console.log("complete");
+    });
+
   });
 }
 

@@ -12,7 +12,7 @@ class OutfitsController < ApplicationController
   end
 
   def new
-    render html: :new
+    render :new
   end
 
   def create
