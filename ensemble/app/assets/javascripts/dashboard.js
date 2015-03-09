@@ -4,6 +4,9 @@ var ready = function(){
   displayAllOutfits();
   displayRecentOutfits();
   displayTrendingHashtags();
+    newOutfit();
+
+
   bindEvents();
   $('#instagram').on('click', function(){
       console.log('clicked')
@@ -14,8 +17,6 @@ var ready = function(){
       console.log("form submitted");
       displaySearchedOutfits();
     })
-
-
 }
 
 $(document).ready(ready);
@@ -71,7 +72,7 @@ function displayAllOutfits(){
     url: "/ensembles"
   }).done(function(data){
     context = {allOutfits: data};
-    $('#all-outfits').html(template(context));
+    $('#all-outfits').append(template(context));
     addAverageRating(data.avg_rating);
   })
 }
@@ -140,6 +141,47 @@ function displayHashtagOutfits(event) {
 // }
 
 
+function newOutfit() {
+  $('#newoutfit').on("click", function(event){
+    console.log('clicked!');
+    event.preventDefault();
+    $.ajax({
+      url: window.location.pathname+'/ensembles/new',
+      type: 'GET',
+      dataType: 'HTML',
+      // data: {param1: 'value1'},
+    })
+    .done(function(a) {
+      console.log("success");
+      $('#all-outfits').prepend(a);
+      uploadImage();
+    })
+    .fail(function() {
+      console.log("error");
+    })
+    .always(function() {
+      console.log("complete");
+    });
 
+  });
+}
+
+var magic = null
+function uploadImage() {
+ document.getElementById("upload_widget_opener").addEventListener("click", function() {
+
+    cloudinary.openUploadWidget({ cloud_name: 'dzxyyevk0', upload_preset: 'iiv6os2n', max_files: 1},
+      function(error, result) { console.log(error, result)
+        magic = result;
+          console.log('still working');
+          console.log(magic)
+          var imgURL = magic[0].secure_url;
+          $('#outfit_image_url').val(imgURL);
+
+      });
+
+  }, false);
+
+}
 
 

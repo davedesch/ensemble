@@ -1,4 +1,3 @@
-<button><a href="/instagram/recent">Get my pix from instagram</a></button>
 <script id="all-outfits-template" type="text/x-handlebars-template">
   {{#each allOutfits}}
     <img src="{{image}}" class="img-responsive col-12" id="outfitpicture" alt="Your Ensemble!">
@@ -45,8 +44,8 @@
     <a href="/users/<%= @user_id %>"><div class="col-md-3 ">
       HOME
     </div></a>
-    <a href="">
-    <div class="col-md-3 ">
+    <a href="/outfits/new" id="newoutfit">
+    <div class="col-md-3">
       UPLOAD AN ENSEMBLE
     </div></a>
     <a href="">
