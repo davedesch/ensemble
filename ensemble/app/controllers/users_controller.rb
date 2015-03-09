@@ -8,7 +8,6 @@ class UsersController < ApplicationController
 
   def create
     prospective_user = User.new(user_params)
-    p user_params
     prospective_user.password = params[:password]
     if prospective_user.save
       current_user = prospective_user
@@ -23,6 +22,7 @@ class UsersController < ApplicationController
 
 
   def show
+    @user_id = session[:user_id]
     render :dashboard
   end
 

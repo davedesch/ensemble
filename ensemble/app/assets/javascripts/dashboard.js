@@ -1,4 +1,5 @@
-$(document).ready(function(){
+var ready = function(){
+
   console.log('working!')
   displayAllOutfits();
   displayRecentOutfits();
@@ -8,7 +9,10 @@ $(document).ready(function(){
       console.log('clicked')
     })
 
-})
+}
+
+$(document).ready(ready);
+$(document).on('page:load', ready)
 
 function bindEvents(){
 
