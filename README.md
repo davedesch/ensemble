@@ -1,6 +1,11 @@
 # ensemble
 Dev Bootcamp Phase 3 Final Project.
-TEAM: Dave Descheneaux, Saleh Rastani, Peter Fitzpatrick, Jessie Rushing
+
+TEAM:
+	- Dave Descheneaux (Team Lead)
+	- Peter Fitzpatrick
+	- Saleh Rastani
+	- Jessie Rushing
 
 DB Schema
 ![db](/schema.png)
