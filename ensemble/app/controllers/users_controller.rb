@@ -15,7 +15,7 @@ class UsersController < ApplicationController
       redirect_to user_path(current_user.id)
     else
       @errors = prospective_user.errors
-      redirect_to :index
+      redirect_to '/'
     end
   end
 
