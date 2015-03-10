@@ -40,6 +40,9 @@ function bindEvents(){
    $('#sort-by-popularity').on('click', function(){
     sortByPopularity();
    });
+   $('#sort-by-recent').on('click', function(){
+    sortByRecent();
+   });
 
 };
 
@@ -131,7 +134,6 @@ function displayTrendingHashtags (){
     $('#trending-hashtags').html(template(context));
     $('.hashtag-link').on('click', function(event){
       event.preventDefault();
-
       displayHashtagOutfits(event);
     })
   })
@@ -160,7 +162,7 @@ function newOutfit() {
       // data: {param1: 'value1'},
     })
     .done(function(a) {
-      console.log("success");
+      // console.log("success");
       $('#all-outfits').prepend(a);
       uploadImage();
     })
@@ -192,6 +194,7 @@ function uploadImage() {
 
 }
 
+
 function sortByRatings() {
   var sortedOutfits = currentFeed.sort(function(a,b){
   return b.avg_rating - a.avg_rating
@@ -206,6 +209,13 @@ function sortByPopularity() {
   renderFeed(sortedOutfits);
 }
 
+function sortByRecent() {
+  var sortedOutfits = currentFeed.sort(function(a,b){
+  return Date.parse(b.created_at) - Date.parse(a.created_at)
+  });
+  renderFeed(sortedOutfits);
+}
+
 function Outfit() {
   this.outfit_id= ""
   this.title= ""
@@ -215,6 +225,7 @@ function Outfit() {
   this.caption= ""
   this.user= ""
   this.popularity = 0
+  this.created_at = ""
 }
 
 function constructFeed(data){
@@ -229,17 +240,14 @@ function constructFeed(data){
     outfit.caption= data[i].caption
     outfit.user= data[i].user
     outfit.popularity = data[i].popularity
+    outfit.created_at = data[i].created_at
     currentFeed.push(outfit)
   }
-  console.log("this is the orig array")
-  console.log(currentFeed)
 };
 
 function renderFeed(data){
   var source = $("#all-outfits-template").html();
   var template =Handlebars.compile(source);
-  // debugger
-  // var context = {}
   var context = {allOutfits: data};
   $('#all-outfits').html(template(context));
   addAverageRating(data);

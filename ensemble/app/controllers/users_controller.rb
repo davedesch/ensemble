@@ -33,7 +33,7 @@ class UsersController < ApplicationController
       outfit.articles.each do |article|
         types.push(article.article_type.type_desc)
       end
-      results.push({outfit_id: outfit.id , title: outfit.title , image: outfit.image_url, types: types, avg_rating: outfit.average_ratings, caption: outfit.caption, user: outfit.user.username, popularity: outfit.popularity})
+      results.push({outfit_id: outfit.id , title: outfit.title , image: outfit.image_url, types: types, avg_rating: outfit.average_ratings, caption: outfit.caption, user: outfit.user.username, popularity: outfit.popularity, created_at: outfit.created_at})
     end
     render json: results
   end
