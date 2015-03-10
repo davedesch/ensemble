@@ -20,7 +20,6 @@ class UsersController < ApplicationController
   end
 
 
-
   def show
     @user_id = session[:user_id]
     render :dashboard
