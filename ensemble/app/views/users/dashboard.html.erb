@@ -1,9 +1,11 @@
+
 <script id="all-outfits-template" type="text/x-handlebars-template">
   {{#each allOutfits}}
+  <div class='individual-outfit'>
     <img src="{{image}}" class="img-responsive col-12" id="outfitpicture" alt="Your Ensemble!" height="640">
     <div class="col-12">{{title}}</div>
     <div class="col-12">{{types}}</div>
-    <div class="col-12 rating" id="rating-{{@index}}">
+    <div class="col-12 rating" id="rating-{{@index}}" value="{{avg_rating}}">
     <p>average rating</p>
       <div class="rating-star"></div>
       <div class="rating-star"></div>
@@ -19,7 +21,7 @@
           <input type="hidden" name="rating[user_id]" value=<%= session[:user_id] %>>
           <input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden">
           <textarea rows="4" cols="50" placeholder="leave a fantastic review" name="rating[comment]"></textarea><br>
-          <div class="col-12 rating" id="newrating-{{@index}}">
+          <div class="col-12 newrating" id="newrating-{{@index}}">
             <p>click the stars to rate</p>
             <div id="star1" class="new-rating-stars"></div>
             <div id="star2" class="new-rating-stars"></div>
@@ -32,6 +34,7 @@
       </div>
     </div>
      <div class="col-12">{{caption}}</div>
+ </div>
   {{/each}}
 </script>
 
@@ -81,7 +84,8 @@
           <input type="submit" value="search">
         </form>
         </div>
-      <div class="col-md-4 col-md-offset-4">SORT_BY FIELD</div>
+      <div class="col-md-4 col-md-offset-4">SORT_BY: <button id='sort-by-ratings'>RATINGS</button>
+      </div>
     </div>
 
     <div class="dashboard">
