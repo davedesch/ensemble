@@ -35,7 +35,7 @@ RSpec.describe Rating, type: :model do
     rating = Rating.new(
     stars: 8, outfit: outfit, user: user )
     rating.valid?
-    expect(rating.errors[:stars]).to include("must be less than 5")
+    expect(rating.errors[:stars]).to include("must be less than 6")
   end
 
   it "is invalid when stars less than 0" do
