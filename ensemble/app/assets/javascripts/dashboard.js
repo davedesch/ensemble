@@ -3,12 +3,12 @@
 var ready = function(){
 
   console.log('working!');
-  sortByRatings();
   displayAllOutfits();
   displayRecentOutfits();
   displayTrendingHashtags();
   newOutfit();
   bindEvents();
+  // sortByRatings();
 }
 // FIND A BETTER WAY TO TRIGGER THIS SO IT DOESN'T CAUSE EVERYTHING TO REFRESH WHEN YOU DO AN AJAX CALL
 $(document).ready(ready);
@@ -79,51 +79,15 @@ function addAverageRating(data) {
 // Also Calls the Star Ratings because it displays all outfits
 // SEE IF WE CAN MOVE ALL FUNCTIONS TO A RENDER FUNCTION SO IT DOESN'T HAVE TO CALL EVERYTHING
 function displayAllOutfits(){
-  var source = $("#all-outfits-template").html();
-  var template =Handlebars.compile(source);
-  var context = {}
-
   $.ajax({
     url: "/ensembles"
   }).done(function(data){
-    context = {allOutfits: data};
-    $('#all-outfits').append(template(context));
-    addAverageRating(data);
-    addRatingListener();
-    newRatingStarsClick();
-    sortByRatings();
+    renderFeed(data);
   })
 }
 
 // IN PROGRESS. CURRENTLY RETURNS AN ARRAY SORTED HIGHEST TO LOWEST WITHOUT CORRESPONDING VALUES
-function sortByRatings() {
-  $('#sort-by-ratings').on('click', function() {
-    var allRatings = $(".rating");
-    console.log(allRatings)
-    var sortedOutfits = allRatings.sort(function(a,b){
-      return a.getAttribute('value') - b.getAttribute('value')
-    })
-    console.log(sortedOutfits)
 
-    // ratingsToSort = []
-    // var context = {}
-    // console.log(allRatings);
-    // for (var i=0; i < allRatings.length; i++) {
-      // ratingsToSort.push(allRatings[i].getAttribute('value'));
-      // console.log(sortByRatings);
-    // }
-      // console.log(ratingsToSort);
-      // console.log(ratingsToSort.sort(function(a, b){return b-a}));
-
-    // var sortedOutfits = source.sort(function(a,b){
-    //   return a-b
-  })
-
-    // context = {allOutfits: sortedOutfits};
-    // $('#all-outfits').html(template(context));
-
-  // })
-}
 // WAITS FOR RATING BUTTON TO BE CLICKED
 // SEE IF ALL LISTENERS CAN BE MOVED TO LISTENER MODULE
 function addRatingListener() {
@@ -241,9 +205,83 @@ function uploadImage() {
 
 }
 
+// function sortByRatings() {
+//   $('#sort-by-ratings').on('click', function() {
+//     var allOutfits = $(".individual-outfit");
+//     console.log(allOutfits);
+//     var outfits = [];
+//     var outfit = new Outfit();
 
+//     console.log(allOutfits[0].children);
+//     // outfit.image = allOutfits[0].firstElementChild.currentSrc
+//     // outfit.title
 
+//     // for (var i=0; i < allOutfits.length; i++) {
 
+//     // };
+//     // var sortedOutfits = allRatings.sort(function(a,b){
+//     //   return a.getAttribute('value') - b.getAttribute('value')
+//     // })
+//     // console.log(sortedOutfits)
+
+//     // ratingsToSort = []
+//     // var context = {}
+//     // console.log(allRatings);
+//     // for (var i=0; i < allRatings.length; i++) {
+//       // ratingsToSort.push(allRatings[i].getAttribute('value'));
+//       // console.log(sortByRatings);
+//     // }
+//       // console.log(ratingsToSort);
+//       // console.log(ratingsToSort.sort(function(a, b){return b-a}));
+
+//     // var sortedOutfits = source.sort(function(a,b){
+//     //   return a-b
+//   })
+
+//     // context = {allOutfits: sortedOutfits};
+//     // $('#all-outfits').html(template(context));
+
+//   // })
+// }
+
+function Outfit() {
+  this.outfit_id= ""
+  this.title= ""
+  this.image= ""
+  this.types= []
+  this.avg_rating= 0
+  this.caption= ""
+  this.user= ""
+}
+
+function constructFeed(data){
+  currentFeed = []
+  for (var i=0; i < data.length; i++) {
+    var outfit = new Outfit();
+    outfit.outfit_id = data[i].outfit_id
+    outfit.title= data[i].title
+    outfit.image= data[i].image
+    outfit.types= data[i].types
+    outfit.avg_rating= data[i].avg_rating
+    outfit.caption= data[i].caption
+    outfit.user= data[i].user
+    currentFeed.push(outfit)
+  }
+  console.log(currentFeed)
+};
+
+function renderFeed(data){
+  var source = $("#all-outfits-template").html();
+  var template =Handlebars.compile(source);
+  var context = {}
+  context = {allOutfits: data};
+  $('#all-outfits').append(template(context));
+  addAverageRating(data);
+  addRatingListener();
+  newRatingStarsClick();
+  constructFeed(data);
+
+};
 
 
 
