@@ -1,9 +1,10 @@
 <h1>Add an outfit.</h1>
-
+<img src="">
 <div id="upload_widget_opener">
 <button class="btn btn-1 btn-1a">OPEN SOME FUCKING PICTURES</button>
 </div>
-<div id="upload_with_instagram"><a href="/instagram/recent"><button class="btn btn-1 btn-1a" >Upload from Instagram<i class="fa fa-instagram"></i></button></a></div>
+<div id="upload_with_instagram"><a id='get_from_instagram' href="/instagram/recent"><button class="btn btn-1 btn-1a" >Select from Instagram<i class="fa fa-instagram"></i></button></a></div>
+<div id="instagram_select" title="choose a picture from instagram"></div>
 <div id="newoutfitthumbnail"></div>
 <br>
 <%= form_for :outfit, as: :post, html: { class: "outfitform"}, url: user_outfits_path do |f| %>
