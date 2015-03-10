@@ -21,7 +21,11 @@ class InstagramsController < ApplicationController
     current_user = User.find(session[:user_id])
     client = Instagram.client(access_token: current_user.auth_token)
     user = client.user 
-    @image = client.user_recent_media[0].images.standard_resolution.url
+    @images = []
+    client.user_recent_media.each do |media|
+      p media.images
+      @images.push(media.images.standard_resolution.url)
+    end
     render file: '/app/views/users/itworked'
   end
 

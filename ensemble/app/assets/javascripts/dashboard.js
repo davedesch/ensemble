@@ -1,13 +1,15 @@
 // var ready = function(){
 
+
 //   console.log('working!');
 //   sortByRatings();
+
+//   console.log('working!')
+
 //   displayAllOutfits();
 //   displayRecentOutfits();
 //   displayTrendingHashtags();
 //   newOutfit();
-
-
 
 //   bindEvents();
 //   $('#instagram').on('click', function(){
@@ -27,8 +29,10 @@
 // function bindEvents(){
 
 // }
+
 // // STAR RATINGS RAN HERE
 // // When you search for something it displays all outfits that correllate with hashtag
+
 // function displaySearchedOutfits(event) {
 //     var source = $("#all-outfits-template").html();
 //     var template =Handlebars.compile(source);
@@ -58,7 +62,9 @@
 //  }
 // }
 
+
 // // Also Calls the Star Ratings because it displays all outfits
+
 // function displayAllOutfits(){
 //   var source = $("#all-outfits-template").html();
 //   var template =Handlebars.compile(source);
@@ -68,10 +74,14 @@
 //     url: "/ensembles"
 //   }).done(function(data){
 //     context = {allOutfits: data};
+
+//     console.log(data)
+
 //     $('#all-outfits').append(template(context));
 //     addAverageRating(data);
 //     addRatingListener();
 //     newRatingStarsClick();
+
 //     sortByRatings();
 //   })
 // }
@@ -124,10 +134,33 @@
 //   })
 // }
 
+//   })
+// }
+
+//   function addRatingListener() {
+//     $('.rate-this-button').on('click', function(event) {
+//     $(this).next('.rating-form').css('display', 'block');
+
+//     })
+//   }
+
+//   function newRatingStarsClick(){
+//     $('.new-rating-stars').on('click', function(event){
+//       console.log('clicked on a star')
+//       var starNumber = event.currentTarget.id.substring(4)
+//       var thisOutfitsRatingForm = $(this).parent()[0]
+//       var outfitIndex = thisOutfitsRatingForm.id.substring(10)
+//       $("#newrating-" + outfitIndex + " div:lt("+ starNumber +")").css('background', "url('../star-full.png')")
+//       $("#form-" + outfitIndex)[0][0].value = starNumber
+//     })
+//   }
+
+
 // function displayRecentOutfits (){
 //   var source = $("#recent-outfits-template").html();
 //   var template =Handlebars.compile(source);
 //   var context = {};
+
 
 //   $.ajax({
 //     url: window.location.pathname + "/ensembles"
@@ -145,6 +178,24 @@
 //   $.ajax({
 //     url: "/hashtags"
 //   }).done(function(data){
+
+//   $.ajax({
+//     url: window.location.pathname + "/ensembles"
+//   }).done(function(data){
+//     context = {recentOutfits: data};
+//     $('#recent-outfits').html(template(context));
+//   })
+// }
+
+// function displayTrendingHashtags (){
+//   var source = $("#trending-hashtags-template").html();
+//   var template = Handlebars.compile(source);
+//   var context = {};
+
+//   $.ajax({
+//     url: "/hashtags"
+//   }).done(function(data){
+
 //     context = {trendingHashtags: data};
 //     $('#trending-hashtags').html(template(context));
 //     $('.hashtag-link').on('click', function(event){
@@ -232,22 +283,3 @@
 //   }, false);
 
 // }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
