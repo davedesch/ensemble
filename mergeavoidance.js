@@ -1,3 +1,5 @@
+// the document ready that launches everything.
+
 var ready = function(){
 
   console.log('working!');
@@ -8,31 +10,44 @@ var ready = function(){
   newOutfit();
 
 
+  $('.img-thumbnail').on('click', function(event) {
+    console.log("you clicked a pic")
+    var imgURL = this.src
+    console.log(imgURL)
+    $('#outfit_image_url').val(imgURL);
+    $('#newoutfitthumbnail').append("<img src="+ imgURL +">")
+    $('#instagram_select').empty();
+  })
 
-  bindEvents();
-  $('#instagram').on('click', function(){
-      console.log('clicked')
+  $('#get_from_instagram').on('click', function(event) {
+    event.preventDefault();
+    $.ajax({
+      url: '/instagram/recent',
+      type: 'GET',
+      dataType: 'html',
     })
+    .done(function(response) {
+      $('#instagram_select').html(response)
+    });
+    console.log("success");
+  });
 
-    $('#search-form').on('submit', function(event){
-      event.preventDefault();
-      console.log("form submitted");
-      displaySearchedOutfits();
-    })
+  $('#search-form').on('submit', function(event){
+    event.preventDefault();
+    console.log("form submitted");
+    displaySearchedOutfits();
+  })
 }
-
+// FIND A BETTER WAY TO TRIGGER THIS SO IT DOESN'T CAUSE EVERYTHING TO REFRESH WHEN YOU DO AN AJAX CALL
 $(document).ready(ready);
 $(document).on('page:load', ready)
 
-function bindEvents(){
-
-}
 // STAR RATINGS RAN HERE
 // When you search for something it displays all outfits that correllate with hashtag
 function displaySearchedOutfits(event) {
-    var source = $("#all-outfits-template").html();
-    var template =Handlebars.compile(source);
-    var context = {}
+  var source = $("#all-outfits-template").html();
+  var template =Handlebars.compile(source);
+  var context = {}
 
   $.ajax({
     url: '/search',
@@ -43,22 +58,23 @@ function displaySearchedOutfits(event) {
     context = {allOutfits: data};
     $('#all-outfits').html(template(context));
     addAverageRating(data);
-    addRatingListener();
+    addRatingListener(); //function to add star ratings and allow to give star rating
     newRatingStarsClick();
   })
 }
 
+// SETS AVERAGE RATING FOR EACH OUTFIT ON FEED. DATA COMES FROM WHATEVER AJAX CALL POPULATES THE FEED.
 function addAverageRating(data) {
-
  for (var i = 0; i < data.length ; i++ ) {
   var rating = data[i].avg_rating
   if (rating > 0) {
     $("#rating-" + i + " div:lt("+ rating +")").css('background', "url('../star-full.png')")
   }
- }
+}
 }
 
 // Also Calls the Star Ratings because it displays all outfits
+// SEE IF WE CAN MOVE ALL FUNCTIONS TO A RENDER FUNCTION SO IT DOESN'T HAVE TO CALL EVERYTHING
 function displayAllOutfits(){
   var source = $("#all-outfits-template").html();
   var template =Handlebars.compile(source);
@@ -76,7 +92,7 @@ function displayAllOutfits(){
   })
 }
 
-
+// IN PROGRESS. CURRENTLY RETURNS AN ARRAY SORTED HIGHEST TO LOWEST WITHOUT CORRESPONDING VALUES
 function sortByRatings() {
   $('#sort-by-ratings').on('click', function() {
     var allRatings = $(".rating");
@@ -98,21 +114,23 @@ function sortByRatings() {
 
     // var sortedOutfits = source.sort(function(a,b){
     //   return a-b
-    })
+  })
 
     // context = {allOutfits: sortedOutfits};
     // $('#all-outfits').html(template(context));
 
   // })
 }
-
+// WAITS FOR RATING BUTTON TO BE CLICKED
+// SEE IF ALL LISTENERS CAN BE MOVED TO LISTENER MODULE
 function addRatingListener() {
   $('.rate-this-button').on('click', function(event) {
-  $(this).next('.rating-form').css('display', 'block');
+    $(this).next('.rating-form').css('display', 'block');
 
   })
 }
 
+// POPULATES A HIDDEN VALUE IN FORM THAT WILL LATER UPDATE AR IN POST ROUTE.
 function newRatingStarsClick(){
   $('.new-rating-stars').on('click', function(event){
     console.log('clicked on a star')
@@ -123,7 +141,8 @@ function newRatingStarsClick(){
     $("#form-" + outfitIndex)[0][0].value = starNumber
   })
 }
-
+// SELF EXPLANATORY. ANYTHING THAT JUST GOT ADDED GETS PUT TO THE TOP OF THE FEED.
+// THIS DISPLAYS ON THE WIDGET ON THE LEFT
 function displayRecentOutfits (){
   var source = $("#recent-outfits-template").html();
   var template =Handlebars.compile(source);
@@ -137,6 +156,7 @@ function displayRecentOutfits (){
   })
 }
 
+// THE WIDGET THAT DISPLAYS ALL HASHTAGS ON THE RIGHT SIDE OF THE SCREEN. RENAME TO WIDGET SOON.
 function displayTrendingHashtags (){
   var source = $("#trending-hashtags-template").html();
   var template = Handlebars.compile(source);
@@ -155,11 +175,11 @@ function displayTrendingHashtags (){
   })
 }
 
-
+// THIS IS THE SAME AS DISPLAY ALL OUTFITS AND WE CAN PROBABLY BURN IT.
 function displayHashtagOutfits(event) {
-    var source = $("#all-outfits-template").html();
-    var template =Handlebars.compile(source);
-    var context = {}
+  var source = $("#all-outfits-template").html();
+  var template =Handlebars.compile(source);
+  var context = {}
 
   $.ajax({
     url: event.currentTarget.href,
@@ -174,22 +194,7 @@ function displayHashtagOutfits(event) {
 }
 
 
-
-
-// just in case we want to prepend a newly created outfit...
-// function addNewOutfit(){
-//   var source = $("#new-outfit-template").html();
-//   var template =Handlebars.compile(source);
-//   var context = {}
-//   $.ajax({
-//     url: "http://www.reddit.com/r/aww/comments/2y3fas/look_at_this_pile_of_30_dogs_posing_and_looking/.json"
-//   }).done(function(data){
-//     context = {outfit: data[0].data.children[0].data}
-//     $('#all-outfits').prepend(template(context))
-//   })
-// }
-
-
+// POST ROUTE THAT ENABLES CLOUDINARY AND PREPENDS PICTURE AND DATA TO TOP OF FEED
 function newOutfit() {
   $('#newoutfit').on("click", function(event){
     console.log('clicked!');
@@ -214,22 +219,22 @@ function newOutfit() {
 
   });
 }
-
+// MOSTLY VANILLA JS TO BRING UP CLOUDINARY WIDGET. RENAME MAGIC SOON.
 var magic = null
 function uploadImage() {
  document.getElementById("upload_widget_opener").addEventListener("click", function() {
 
-    cloudinary.openUploadWidget({ cloud_name: 'dzxyyevk0', upload_preset: 'iiv6os2n', max_files: 1, cropping_aspect_ratio: 1, },
-      function(error, result) { console.log(error, result)
-        magic = result;
-          console.log('still working');
-          console.log(magic)
-          var imgURL = magic[0].secure_url;
-          $('#outfit_image_url').val(imgURL);
+  cloudinary.openUploadWidget({ cloud_name: 'dzxyyevk0', upload_preset: 'iiv6os2n', max_files: 1, cropping_aspect_ratio: 1, },
+    function(error, result) { console.log(error, result)
+      magic = result;
+      console.log('still working');
+      console.log(magic)
+      var imgURL = magic[0].secure_url;
+      $('#outfit_image_url').val(imgURL);
 
-      });
+    });
 
-  }, false);
+}, false);
 
 }
 
