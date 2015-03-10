@@ -48,9 +48,9 @@ function selectInstagramImage(imgURL){
 // STAR RATINGS RAN HERE
 // When you search for something it displays all outfits that correllate with hashtag
 function displaySearchedOutfits(event) {
-  var source = $("#all-outfits-template").html();
-  var template =Handlebars.compile(source);
-  var context = {}
+  // var source = $("#all-outfits-template").html();
+  // var template =Handlebars.compile(source);
+  // var context = {}
 
   $.ajax({
     url: '/search',
@@ -58,11 +58,12 @@ function displaySearchedOutfits(event) {
 
   })
   .done(function(data) {
-    context = {allOutfits: data};
-    $('#all-outfits').html(template(context));
-    addAverageRating(data);
-    addRatingListener(); //function to add star ratings and allow to give star rating
-    newRatingStarsClick();
+    // context = {allOutfits: data};
+    // $('#all-outfits').html(template(context));
+    // addAverageRating(data);
+    // addRatingListener(); //function to add star ratings and allow to give star rating
+    // newRatingStarsClick();
+    renderFeed(data);
   })
 }
 
@@ -144,19 +145,20 @@ function displayTrendingHashtags (){
 
 // THIS IS THE SAME AS DISPLAY ALL OUTFITS AND WE CAN PROBABLY BURN IT.
 function displayHashtagOutfits(event) {
-  var source = $("#all-outfits-template").html();
-  var template =Handlebars.compile(source);
-  var context = {}
+  // var source = $("#all-outfits-template").html();
+  // var template =Handlebars.compile(source);
+  // var context = {}
 
   $.ajax({
     url: event.currentTarget.href,
   })
   .done(function(data) {
-    context = {allOutfits: data};
-    $('#all-outfits').html(template(context));
-    addAverageRating(data);
-    addRatingListener();
-    newRatingStarsClick();
+    // context = {allOutfits: data};
+    // $('#all-outfits').html(template(context));
+    // addAverageRating(data);
+    // addRatingListener();
+    // newRatingStarsClick();
+    renderFeed(data);
   })
 }
 
@@ -267,15 +269,16 @@ function constructFeed(data){
     outfit.user= data[i].user
     currentFeed.push(outfit)
   }
-  console.log(currentFeed)
+  console.log(currentSrc)
 };
 
 function renderFeed(data){
   var source = $("#all-outfits-template").html();
   var template =Handlebars.compile(source);
-  var context = {}
-  context = {allOutfits: data};
-  $('#all-outfits').append(template(context));
+  // debugger
+  // var context = {}
+  var context = {allOutfits: data};
+  $('#all-outfits').html(template(context));
   addAverageRating(data);
   addRatingListener();
   newRatingStarsClick();
