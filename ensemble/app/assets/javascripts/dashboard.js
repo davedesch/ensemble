@@ -8,17 +8,17 @@ var ready = function(){
   displayRecentOutfits();
   displayTrendingHashtags();
   newOutfit();
+  bindEvents();
+}
+// FIND A BETTER WAY TO TRIGGER THIS SO IT DOESN'T CAUSE EVERYTHING TO REFRESH WHEN YOU DO AN AJAX CALL
+$(document).ready(ready);
+$(document).on('page:load', ready)
 
-
+function bindEvents(){
   $('.img-thumbnail').on('click', function(event) {
-    console.log("you clicked a pic")
     var imgURL = this.src
-    console.log(imgURL)
-    $('#outfit_image_url').val(imgURL);
-    $('#newoutfitthumbnail').append("<img src="+ imgURL +">")
-    $('#instagram_select').empty();
-  })
-
+    selectInstagramImage(imgURL);
+  });
   $('#get_from_instagram').on('click', function(event) {
     event.preventDefault();
     $.ajax({
@@ -29,18 +29,21 @@ var ready = function(){
     .done(function(response) {
       $('#instagram_select').html(response)
     });
-    console.log("success");
   });
-
   $('#search-form').on('submit', function(event){
     event.preventDefault();
-    console.log("form submitted");
     displaySearchedOutfits();
   })
-}
-// FIND A BETTER WAY TO TRIGGER THIS SO IT DOESN'T CAUSE EVERYTHING TO REFRESH WHEN YOU DO AN AJAX CALL
-$(document).ready(ready);
-$(document).on('page:load', ready)
+
+};
+
+//Instagram functions
+function selectInstagramImage(imgURL){
+  $('#outfit_image_url').val(imgURL);
+  $('#newoutfitthumbnail').append("<img src="+ imgURL +">")
+  $('#instagram_select').empty();
+};
+
 
 // STAR RATINGS RAN HERE
 // When you search for something it displays all outfits that correllate with hashtag
