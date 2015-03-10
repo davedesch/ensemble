@@ -211,6 +211,7 @@ function Outfit() {
   this.avg_rating= 0
   this.caption= ""
   this.user= ""
+  this.popularity = 0
 }
 
 function constructFeed(data){
@@ -224,6 +225,7 @@ function constructFeed(data){
     outfit.avg_rating= data[i].avg_rating
     outfit.caption= data[i].caption
     outfit.user= data[i].user
+    outfit.popularity = data[i].popularity
     currentFeed.push(outfit)
   }
   console.log("this is the orig array")

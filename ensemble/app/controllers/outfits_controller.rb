@@ -6,7 +6,7 @@ class OutfitsController < ApplicationController
     outfits = Outfit.where(user_id: user.id).order('created_at DESC').limit(10)
     results = []
     outfits.each do |outfit|
-      results.push({title: outfit.title, image: outfit.image_url, avg_rating: outfit.average_ratings})
+      results.push({title: outfit.title, image: outfit.image_url, avg_rating: outfit.average_ratings, popularity: outfit.popularity})
     end
     render json: results
   end
