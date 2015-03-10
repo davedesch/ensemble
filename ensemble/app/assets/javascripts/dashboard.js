@@ -163,7 +163,7 @@ function newOutfit() {
     })
     .done(function(a) {
       // console.log("success");
-      $('#all-outfits').prepend(a);
+      $('#all-outfits').html(a);
       uploadImage();
     })
     .fail(function() {
