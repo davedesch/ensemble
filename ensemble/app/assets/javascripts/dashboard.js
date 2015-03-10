@@ -9,6 +9,7 @@ var ready = function(){
   newOutfit();
   bindEvents();
   // sortByRatings();
+
 }
 // FIND A BETTER WAY TO TRIGGER THIS SO IT DOESN'T CAUSE EVERYTHING TO REFRESH WHEN YOU DO AN AJAX CALL
 $(document).ready(ready);
@@ -106,6 +107,24 @@ function newRatingStarsClick(){
     $("#form-" + outfitIndex)[0][0].value = starNumber
   })
 }
+
+// function destroyRecentOutfit(){
+//   $(".destroy-button").on("click", function(event){
+//     var outfitNumber = event.currentTarget.id.substring(8)
+//     url = window.location.pathname + '/ensembles/' + outfitNumber
+//     $.ajax({
+//       url: url,
+//       type: 'post',
+//       // data: {param1: 'value1'},
+//     })
+//     .done(function(data) {
+//       console.log(data);
+
+//     })
+
+//   })
+
+// }
 // SELF EXPLANATORY. ANYTHING THAT JUST GOT ADDED GETS PUT TO THE TOP OF THE FEED.
 // THIS DISPLAYS ON THE WIDGET ON THE LEFT
 function displayRecentOutfits (){
@@ -118,6 +137,7 @@ function displayRecentOutfits (){
   }).done(function(data){
     context = {recentOutfits: data};
     $('#recent-outfits').html(template(context));
+    // destroyRecentOutfit();
   })
 }
 
