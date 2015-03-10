@@ -23,6 +23,14 @@ class Outfit < ActiveRecord::Base
     return avg
   end
 
+  def popularity
+    popularity = 0
+    if self.ratings.count > 0
+      popularity = ratings.count * self.average_ratings
+    end
+    return popularity
+  end
+
 	private
 		def check_for_hashtags
 			hashtags = self.caption.scan(/#\w+/)

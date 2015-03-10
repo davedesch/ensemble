@@ -195,42 +195,13 @@ function sortByRatings() {
   });
   renderFeed(sortedOutfits);
 }
-//     var allOutfits = $(".individual-outfit");
-//     console.log(allOutfits);
-//     var outfits = [];
-//     var outfit = new Outfit();
 
-//     console.log(allOutfits[0].children);
-//     // outfit.image = allOutfits[0].firstElementChild.currentSrc
-//     // outfit.title
-
-//     // for (var i=0; i < allOutfits.length; i++) {
-
-//     // };
-//     // var sortedOutfits = allRatings.sort(function(a,b){
-//     //   return a.getAttribute('value') - b.getAttribute('value')
-//     // })
-//     // console.log(sortedOutfits)
-
-//     // ratingsToSort = []
-//     // var context = {}
-//     // console.log(allRatings);
-//     // for (var i=0; i < allRatings.length; i++) {
-//       // ratingsToSort.push(allRatings[i].getAttribute('value'));
-//       // console.log(sortByRatings);
-//     // }
-//       // console.log(ratingsToSort);
-//       // console.log(ratingsToSort.sort(function(a, b){return b-a}));
-
-//     // var sortedOutfits = source.sort(function(a,b){
-//     //   return a-b
-//   })
-
-//     // context = {allOutfits: sortedOutfits};
-//     // $('#all-outfits').html(template(context));
-
-//   // })
-// }
+function sortByPopularity() {
+  var sortedOutfits = currentFeed.sort(function(a,b){
+  return b.popularity - a.popularity
+  });
+  renderFeed(sortedOutfits);
+}
 
 function Outfit() {
   this.outfit_id= ""
