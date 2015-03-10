@@ -8,6 +8,7 @@ class UsersController < ApplicationController
 
   def create
     prospective_user = User.new(user_params)
+    if params[:password] != nil
     prospective_user.password = params[:password]
     if prospective_user.save
       current_user = prospective_user
@@ -15,8 +16,13 @@ class UsersController < ApplicationController
       redirect_to user_path(current_user.id)
     else
       @errors = prospective_user.errors
-      redirect_to '/'
+      p @errors
+      render '/users/new'
     end
+  else
+    @moreerrors = "Sorry, one or more things were invalid. Please try again."
+    render 'users/new'
+  end
   end
 
 
@@ -40,14 +46,19 @@ class UsersController < ApplicationController
 
   def login #not logging in with instagram
     @user = User.find_by_username(params[:username])
-    p @user
-      if @user.password == params[:password]
-        session[:user_id] = @user.id
-        redirect_to user_path(@user)
+      if @user && !params[:password].empty?
+        if @user.password == params[:password]
+          session[:user_id] = @user.id
+          redirect_to user_path(@user)
+          return
+        else
+          @errors = "Sorry, either your email or password didn't match"
+        end
       else
-        redirect_to "/"
+        @errors = "Sorry, either your email or password didn't match"
       end
 
+          render :index
   end
 
 
