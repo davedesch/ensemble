@@ -37,6 +37,9 @@ function bindEvents(){
    $('#sort-by-ratings').on('click', function(){
     sortByRatings();
    });
+   $('#sort-by-popularity').on('click', function(){
+    sortByPopularity();
+   });
 
 };
 
