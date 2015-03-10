@@ -36,10 +36,10 @@
 }
 
 #hanger {
- -webkit-filter: invert(100%);
+ /* -webkit-filter: invert(100%); */
 
- height: 70px;
- margin-bottom: -25px;
+ height: 120px;
+ margin-bottom: 0px;
 }
 
 
@@ -127,7 +127,12 @@ input {
 }
 
 #signinsta:hover{
-  color: #1277FF;
+  color: #0e83cd;
   text-decoration: none;
   padding: 30px 30px;
+}
+
+
+.newbuttons {
+  border: 3px solid #56D6F9;
 }
