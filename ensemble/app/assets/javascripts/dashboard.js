@@ -3,22 +3,22 @@
 var ready = function(){
 
   console.log('working!');
-  sortByRatings();
   displayAllOutfits();
   displayRecentOutfits();
   displayTrendingHashtags();
   newOutfit();
+  bindEvents();
+  // sortByRatings();
+}
+// FIND A BETTER WAY TO TRIGGER THIS SO IT DOESN'T CAUSE EVERYTHING TO REFRESH WHEN YOU DO AN AJAX CALL
+$(document).ready(ready);
+$(document).on('page:load', ready)
 
-
+function bindEvents(){
   $('.img-thumbnail').on('click', function(event) {
-    console.log("you clicked a pic")
     var imgURL = this.src
-    console.log(imgURL)
-    $('#outfit_image_url').val(imgURL);
-    $('#newoutfitthumbnail').append("<img src="+ imgURL +">")
-    $('#instagram_select').empty();
-  })
-
+    selectInstagramImage(imgURL);
+  });
   $('#get_from_instagram').on('click', function(event) {
     event.preventDefault();
     $.ajax({
@@ -29,37 +29,39 @@ var ready = function(){
     .done(function(response) {
       $('#instagram_select').html(response)
     });
-    console.log("success");
   });
-
   $('#search-form').on('submit', function(event){
     event.preventDefault();
-    console.log("form submitted");
     displaySearchedOutfits();
   })
-}
-// FIND A BETTER WAY TO TRIGGER THIS SO IT DOESN'T CAUSE EVERYTHING TO REFRESH WHEN YOU DO AN AJAX CALL
-$(document).ready(ready);
-$(document).on('page:load', ready)
+   $('#sort-by-ratings').on('click', function(){
+    sortByRatings();
+   });
+   $('#sort-by-popularity').on('click', function(){
+    sortByPopularity();
+   });
+   $('#sort-by-recent').on('click', function(){
+    sortByRecent();
+   });
 
-// STAR RATINGS RAN HERE
+};
+
+//Instagram functions
+function selectInstagramImage(imgURL){
+  $('#outfit_image_url').val(imgURL);
+  $('#newoutfitthumbnail').append("<img src="+ imgURL +">")
+  $('#instagram_select').empty();
+};
+
+
 // When you search for something it displays all outfits that correllate with hashtag
 function displaySearchedOutfits(event) {
-  var source = $("#all-outfits-template").html();
-  var template =Handlebars.compile(source);
-  var context = {}
-
   $.ajax({
     url: '/search',
     data: {hashtag: $('#search-box')[0].value},
-
   })
   .done(function(data) {
-    context = {allOutfits: data};
-    $('#all-outfits').html(template(context));
-    addAverageRating(data);
-    addRatingListener(); //function to add star ratings and allow to give star rating
-    newRatingStarsClick();
+    renderFeed(data);
   })
 }
 
@@ -73,54 +75,17 @@ function addAverageRating(data) {
 }
 }
 
-// Also Calls the Star Ratings because it displays all outfits
-// SEE IF WE CAN MOVE ALL FUNCTIONS TO A RENDER FUNCTION SO IT DOESN'T HAVE TO CALL EVERYTHING
+// Home Feed
 function displayAllOutfits(){
-  var source = $("#all-outfits-template").html();
-  var template =Handlebars.compile(source);
-  var context = {}
-
   $.ajax({
     url: "/ensembles"
   }).done(function(data){
-    context = {allOutfits: data};
-    $('#all-outfits').append(template(context));
-    addAverageRating(data);
-    addRatingListener();
-    newRatingStarsClick();
-    sortByRatings();
+    renderFeed(data);
   })
 }
 
 // IN PROGRESS. CURRENTLY RETURNS AN ARRAY SORTED HIGHEST TO LOWEST WITHOUT CORRESPONDING VALUES
-function sortByRatings() {
-  $('#sort-by-ratings').on('click', function() {
-    var allRatings = $(".rating");
-    console.log(allRatings)
-    var sortedOutfits = allRatings.sort(function(a,b){
-      return a.getAttribute('value') - b.getAttribute('value')
-    })
-    console.log(sortedOutfits)
 
-    // ratingsToSort = []
-    // var context = {}
-    // console.log(allRatings);
-    // for (var i=0; i < allRatings.length; i++) {
-      // ratingsToSort.push(allRatings[i].getAttribute('value'));
-      // console.log(sortByRatings);
-    // }
-      // console.log(ratingsToSort);
-      // console.log(ratingsToSort.sort(function(a, b){return b-a}));
-
-    // var sortedOutfits = source.sort(function(a,b){
-    //   return a-b
-  })
-
-    // context = {allOutfits: sortedOutfits};
-    // $('#all-outfits').html(template(context));
-
-  // })
-}
 // WAITS FOR RATING BUTTON TO BE CLICKED
 // SEE IF ALL LISTENERS CAN BE MOVED TO LISTENER MODULE
 function addRatingListener() {
@@ -169,7 +134,6 @@ function displayTrendingHashtags (){
     $('#trending-hashtags').html(template(context));
     $('.hashtag-link').on('click', function(event){
       event.preventDefault();
-
       displayHashtagOutfits(event);
     })
   })
@@ -177,19 +141,11 @@ function displayTrendingHashtags (){
 
 // THIS IS THE SAME AS DISPLAY ALL OUTFITS AND WE CAN PROBABLY BURN IT.
 function displayHashtagOutfits(event) {
-  var source = $("#all-outfits-template").html();
-  var template =Handlebars.compile(source);
-  var context = {}
-
   $.ajax({
     url: event.currentTarget.href,
   })
   .done(function(data) {
-    context = {allOutfits: data};
-    $('#all-outfits').html(template(context));
-    addAverageRating(data);
-    addRatingListener();
-    newRatingStarsClick();
+    renderFeed(data);
   })
 }
 
@@ -206,7 +162,7 @@ function newOutfit() {
       // data: {param1: 'value1'},
     })
     .done(function(a) {
-      console.log("success");
+      // console.log("success");
       $('#all-outfits').prepend(a);
       uploadImage();
     })
@@ -239,8 +195,67 @@ function uploadImage() {
 }
 
 
+function sortByRatings() {
+  var sortedOutfits = currentFeed.sort(function(a,b){
+  return b.avg_rating - a.avg_rating
+  });
+  renderFeed(sortedOutfits);
+}
 
+function sortByPopularity() {
+  var sortedOutfits = currentFeed.sort(function(a,b){
+  return b.popularity - a.popularity
+  });
+  renderFeed(sortedOutfits);
+}
 
+function sortByRecent() {
+  var sortedOutfits = currentFeed.sort(function(a,b){
+  return Date.parse(b.created_at) - Date.parse(a.created_at)
+  });
+  renderFeed(sortedOutfits);
+}
+
+function Outfit() {
+  this.outfit_id= ""
+  this.title= ""
+  this.image= ""
+  this.types= []
+  this.avg_rating= 0
+  this.caption= ""
+  this.user= ""
+  this.popularity = 0
+  this.created_at = ""
+}
+
+function constructFeed(data){
+  currentFeed = []
+  for (var i=0; i < data.length; i++) {
+    var outfit = new Outfit();
+    outfit.outfit_id = data[i].outfit_id
+    outfit.title= data[i].title
+    outfit.image= data[i].image
+    outfit.types= data[i].types
+    outfit.avg_rating= data[i].avg_rating
+    outfit.caption= data[i].caption
+    outfit.user= data[i].user
+    outfit.popularity = data[i].popularity
+    outfit.created_at = data[i].created_at
+    currentFeed.push(outfit)
+  }
+};
+
+function renderFeed(data){
+  var source = $("#all-outfits-template").html();
+  var template =Handlebars.compile(source);
+  var context = {allOutfits: data};
+  $('#all-outfits').html(template(context));
+  addAverageRating(data);
+  addRatingListener();
+  newRatingStarsClick();
+  constructFeed(data);
+
+};
 
 
 

@@ -3,10 +3,10 @@ class OutfitsController < ApplicationController
   def index
     user = User.find(params[:user_id])
     p user
-    outfits = Outfit.where(user_id: user.id).order('updated_at DESC').limit(10)
+    outfits = Outfit.where(user_id: user.id).order('created_at DESC').limit(10)
     results = []
     outfits.each do |outfit|
-      results.push({title: outfit.title, image: outfit.image_url, avg_rating: outfit.average_ratings})
+      results.push({title: outfit.title, image: outfit.image_url, avg_rating: outfit.average_ratings, popularity: outfit.popularity, created_at: outfit.created_at})
     end
     render json: results
   end
