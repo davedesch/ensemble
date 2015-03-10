@@ -34,6 +34,9 @@ function bindEvents(){
     event.preventDefault();
     displaySearchedOutfits();
   })
+   $('#sort-by-ratings').on('click', function(){
+    sortByRatings();
+   });
 
 };
 
@@ -45,24 +48,13 @@ function selectInstagramImage(imgURL){
 };
 
 
-// STAR RATINGS RAN HERE
 // When you search for something it displays all outfits that correllate with hashtag
 function displaySearchedOutfits(event) {
-  // var source = $("#all-outfits-template").html();
-  // var template =Handlebars.compile(source);
-  // var context = {}
-
   $.ajax({
     url: '/search',
     data: {hashtag: $('#search-box')[0].value},
-
   })
   .done(function(data) {
-    // context = {allOutfits: data};
-    // $('#all-outfits').html(template(context));
-    // addAverageRating(data);
-    // addRatingListener(); //function to add star ratings and allow to give star rating
-    // newRatingStarsClick();
     renderFeed(data);
   })
 }
@@ -77,8 +69,7 @@ function addAverageRating(data) {
 }
 }
 
-// Also Calls the Star Ratings because it displays all outfits
-// SEE IF WE CAN MOVE ALL FUNCTIONS TO A RENDER FUNCTION SO IT DOESN'T HAVE TO CALL EVERYTHING
+// Home Feed
 function displayAllOutfits(){
   $.ajax({
     url: "/ensembles"
@@ -145,19 +136,10 @@ function displayTrendingHashtags (){
 
 // THIS IS THE SAME AS DISPLAY ALL OUTFITS AND WE CAN PROBABLY BURN IT.
 function displayHashtagOutfits(event) {
-  // var source = $("#all-outfits-template").html();
-  // var template =Handlebars.compile(source);
-  // var context = {}
-
   $.ajax({
     url: event.currentTarget.href,
   })
   .done(function(data) {
-    // context = {allOutfits: data};
-    // $('#all-outfits').html(template(context));
-    // addAverageRating(data);
-    // addRatingListener();
-    // newRatingStarsClick();
     renderFeed(data);
   })
 }
@@ -207,8 +189,12 @@ function uploadImage() {
 
 }
 
-// function sortByRatings() {
-//   $('#sort-by-ratings').on('click', function() {
+function sortByRatings() {
+  var sortedOutfits = currentFeed.sort(function(a,b){
+  return b.avg_rating - a.avg_rating
+  });
+  renderFeed(sortedOutfits);
+}
 //     var allOutfits = $(".individual-outfit");
 //     console.log(allOutfits);
 //     var outfits = [];
@@ -269,7 +255,8 @@ function constructFeed(data){
     outfit.user= data[i].user
     currentFeed.push(outfit)
   }
-  console.log(currentSrc)
+  console.log("this is the orig array")
+  console.log(currentFeed)
 };
 
 function renderFeed(data){
