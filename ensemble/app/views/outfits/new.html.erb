@@ -30,10 +30,7 @@
   <%= f.select :gender, options_for_select(genders) %>
 </p>
 
-
-<%= f.fields_for :articles do |builder| %>
-    <%= render "article_fields", f: builder %>
-<% end %>
+<p><%= link_to_add_fields "Add a new Article", f, :articles %></p>
 
 
 <p>
