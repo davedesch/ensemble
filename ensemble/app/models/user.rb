@@ -1,3 +1,5 @@
+require 'bcrypt'
+
 class User < ActiveRecord::Base
   has_many :outfits
   has_many :ratings

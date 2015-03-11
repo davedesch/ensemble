@@ -46,19 +46,19 @@ class UsersController < ApplicationController
 
   def login #not logging in with instagram
     @user = User.find_by_username(params[:username])
-      if @user && !params[:password].empty?
-        if @user.password == params[:password]
+      if @user  # && !params[:password].empty?
+        if @user.password_hash == params[:password]
           session[:user_id] = @user.id
           redirect_to user_path(@user)
-          return
+          # return
         else
           @errors = "Sorry, either your email or password didn't match"
+          render :index
         end
-      else
-        @errors = "Sorry, either your email or password didn't match"
+      # else
+        # @errors = "Sorry, either your email or password didn't match"
       end
 
-          render :index
   end
 
 
