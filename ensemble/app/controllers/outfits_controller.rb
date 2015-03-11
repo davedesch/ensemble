@@ -22,15 +22,15 @@ class OutfitsController < ApplicationController
 
   def edit
     @outfit = Outfit.find(params[:id])
-
     render :edit, layout: false
   end
 
   def update
     user = User.find(params[:user_id])
     outfit = Outfit.find(params[:id])
-    outfit.update_attributes(params[:outfit])
-
+    outfit.attributes=(outfit_params)
+    outfit.save
+    redirect_to user_path(user)
   end
 
   def destroy

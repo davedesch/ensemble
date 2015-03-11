@@ -1,7 +1,7 @@
 <h1>Edit this outfit.</h1>
 <img src="<%=@outfit.image_url%>">
 
-<%= form_for :outfit, as: :put, html: { class: "outfitform"}, url: user_outfit_path do |f| %>
+<%= form_for :outfit, html: { class: "outfitform"}, method: 'put',  url: user_outfit_path do |f| %>
 <p>
   <%= f.label :title %><br>
   <%= f.text_field :title, value: @outfit.title %>

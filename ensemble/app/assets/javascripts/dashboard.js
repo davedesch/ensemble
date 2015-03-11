@@ -156,9 +156,7 @@ function displayHashtagOutfits(event) {
 }
 
 function updateOutfit() {
-   $('.update-button').on("click", function(event){
-    console.log(event)
-    console.log("in the updateOutfit function")
+  $('.update-button').on("click", function(event){
     event.preventDefault();
   var outfitNumber = event.currentTarget.id.substring(7);
   url = window.location.pathname + '/ensembles/' + outfitNumber + '/edit'
@@ -167,8 +165,7 @@ function updateOutfit() {
     dataType: "HTML"
   })
   .done(function(data) {
-    console.log(data)
-     $('#all-outfits').html(data);
+    $('#all-outfits').html(data);
   })
   });
 }
