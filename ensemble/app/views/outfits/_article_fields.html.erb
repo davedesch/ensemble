@@ -1,11 +1,15 @@
 <p>
-  <%= f.label :brand, "Brand" %> <br>
-  <%= f.text_field :brand %>
+  <%= f.collection_select :article_type_id, ArticleType.order(:type_desc), :id ,:type_desc, include_blank: "Type of Article" %><br>
+  <%= f.label :brand, "Brand" %>
+  <%= f.text_field :brand %><br>
   <%= f.label :url, "Paste a link to the item" %>
-  <%= f.text_field :url %>
+  <%= f.text_field :url %><br>
+  <%= f.label :discontinued, "Discontinuted" %>
   <%= f.check_box :discontinued %>
-  <%= f.check_box :vintage %>
-  <%= f.collection_select :article_type_id, ArticleType.order(:type_desc),:type_desc, include_blank: false %>
-  <%= f.check_box :_destroy %>
+  <%= f.label :vintage, "Vintage" %>
+  <%= f.check_box :vintage %><br>
   <%= f.label :_destroy, "Remove this article" %>
+  <%= f.check_box :_destroy %>
+  <br>
+  <br>
 </p>
