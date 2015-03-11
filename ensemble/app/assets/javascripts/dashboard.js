@@ -17,19 +17,35 @@ $(document).on('page:load', ready)
 
 function newRatingStarsHover(){
 
-  $(".new-rating-stars").mouseenter(function(event){
-    var hoveredStarId = event.currentTarget.id.substring(4)
-    $("#star"+ hoveredStarId +"").css('background', "url('../star-full.png')");
-    $("#star"+ hoveredStarId +"").prevAll().css('background', "url('../star-full.png')");
+  $("form .new-rating-stars").mouseenter(function(event){
+    var hoveredStarId = event.currentTarget.id
+    var parentId = event.currentTarget.parentElement.id
+    $("#"+ parentId + " #"+ hoveredStarId +"").css('background', "url('../star-full.png')");
+    $("#"+parentId + " #"+ hoveredStarId +"").prevAll().css('background', "url('../star-full.png')");
   });
 
-  $(".new-rating-stars").mouseleave(function(event){
-    var hoveredStarId = event.currentTarget.id.substring(4)
-    $("#star"+ hoveredStarId +"").css('background', "url('../star-empty.png')");
-    $("#star"+ hoveredStarId +"").prevAll().css('background', "url('../star-empty.png')");
+  $("form .new-rating-stars").mouseleave(function(event){
+    var hoveredStarId = event.currentTarget.id
+    var parentId = event.currentTarget.parentElement.id
+    $("#"+parentId + " #"+ hoveredStarId +"").css('background', "url('../star-empty.png')");
+    $("#"+parentId + " #"+ hoveredStarId +"").prevAll().css('background', "url('../star-empty.png')");
   });
 }
 
+// POPULATES A HIDDEN VALUE IN FORM THAT WILL LATER UPDATE AR IN POST ROUTE.
+function newRatingStarsClick(){
+  $('.new-rating-stars').on('click', function(event){
+    console.log('clicked on a star')
+    $(".new-rating-stars").off("mouseenter")
+    $(".new-rating-stars").off("mouseleave")
+
+    var starNumber = event.currentTarget.id.substring(4)
+    var thisOutfitsRatingForm = $(this).parent()[0]
+    var outfitIndex = thisOutfitsRatingForm.id.substring(10)
+    $("#newrating-" + outfitIndex + " div:lt("+ starNumber +")").css('background', "url('../star-full.png')")
+    $("#form-" + outfitIndex)[0][0].value = starNumber
+  })
+}
 
 function bindEvents(){
   // $('.img-thumbnail').on('click', function(event) {
@@ -115,17 +131,6 @@ function addRatingListener() {
   })
 }
 
-// POPULATES A HIDDEN VALUE IN FORM THAT WILL LATER UPDATE AR IN POST ROUTE.
-function newRatingStarsClick(){
-  $('.new-rating-stars').on('click', function(event){
-    console.log('clicked on a star')
-    var starNumber = event.currentTarget.id.substring(4)
-    var thisOutfitsRatingForm = $(this).parent()[0]
-    var outfitIndex = thisOutfitsRatingForm.id.substring(10)
-    $("#newrating-" + outfitIndex + " div:lt("+ starNumber +")").css('background', "url('../star-full.png')")
-    $("#form-" + outfitIndex)[0][0].value = starNumber
-  })
-}
 
 
 // SELF EXPLANATORY. ANYTHING THAT JUST GOT ADDED GETS PUT TO THE TOP OF THE FEED.
