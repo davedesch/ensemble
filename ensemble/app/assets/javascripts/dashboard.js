@@ -17,16 +17,18 @@ $(document).on('page:load', ready)
 
 function newRatingStarsHover(){
 
-  $(".new-rating-stars").mouseenter(function(event){
-    var hoveredStarId = event.currentTarget.id.substring(4)
-    $("#star"+ hoveredStarId +"").css('background', "url('../star-full.png')");
-    $("#star"+ hoveredStarId +"").prevAll().css('background', "url('../star-full.png')");
+  $("form .new-rating-stars").mouseenter(function(event){
+    var hoveredStarId = event.currentTarget.id
+    var parentId = event.currentTarget.parentElement.id
+    $("#"+ parentId + " #"+ hoveredStarId +"").css('background', "url('../star-full.png')");
+    $("#"+parentId + " #"+ hoveredStarId +"").prevAll().css('background', "url('../star-full.png')");
   });
 
-  $(".new-rating-stars").mouseleave(function(event){
-    var hoveredStarId = event.currentTarget.id.substring(4)
-    $("#star"+ hoveredStarId +"").css('background', "url('../star-empty.png')");
-    $("#star"+ hoveredStarId +"").prevAll().css('background', "url('../star-empty.png')");
+  $("form .new-rating-stars").mouseleave(function(event){
+    var hoveredStarId = event.currentTarget.id
+    var parentId = event.currentTarget.parentElement.id
+    $("#"+parentId + " #"+ hoveredStarId +"").css('background', "url('../star-empty.png')");
+    $("#"+parentId + " #"+ hoveredStarId +"").prevAll().css('background', "url('../star-empty.png')");
   });
 }
 
