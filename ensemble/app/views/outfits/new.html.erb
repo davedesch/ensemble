@@ -10,10 +10,10 @@
 
 <div id="newoutfitthumbnail"></div>
 <br>
-<%= form_for :outfit, as: :post, html: { class: "outfitform"}, url: user_outfits_path do |f| %>
+<%= form_for @outfit, as: :outfit, html: { class: "outfitform"}, url: user_outfits_path do |f| %>
 <p>
   <%= f.label :title %><br>
-  <%= f.text_field :title %>
+  <%= f.text_field  :title %>
 </p>
 
 <p>
@@ -22,7 +22,7 @@
 </p>
 
 <p>
-  <%= f.hidden_field :image_url %>
+  <%= f.text_field :image_url %>
 </p>
 
 <p>
@@ -30,10 +30,9 @@
   <%= f.select :gender, options_for_select(genders) %>
 </p>
 
-<% 5.times do %>
-  <%= f.fields_for :articles do |builder| %>
+
+<%= f.fields_for :articles do |builder| %>
     <%= render "article_fields", f: builder %>
-  <% end %>
 <% end %>
 
 

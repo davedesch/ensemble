@@ -22,8 +22,10 @@ class OutfitsController < ApplicationController
   end
 
   def create
+    p params[:articles]
     user = User.find(params[:user_id])
-    @dick = user.outfits.create(outfit_params)
+    @outfit = user.outfits.create(outfit_params)
+
     redirect_to user_path(user)
   end
 
