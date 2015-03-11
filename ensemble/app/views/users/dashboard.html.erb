@@ -34,6 +34,9 @@
       </div>
     </div>
      <div class="col-12">{{caption}}</div>
+      {{#each ratings}}
+     <div class="allreviews">{{username}}:     {{comment}}          {{stars}}</div>
+     {{/each}}
  </div>
   {{/each}}
 </script>
