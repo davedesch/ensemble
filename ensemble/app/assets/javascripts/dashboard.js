@@ -9,6 +9,7 @@ var ready = function(){
   newOutfit();
   bindEvents();
   // sortByRatings();
+
 }
 // FIND A BETTER WAY TO TRIGGER THIS SO IT DOESN'T CAUSE EVERYTHING TO REFRESH WHEN YOU DO AN AJAX CALL
 $(document).ready(ready);
@@ -43,6 +44,8 @@ function bindEvents(){
    $('#sort-by-recent').on('click', function(){
     sortByRecent();
    });
+
+
 
 };
 
@@ -106,6 +109,8 @@ function newRatingStarsClick(){
     $("#form-" + outfitIndex)[0][0].value = starNumber
   })
 }
+
+
 // SELF EXPLANATORY. ANYTHING THAT JUST GOT ADDED GETS PUT TO THE TOP OF THE FEED.
 // THIS DISPLAYS ON THE WIDGET ON THE LEFT
 function displayRecentOutfits (){
@@ -118,6 +123,7 @@ function displayRecentOutfits (){
   }).done(function(data){
     context = {recentOutfits: data};
     $('#recent-outfits').html(template(context));
+      updateOutfit();
   })
 }
 
@@ -149,6 +155,20 @@ function displayHashtagOutfits(event) {
   })
 }
 
+function updateOutfit() {
+  $('.update-button').on("click", function(event){
+    event.preventDefault();
+  var outfitNumber = event.currentTarget.id.substring(7);
+  url = window.location.pathname + '/ensembles/' + outfitNumber + '/edit'
+  $.ajax({
+    url: url,
+    dataType: "HTML"
+  })
+  .done(function(data) {
+    $('#all-outfits').html(data);
+  })
+  });
+}
 
 // POST ROUTE THAT ENABLES CLOUDINARY AND PREPENDS PICTURE AND DATA TO TOP OF FEED
 function newOutfit() {
@@ -166,13 +186,6 @@ function newOutfit() {
       $('#all-outfits').html(a);
       uploadImage();
     })
-    .fail(function() {
-      console.log("error");
-    })
-    .always(function() {
-      console.log("complete");
-    });
-
   });
 }
 // MOSTLY VANILLA JS TO BRING UP CLOUDINARY WIDGET. RENAME MAGIC SOON.
