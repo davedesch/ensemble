@@ -83,6 +83,7 @@ function displayAllOutfits(){
   $.ajax({
     url: "/ensembles"
   }).done(function(data){
+    console.log(data);
     renderFeed(data);
   })
 }
@@ -239,6 +240,7 @@ function Outfit() {
   this.user= ""
   this.popularity = 0
   this.created_at = ""
+  this.ratings = []
 }
 
 function constructFeed(data){
@@ -254,6 +256,7 @@ function constructFeed(data){
     outfit.user= data[i].user
     outfit.popularity = data[i].popularity
     outfit.created_at = data[i].created_at
+    outfit.ratings = data[i].ratings
     currentFeed.push(outfit)
   }
 };
