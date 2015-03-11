@@ -25,10 +25,11 @@ class OutfitsController < ApplicationController
     user = User.find(params[:user_id])
     @outfit = user.outfits.create(outfit_params)
     articles = params[:outfit][:articles_attributes]
-    articles.each do |key, value|
-      p @outfit.articles.create(value)
+    if articles
+      articles.each do |key, value|
+         @outfit.articles.create(value)
+      end
     end
-
     redirect_to user_path(user)
   end
 
