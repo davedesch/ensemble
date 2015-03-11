@@ -23,7 +23,7 @@ class InstagramsController < ApplicationController
     client = Instagram.client(access_token: current_user.auth_token)
     user = client.user
     @images = []
-    client.user_recent_media.each do |media|
+    client.user_recent_media(options = {count: 4}).each do |media|
       p media.images
       @images.push(media.images.standard_resolution.url)
     end
