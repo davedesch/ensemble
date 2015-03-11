@@ -32,10 +32,10 @@ function newRatingStarsHover(){
 
 
 function bindEvents(){
-  $('.img-thumbnail').on('click', function(event) {
-    var imgURL = this.src
-    selectInstagramImage(imgURL);
-  });
+  // $('.img-thumbnail').on('click', function(event) {
+  //   var imgURL = this.src
+  //   selectInstagramImage(imgURL);
+  // });
   // $('#get_from_instagram').on('click', function(event) {
   //   event.preventDefault();
   //   $.ajax({
@@ -209,7 +209,11 @@ function newOutfit() {
       dataType: 'html',
     })
     .done(function(response) {
-      $('#instagram_select').html(response)
+      $('#instagram_select').html(response);
+       $('.img-thumbnail').on('click', function(event) {
+    var imgURL = this.src
+    selectInstagramImage(imgURL);
+  });
     });
   });
       uploadImage();
