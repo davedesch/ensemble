@@ -8,12 +8,28 @@ var ready = function(){
   displayTrendingHashtags();
   newOutfit();
   bindEvents();
-  // sortByRatings();
 
 }
 // FIND A BETTER WAY TO TRIGGER THIS SO IT DOESN'T CAUSE EVERYTHING TO REFRESH WHEN YOU DO AN AJAX CALL
 $(document).ready(ready);
 $(document).on('page:load', ready)
+
+
+function newRatingStarsHover(){
+
+  $(".new-rating-stars").mouseenter(function(event){
+    var hoveredStarId = event.currentTarget.id.substring(4)
+    $("#star"+ hoveredStarId +"").css('background', "url('../star-full.png')");
+    $("#star"+ hoveredStarId +"").prevAll().css('background', "url('../star-full.png')");
+  });
+
+  $(".new-rating-stars").mouseleave(function(event){
+    var hoveredStarId = event.currentTarget.id.substring(4)
+    $("#star"+ hoveredStarId +"").css('background', "url('../star-empty.png')");
+    $("#star"+ hoveredStarId +"").prevAll().css('background', "url('../star-empty.png')");
+  });
+}
+
 
 function bindEvents(){
   $('.img-thumbnail').on('click', function(event) {
@@ -83,7 +99,6 @@ function displayAllOutfits(){
   $.ajax({
     url: "/ensembles"
   }).done(function(data){
-    console.log(data);
     renderFeed(data);
   })
 }
@@ -269,6 +284,7 @@ function renderFeed(data){
   addAverageRating(data);
   addRatingListener();
   newRatingStarsClick();
+  newRatingStarsHover();
   constructFeed(data);
 
 };

@@ -64,11 +64,13 @@ body {
   background: url('../star-empty.png');
 }
 
-/*.new-rating-stars:hover ~ .new-rating-stars,*/
+
+/*.new-rating-stars:hover ~ .new-rating-stars,
+
 .new-rating-stars:hover{
   background: url('../star-full.png');
 }
-
+*/
 
 .rating-form {
   display: none;
