@@ -11,6 +11,7 @@ class OutfitsController < ApplicationController
   end
 
   def new
+    @current_user = User.find(params[:user_id])
     render :new, layout: false
   end
 
