@@ -51,7 +51,7 @@ class UsersController < ApplicationController
   def login #not logging in with instagram
     @user = User.find_by_username(params[:username])
       if @user  # && !params[:password].empty?
-        if @user.password_hash == params[:password]
+        if @user.password_digest == params[:password]
           session[:user_id] = @user.id
           redirect_to user_path(@user)
           # return
