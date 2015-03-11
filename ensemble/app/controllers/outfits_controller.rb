@@ -22,9 +22,12 @@ class OutfitsController < ApplicationController
   end
 
   def create
-    p params[:articles]
     user = User.find(params[:user_id])
     @outfit = user.outfits.create(outfit_params)
+    articles = params[:outfit][:articles_attributes]
+    articles.each do |key, value|
+      p @outfit.articles.create(value)
+    end
 
     redirect_to user_path(user)
   end
@@ -55,5 +58,6 @@ class OutfitsController < ApplicationController
   def outfit_params
     params.require(:outfit).permit(:image_url, :user_id, :title, :caption, :gender, :commit)
   end
+
 
 end
