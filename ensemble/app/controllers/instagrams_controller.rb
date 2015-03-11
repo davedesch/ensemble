@@ -1,12 +1,14 @@
 class InstagramsController < ApplicationController
 
+  before_filter :authorize
+
   CALLBACK_URL = "http://localhost:3000/instagram/oauth/callback"
-  
+
   CLIENT = ENV['CLIENT_ID']
 
   #handles 'oauth/connect'
   def login
-    redirect_to "https://api.instagram.com/oauth/authorize/?client_id=#{CLIENT}&redirect_uri=#{CALLBACK_URL}&response_type=code"    
+    redirect_to "https://api.instagram.com/oauth/authorize/?client_id=#{CLIENT}&redirect_uri=#{CALLBACK_URL}&response_type=code"
   end
 
   #handles 'oauth/callback'
@@ -20,7 +22,7 @@ class InstagramsController < ApplicationController
   def recent
     current_user = User.find(session[:user_id])
     client = Instagram.client(access_token: current_user.auth_token)
-    user = client.user 
+    user = client.user
     @images = []
     client.user_recent_media.each do |media|
       p media.images
