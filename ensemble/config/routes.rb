@@ -34,8 +34,8 @@ Rails.application.routes.draw do
   #     end
   #   end
 
-  post '/login', to: 'users#login', as: 'login'
-  get '/logout', to: 'users#logout', as: 'logout'
+  # post '/login', to: 'users#login', as: 'login'
+  # get '/logout', to: 'users#logout', as: 'logout'
 
 
   get '/ensembles' => 'users#ensembles'
