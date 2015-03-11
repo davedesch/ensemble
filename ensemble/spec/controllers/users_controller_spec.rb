@@ -32,7 +32,7 @@ RSpec.describe UsersController, type: :controller do
       it "re-renders the :index template" do
         post :create,
         user: {username: 'dave', email: 'badbadbad'}
-        expect(response).to render_template :index
+        expect(response).to redirect_to('/users/new')
       end
     end
   end
