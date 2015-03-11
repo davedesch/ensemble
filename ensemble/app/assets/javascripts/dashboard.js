@@ -200,7 +200,7 @@ function uploadImage() {
       console.log(magic)
       var imgURL = magic[0].secure_url;
       $('#outfit_image_url').val(imgURL);
-
+      $('#newoutfitthumbnail').append("<img src="+ imgURL +">");
     });
 
 }, false);
