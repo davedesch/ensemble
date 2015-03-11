@@ -30,6 +30,11 @@
   <%= f.select :gender, options_for_select(genders) %>
 </p>
 
+<%= f.fields_for :articles do |builder| %>
+  <%= render "article_fields", f: builder %>
+<% end %>
+
+
 <p>
   <%= f.submit 'create your outfit', :class => "btn btn-1 btn-1a", :id => 'newoutfit'%>
 </p>

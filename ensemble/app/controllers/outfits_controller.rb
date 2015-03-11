@@ -14,6 +14,10 @@ class OutfitsController < ApplicationController
 
   def new
     @current_user = User.find(params[:user_id])
+    @outfit = Outfit.new
+    5.times do
+      article = @outfit.articles.build
+    end
     render :new, layout: false
   end
 

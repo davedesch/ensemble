@@ -1,0 +1,11 @@
+<p>
+  <%= f.label :brand, "Brand" %> <br>
+  <%= f.text_field :brand %>
+  <%= f.label :url, "Paste a link to the item" %>
+  <%= f.text_field :url %>
+  <%= f.check_box :discontinued %>
+  <%= f.check_box :vintage %>
+  <%= f.collection_select :article_type_id, ArticleType.order(:type_desc),:type_desc, include_blank: false %>
+  <%= f.check_box :_destroy %>
+  <%= f.label :_destroy, "Remove this article" %>
+</p>
