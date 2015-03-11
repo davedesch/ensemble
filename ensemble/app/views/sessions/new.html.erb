@@ -18,11 +18,14 @@
       <div class="instagram">
       <button type="submit" value="Submit" class="btn btn-1 btn-1a newbuttons">SUBMIT</button>
     </form> -->
-    <%= form_tag '/login' do %>
+    <%= form_tag '/login', id: "register" do %>
 
-    Email: <%= text_field_tag :email %>
-    Password: <%= password_field_tag :password %>
-    <%= submit_tag "Submit" %>
+    Email:<br>
+    <%= text_field_tag :email %>
+    <br>
+    Password:<br>
+    <%= password_field_tag :password %><br><br>
+    <%= submit_tag "Sign In", class: "btn btn-1 btn-1a newbuttons" %>
 
     <% end %>
 

@@ -20,13 +20,12 @@
       <div class="instagram">
       <button type="submit" value="Submit"class="btn btn-1 btn-1a newbuttons">SUBMIT</button></form>
       <br> -->
-      <%= form_for :user, url: '/users' do |f| %>
-
-      Name: <%= f.text_field :username %>
-      Email: <%= f.text_field :email %>
-      Password: <%= f.password_field :password %>
-      Password Confirmation: <%= f.password_field :password_confirmation %>
-      <%= f.submit "Submit" %>
+      <%= form_for :user, url: '/users', id: "registernew" do |f| %>
+      Name:<br><%= f.text_field :username %><br>
+      Email:<br><%= f.text_field :email %><br>
+      Password:<br><%= f.password_field :password %><br>
+      Password Confirmation:<br><%= f.password_field :password_confirmation %><br><br>
+      <%= f.submit "Submit", class: "btn btn-1 btn-1a newbuttons" %>
 
       <% end %>
       <button class="btn btn-1 btn-1a newbuttons"<a href="/instagram/oauth/connect" id="withinstagram">Login With Instagram<i class="fa fa-instagram"></i></a></button>
