@@ -36,17 +36,17 @@ function bindEvents(){
     var imgURL = this.src
     selectInstagramImage(imgURL);
   });
-  $('#get_from_instagram').on('click', function(event) {
-    event.preventDefault();
-    $.ajax({
-      url: '/instagram/recent',
-      type: 'GET',
-      dataType: 'html',
-    })
-    .done(function(response) {
-      $('#instagram_select').html(response)
-    });
-  });
+  // $('#get_from_instagram').on('click', function(event) {
+  //   event.preventDefault();
+  //   $.ajax({
+  //     url: '/instagram/recent',
+  //     type: 'GET',
+  //     dataType: 'html',
+  //   })
+  //   .done(function(response) {
+  //     $('#instagram_select').html(response)
+  //   });
+  // });
   $('#search-form').on('submit', function(event){
     event.preventDefault();
     displaySearchedOutfits();
@@ -96,6 +96,7 @@ function addAverageRating(data) {
 
 // Home Feed
 function displayAllOutfits(){
+  console.log('it happened')
   $.ajax({
     url: "/ensembles"
   }).done(function(data){
@@ -200,6 +201,17 @@ function newOutfit() {
     .done(function(a) {
       // console.log("success");
       $('#all-outfits').html(a);
+        $('#get_from_instagram').on('click', function(event) {
+    event.preventDefault();
+    $.ajax({
+      url: '/instagram/recent',
+      type: 'GET',
+      dataType: 'html',
+    })
+    .done(function(response) {
+      $('#instagram_select').html(response)
+    });
+  });
       uploadImage();
     })
   });
