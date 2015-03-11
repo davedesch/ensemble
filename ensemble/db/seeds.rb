@@ -2,12 +2,12 @@
 #   puts "making a user"
 #   user = FactoryGirl.create :user
 #   puts user.id
-  puts "giving them 3 outfits"
-  3.times do
-    outfit = FactoryGirl.create :outfit, :with_hashtags, user: User.first
-    puts outfit
-    FactoryGirl.create :article, outfit: outfit
-  end
+  # puts "giving them 3 outfits"
+  # 3.times do
+  #   outfit = FactoryGirl.create :outfit, :with_hashtags, user: User.first
+  #   puts outfit
+  #   FactoryGirl.create :article, outfit: outfit
+  # end
 #   puts "*" * 100
 # end
 
@@ -34,5 +34,29 @@
 ArticleType.create(type_desc: "Blouse")
 ArticleType.create(type_desc: "Necklace")
 ArticleType.create(type_desc: "Jeans")
+ArticleType.create(type_desc: "Pants")
+ArticleType.create(type_desc: "Shoes")
+ArticleType.create(type_desc: "Bracelet")
+ArticleType.create(type_desc: "Watch")
+ArticleType.create(type_desc: "Dress")
+ArticleType.create(type_desc: "Wedges")
+ArticleType.create(type_desc: "Sandals")
+ArticleType.create(type_desc: "Sunglasses")
+ArticleType.create(type_desc: "Rings")
+ArticleType.create(type_desc: "Sweater")
+ArticleType.create(type_desc: "Jacket")
+ArticleType.create(type_desc: "Boots")
+ArticleType.create(type_desc: "Lipstick")
+ArticleType.create(type_desc: "Suit")
+ArticleType.create(type_desc: "Shirt")
+ArticleType.create(type_desc: "Belt")
+ArticleType.create(type_desc: "Blazer")
+ArticleType.create(type_desc: "Purse")
+ArticleType.create(type_desc: "Bag")
+ArticleType.create(type_desc: "Shorts")
+ArticleType.create(type_desc: "Scarf")
+ArticleType.create(type_desc: "Skirt")
+ArticleType.create(type_desc: "Earrings")
+ArticleType.create(type_desc: "Vest")
 
 
