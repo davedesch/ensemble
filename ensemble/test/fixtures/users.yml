@@ -3,7 +3,7 @@
 one:
   username: MyString
   email: MyString
-  password_hash: MyString
+  password_digest: MyString
   avatar: MyString
   instagram_name: MyString
   auth_token: MyString
@@ -11,7 +11,7 @@ one:
 two:
   username: MyString
   email: MyString
-  password_hash: MyString
+  password_digest: MyString
   avatar: MyString
   instagram_name: MyString
   auth_token: MyString

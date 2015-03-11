@@ -79,7 +79,7 @@ ActiveRecord::Schema.define(version: 20150308073344) do
   create_table "users", force: true do |t|
     t.string   "username"
     t.string   "email"
-    t.string   "password_hash"
+    t.string   "password_digest"
     t.string   "avatar"
     t.string   "instagram_name"
     t.string   "auth_token"

@@ -1,6 +1,7 @@
-require 'bcrypt'
-
 class User < ActiveRecord::Base
+
+  has_secure_password
+
   has_many :outfits
   has_many :ratings
   has_many :user_favorites
@@ -21,12 +22,12 @@ class User < ActiveRecord::Base
 include BCrypt
 
   def password
-    @password ||= Password.new(password_hash)
+    @password ||= Password.new(password_digest)
   end
 
   def password=(new_password)
     @password = Password.create(new_password)
-    self.password_hash = @password
+    self.password_digest = @password
   end
 
 end
