@@ -43,10 +43,14 @@
     <div class="container">
       <img src={{image}} class="img-thumbnail col-md-3" alt="Your Ensemble!">
       <div class="col-md-9">{{title}}, Rating: {{avg_rating}}</div>
-      <form action='/users/<%= session[:user_id] %>/ensembles/{{outfit_id}}' method='post'>
+      <form id='delete-outfit' action='/users/<%= session[:user_id] %>/ensembles/{{outfit_id}}' method='post'>
       <input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden">
       <input type='hidden' name='_method' value='delete'>
       <button class="destroy-button" id="destroy-{{outfit_id}}">Delete</button>
+      </form>
+      <form id='update-outfit' action='/users/<%= session[:user_id] %>/ensembles/{{outfit_id}}/edit' method='get'>
+      <input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden">
+      <button class="update-button" id="update-{{outfit_id}}">Update</button>
       </form>
     </div>
   {{/each}}

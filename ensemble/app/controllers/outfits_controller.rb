@@ -20,8 +20,20 @@ class OutfitsController < ApplicationController
     redirect_to user_path(user)
   end
 
+  def edit
+    @outfit = Outfit.find(params[:id])
+
+    render :edit, layout: false
+  end
+
+  def update
+    user = User.find(params[:user_id])
+    outfit = Outfit.find(params[:id])
+    outfit.update_attributes(params[:outfit])
+
+  end
+
   def destroy
-    p params
     user = User.find(params[:user_id])
     outfit = Outfit.find(params[:id])
     outfit.destroy
