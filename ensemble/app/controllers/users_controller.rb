@@ -6,24 +6,24 @@ class UsersController < ApplicationController
   end
 
 
-  def create
-    prospective_user = User.new(user_params)
-    # if params[:password] != nil
-    prospective_user.password = params[:password]
-    if prospective_user.save
-      current_user = prospective_user
-      session[:user_id] = current_user.id
-      redirect_to user_path(current_user.id)
-    else
-      @errors = prospective_user.errors
-      p @errors
-      render '/users/new'
-    end
-  # else
-    # @moreerrors = "Sorry, one or more things were invalid. Please try again."
-    # render 'users/new'
+  # def create
+  #   prospective_user = User.new(user_params)
+  #   # if params[:password] != nil
+  #   prospective_user.password = params[:password]
+  #   if prospective_user.save
+  #     current_user = prospective_user
+  #     session[:user_id] = current_user.id
+  #     redirect_to user_path(current_user.id)
+  #   else
+  #     @errors = prospective_user.errors
+  #     p @errors
+  #     render '/users/new'
+  #   end
+  # # else
+  #   # @moreerrors = "Sorry, one or more things were invalid. Please try again."
+  #   # render 'users/new'
+  # # end
   # end
-  end
 
 
   def show
@@ -48,34 +48,45 @@ class UsersController < ApplicationController
     render json: results
   end
 
-  def login #not logging in with instagram
-    @user = User.find_by_username(params[:username])
-      if @user  # && !params[:password].empty?
-        if @user.password_digest == params[:password]
-          session[:user_id] = @user.id
-          redirect_to user_path(@user)
-          # return
-        else
-          @errors = "Sorry, either your email or password didn't match"
-          render :index
-        end
-      # else
-        # @errors = "Sorry, either your email or password didn't match"
-      end
+  # def login #not logging in with instagram
+  #   @user = User.find_by_username(params[:username])
+  #     if @user  # && !params[:password].empty?
+  #       if @user.password_digest == params[:password]
+  #         session[:user_id] = @user.id
+  #         redirect_to user_path(@user)
+  #         # return
+  #       else
+  #         @errors = "Sorry, either your email or password didn't match"
+  #         render :index
+  #       end
+  #     # else
+  #       # @errors = "Sorry, either your email or password didn't match"
+  #     end
 
+  # end
+
+
+  # def logout
+  #   session.clear
+  #   redirect_to "/"
+  # end
+  def new
   end
 
-
-  def logout
-    session.clear
-    redirect_to "/"
+  def create
+    user = User.new(user_params)
+    if user.save
+      session[:user_id] = user.id
+      redirect_to '/'
+    else
+      redirect_to '/register'
+    end
   end
-
 
 
   private
   def user_params
-    params.require(:user).permit(:username, :email, :password, :avatar)
+    params.require(:user).permit(:username, :email, :password, :password_digest, :avatar)
   end
 
 

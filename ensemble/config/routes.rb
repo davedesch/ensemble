@@ -5,6 +5,9 @@ Rails.application.routes.draw do
 
    root 'users#index'
 
+   get '/register' => 'users#new'
+  post '/users' => 'users#create'
+
 
   # Example of regular route:
   get 'instagram' => 'instagrams#index'
