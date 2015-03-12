@@ -127,3 +127,17 @@ nav {
 
           background-image: url(white_wall.png);
 }
+
+.recentoutfitsbox {
+
+        -webkit-box-shadow: 0 10px 6px -6px #777;
+     -moz-box-shadow: 0 10px 6px -6px #777;
+          box-shadow: 0 10px 6px -6px #777;
+
+          background-image: url(white_wall.png);
+
+}
+
+.thebox {
+  padding: 20px;
+}
