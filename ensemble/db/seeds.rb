@@ -61,6 +61,8 @@ puts 'finished importing csv'
 puts "*" * 100
 
 
+
+
 # outfits = Outfit.all
 # outfits.each do |outfit|
 #   puts "for each outfit"
