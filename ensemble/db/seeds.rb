@@ -1,36 +1,3 @@
-# 10.times do
-#   puts "making a user"
-#   user = FactoryGirl.create :user
-#   puts user.id
-  # puts "giving them 3 outfits"
-  # 3.times do
-  #   outfit = FactoryGirl.create :outfit, :with_hashtags, user: User.first
-  #   puts outfit
-  #   FactoryGirl.create :article, outfit: outfit
-  # end
-#   puts "*" * 100
-# end
-
-# outfits = Outfit.all
-# outfits.each do |outfit|
-#   puts "for each outfit"
-#   2.times do
-#     puts "making 2 ratings"
-#     n = User.count - 1
-#     id = rand(1..n)
-#     new_user = User.find(n)
-#     outfit.ratings.create(user: new_user, comment: Faker::Hacker.say_something_smart, stars: 3)
-#   end
-#   2.times do
-#     puts "making rating with stars only"
-#     n = User.count - 1
-#     id = rand(1..n)
-#     new_user = User.find(n)
-#     outfit.ratings.create(user: new_user, stars: 2)
-#   end
-#   puts "*" * 100
-# end
-
 ArticleType.create(type_desc: "Blouse")
 ArticleType.create(type_desc: "Necklace")
 ArticleType.create(type_desc: "Jeans")
@@ -58,5 +25,63 @@ ArticleType.create(type_desc: "Scarf")
 ArticleType.create(type_desc: "Skirt")
 ArticleType.create(type_desc: "Earrings")
 ArticleType.create(type_desc: "Vest")
+puts "*" * 100
+puts "Article Types Created"
+puts 
+puts
+
+
+puts "*" * 100
+puts "making default user, login with user@user.com, pwd is user"
+User.create(username: 'user', email: 'user@user.com', password: 'user')
+puts "making seed users"
+20.times do
+  puts "making a user"
+  user = User.create(username: Faker::Internet.user_name, email: Faker::Internet.free_email, password: Faker::Internet::password(8))
+  puts "#{user.username} created"
+  puts "*" * 100
+end
+
+require 'csv'
+puts "*" * 100
+puts "*" * 100
+puts
+puts
+puts "importing outfits csv"
+puts
+CSV.foreach('db/import_outfits.csv', :headers => true) do |row|
+	Outfit.create(image_url: row['image_url'], user_id: row['user_id'], title: row['title'], caption: row['caption'], gender: row['gender'] )
+	# p row['id']
+
+end
+puts
+
+puts "*" * 100
+puts 'finished importing csv'
+puts "*" * 100
+
+
+# outfits = Outfit.all
+# outfits.each do |outfit|
+#   puts "for each outfit"
+#   2.times do
+#     puts "making 2 ratings"
+#     n = User.count - 1
+#     id = rand(1..n)
+#     new_user = User.find(n)
+#     outfit.ratings.create(user: new_user, comment: Faker::Hacker.say_something_smart, stars: 3)
+#   end
+#   2.times do
+#     puts "making rating with stars only"
+#     n = User.count - 1
+#     id = rand(1..n)
+#     new_user = User.find(n)
+#     outfit.ratings.create(user: new_user, stars: 2)
+#   end
+#   puts "*" * 100
+# end
+
+
+
 
 
