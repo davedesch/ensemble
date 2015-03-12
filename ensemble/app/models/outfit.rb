@@ -36,7 +36,7 @@ class Outfit < ActiveRecord::Base
 			hashtags = self.caption.scan(/#\w+/)
 			if hashtags.length > 0
 				hashtags.each do |hashtag|
-					self.hashtags << Hashtag.find_or_create_by(hashtag: hashtag)
+					self.hashtags << Hashtag.find_or_create_by(hashtag: hashtag.downcase)
 				end
 			end
 		end
