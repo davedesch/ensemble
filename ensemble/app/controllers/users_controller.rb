@@ -34,18 +34,18 @@ class UsersController < ApplicationController
 
   def ensembles
     outfits = Outfit.order('created_at DESC').limit(50)
-    results = []
-    outfits.each do |outfit|
-      types = []
-      outfit.articles.each do |article|
-        types.push(article.article_type.type_desc)
-      end
-      ratings = []
-      outfit.ratings.each do |rating|
-        ratings.push({comment: rating.comment, stars: rating.stars, username: rating.user.username})
-      end
-      results.push({outfit_id: outfit.id , title: outfit.title , image: outfit.image_url, types: types, avg_rating: outfit.average_ratings, caption: outfit.caption, user: outfit.user.username, popularity: outfit.popularity, created_at: outfit.created_at, ratings: ratings})
-    end
+    results = get_outfit_details(outfits)
+    # outfits.each do |outfit|
+    #   articles = []
+    #   outfit.articles.each do |article|
+    #     articles.push({description: article.article_type.type_desc, brand: article.brand, brand_url: article.url, vintage: article.vintage, discontinued: article.discontinued})
+    #   end
+    #   ratings = []
+    #   outfit.ratings.each do |rating|
+    #     ratings.push({comment: rating.comment, stars: rating.stars, username: rating.user.username})
+    #   end
+    #   results.push({outfit_id: outfit.id , title: outfit.title , image: outfit.image_url, articles: articles, avg_rating: outfit.average_ratings, caption: outfit.caption, user: outfit.user.username, popularity: outfit.popularity, created_at: outfit.created_at, ratings: ratings})
+    # end
     render json: results
   end
 
