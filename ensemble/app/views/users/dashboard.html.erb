@@ -22,11 +22,11 @@
           <input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden">
           <textarea rows="4" cols="50" placeholder="leave a fantastic review" name="rating[comment]"></textarea><br>
           <div class="col-12 newrating" id="newrating-{{@index}}">
-            <div id="star1" class="new-rating-stars"></div>
-            <div id="star2" class="new-rating-stars"></div>
-            <div id="star3" class="new-rating-stars"></div>
-            <div id="star4" class="new-rating-stars"></div>
-            <div id="star5" class="new-rating-stars"></div>
+            <div id="star1" class="new-rating-stars" title="No."></div>
+            <div id="star2" class="new-rating-stars" title="Needs a lot of improvement."></div>
+            <div id="star3" class="new-rating-stars" title="Decent."></div>
+            <div id="star4" class="new-rating-stars" title="Love it."></div>
+            <div id="star5" class="new-rating-stars" title="Nailed it!"></div>
           </div>
           <input type="submit" value='Save Rating'>
         </form><br><br>
