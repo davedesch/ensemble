@@ -36,6 +36,9 @@
       {{#each ratings}}
      <div class="allreviews">{{username}}:     {{comment}}          {{stars}}</div>
      {{/each}}
+     {{#each articles}}
+     <div class="allreviews">{{description}}:     <a href="{{brand_url}}">{{brand}}</a></div>
+     {{/each}}
  </div>
   {{/each}}
 </script>

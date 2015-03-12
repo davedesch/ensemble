@@ -270,7 +270,7 @@ function Outfit() {
   this.outfit_id= ""
   this.title= ""
   this.image= ""
-  this.types= []
+  this.articles= []
   this.avg_rating= 0
   this.caption= ""
   this.user= ""
@@ -286,7 +286,7 @@ function constructFeed(data){
     outfit.outfit_id = data[i].outfit_id
     outfit.title= data[i].title
     outfit.image= data[i].image
-    outfit.types= data[i].types
+    outfit.articles= data[i].articles
     outfit.avg_rating= data[i].avg_rating
     outfit.caption= data[i].caption
     outfit.user= data[i].user
@@ -298,6 +298,7 @@ function constructFeed(data){
 };
 
 function renderFeed(data){
+  console.log(data)
   var source = $("#all-outfits-template").html();
   var template =Handlebars.compile(source);
   var context = {allOutfits: data};
