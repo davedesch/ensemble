@@ -45,9 +45,10 @@
 
 <script id="recent-outfits-template" type="text/x-handlebars-template">
   {{#each recentOutfits}}
+    <div class="recentoutfitsbox">
     <div class="container">
       <img src={{image}} class="img-thumbnail col-md-3" alt="Your Ensemble!">
-      <div class="col-md-9">{{title}}, Rating: {{avg_rating}}</div>
+      <div class="col-md-9 thebox">{{title}}, Rating: {{avg_rating}}</div>
       <form id='delete-outfit' action='/users/<%= session[:user_id] %>/ensembles/{{outfit_id}}' method='post'>
       <input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden">
       <input type='hidden' name='_method' value='delete'>
@@ -59,6 +60,7 @@
       </form>
     </div>
   {{/each}}
+  </div>
 </script>
 
 <script id="trending-hashtags-template" type="text/x-handlebars-template">
