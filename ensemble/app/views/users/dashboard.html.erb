@@ -23,7 +23,7 @@
           <textarea rows="4" cols="50" placeholder="leave a fantastic review" name="rating[comment]"></textarea><br>
           <div class="col-12 newrating" id="newrating-{{@index}}">
             <div id="star1" class="new-rating-stars" title="No."></div>
-            <div id="star2" class="new-rating-stars" title="Needs a lot of improvement."></div>
+            <div id="star2" class="new-rating-stars" title="Needs work."></div>
             <div id="star3" class="new-rating-stars" title="Decent."></div>
             <div id="star4" class="new-rating-stars" title="Love it."></div>
             <div id="star5" class="new-rating-stars" title="Nailed it!"></div>
@@ -63,11 +63,13 @@
 
 <script id="trending-hashtags-template" type="text/x-handlebars-template">
   {{#each trendingHashtags}}
+  <div class="trendinghash">
     <div class="container">
       <a href="../hashtags/{{hashtag_id}}" id={{hashtag_id}} class="hashtag-link"><div class="col-md-10">{{hashtag}}</div>
       <div class="col-md-2">{{count}}</div></a>
     </div>
   {{/each}}
+  </div>
 </script>
 
 <nav class-"navbar navbar-default navbar-fixed-top" role="navigation">
@@ -79,13 +81,13 @@
     <div class="col-md-3">
       UPLOAD AN ENSEMBLE
     </div></a>
-    <a href="">
-    <div class="col-md-3 ">
-      MY FAVORITES
-    </div></a>
     <a href="/logout">
     <div class="col-md-3 ">
       LOGOUT
+    </div></a>
+    <a href="">
+    <div class="col-md-3 ">
+      <img src=<%= asset_path('ENSEMBLE-logo-black.png') %> id="logoheader">
     </div></a>
   </div>
 </nav>
