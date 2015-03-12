@@ -38,7 +38,15 @@ body {
 }
 
 
+/*title tag for pop-up-messages-------*/
 
+div[title]:hover:after {
+  content: attr(title);
+  padding: 4px 8px;
+  color: #333;
+  position: absolute;
+  left: 0;
+}
 
 
 /* rating stars-------------------- */

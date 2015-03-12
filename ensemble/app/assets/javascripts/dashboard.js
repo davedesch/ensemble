@@ -36,8 +36,10 @@ function newRatingStarsHover(){
 function newRatingStarsClick(){
   $('.new-rating-stars').on('click', function(event){
     console.log('clicked on a star')
-    $(".new-rating-stars").off("mouseenter")
-    $(".new-rating-stars").off("mouseleave")
+    var parentId = event.currentTarget.parentElement.id
+    $("#"+parentId+" .new-rating-stars").off("mouseenter")
+    $("#"+parentId+" .new-rating-stars").off("mouseleave")
+    $("#"+parentId+" .new-rating-stars").css('background', "url('../star-empty.png')")
 
     var starNumber = event.currentTarget.id.substring(4)
     var thisOutfitsRatingForm = $(this).parent()[0]
