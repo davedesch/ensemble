@@ -80,7 +80,7 @@ div[title]:hover:after {
 }
 */
 
-.rating-form {
+/*.rating-form {
   display: none;
 }
 
@@ -91,4 +91,9 @@ div[title]:hover:after {
 
 .outfitform {
   margin-top: 1px;
+}
+*/
+
+#hanger{
+  display: none;
 }

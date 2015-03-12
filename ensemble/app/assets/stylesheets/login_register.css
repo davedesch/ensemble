@@ -1,11 +1,9 @@
 #element1 {
   position: relative;
   z-index: 1;
-  top: 125px;
-  /* border:solid; */
-  /*width: 900px;*/
+  top: 65px;
   background-image: url(closet.jpg);
-  height: 575px;
+  height: 630px;
   color: blue;
   background-color: blue;
   opacity: 0.4;
@@ -17,12 +15,23 @@
 #content1 {
   position: relative;
   z-index: 2;
-  top: -375px;
-  /* border: solid; */
+  top: -500px;
   background-color: black;
-  height: 450px;
+  height: 520px;
   opacity: 0.65;
 }
+
+#signup {
+  overflow: hidden;
+  position: relative;
+  z-index: 3;
+  top: -1035px;
+  text-align: center;
+  height: 550px;
+  color: white;
+  font-family: 'Raleway', sans-serif;
+}
+
 
 #login {
   position: relative;
@@ -30,79 +39,27 @@
   top: -700px;
   text-align: center;
   height: 324px;
-  /* border: solid; */
-  /*margin: 24px;*/
   color: white;
 }
 
-#hanger {
- height: 120px;
- margin-bottom: 0px;
+#logo {
+ height: 140px;
+ margin-bottom: -53px;
 }
 
-
-
-html, body {
-  height: 50%;
-  min-height: 50%
-}
-
-body {
-  background-image: url(norwegian_rose.png);
-}
-
-#signup {
-  /*height: 300px;*/
-  overflow: hidden;
-  position: relative;
-  z-index: 3;
-  top: -820px;
-  text-align: center;
-  height: 530px;
-  /* border: solid; */
-  /*margin: 24px;*/
-  color: white;
-  font-family: 'Raleway', sans-serif;
-}
-
-#register {
-  font-size: .6em;
-  margin-top: 1%;
-}
-
-
-h1 {
-  font-family: 'Josefin Sans', sans-serif;
-}
-
-h2 {
-  margin-top: -10px;
-  padding-bottom: 6px;
-}
-
-input {
-  color: #999999;
-  font-family: 'Lato', sans-serif;
-
-}
-
-
-.instagram {
+.instagram button {
   margin-top: 5px;
   font-family: 'Lato', sans-serif;
-}
-
-.instagram a {
-  padding-left: 10px;
-  color: rgb(111, 171, 251);
-  font-size: .4em;
+  font-size: 1em;
+  color: #56D6F9;
+  border: 3px solid #56D6F9;
 }
 
 
-.registernow {
-  font-size: .75em;
-  margin-top: 15px;
-}
+/*.instagram input {
+  color: #56D6F9;
+  border: 3px solid #56D6F9;
+}*/
 
 .registernow a{
   padding-left: 10px;
@@ -110,22 +67,125 @@ input {
   color: rgb(86, 214, 249);
 }
 
-#registernew {
-  font-size: .55em;
+.registernow a:hover {
+  text-decoration: underline;
 }
 
-#signinsta {
-  color: white;
+#register {
+  margin-top: -30px;
+}
+
+.registerbox form{
+  text-align: center;
+}
+
+.registerbox input {
+
+}
+
+
+#register input{
   font-size: 1em;
+  margin-bottom: 5px;
+  /*color: black;*/
 }
 
-#signinsta:hover{
-  color: #0e83cd;
-  text-decoration: none;
-  padding: 30px 30px;
+.instagramnew button{
+  margin-top: 5px;
+  font-family: 'Lato', sans-serif;
+  font-size: 1em;
+  color: #56D6F9;
+  border: 3px solid #56D6F9;
 }
 
+.instagramnew {
+  margin-top: 50px;
+}
+
+.registernow {
+  font-size: 1.5em;
+}
+
+#logoindex {
+  height: 200px;
+  margin-bottom: -35px;
+
+}
 
 .newbuttons {
+    margin-top: 5px;
+  font-family: 'Lato', sans-serif;
+  font-size: 1em;
+  color: #56D6F9;
   border: 3px solid #56D6F9;
+}
+
+#sidelogo {
+  height: 100px;
+  float: right;
+}
+
+#signinbutton {
+  /*color: #56D6F9;*/
+}
+
+#email {
+  color: black;
+}
+
+#password {
+  color: black;
+}
+
+#user_username {
+color: black;
+  margin-top: 5px;
+
+}
+
+#user_email {
+color: black;
+  margin-top: 5px;
+    vertical-align: bottom;
+
+}
+
+#user_password {
+color: black;
+  margin-top: 5px;
+    vertical-align: bottom;
+
+}
+
+#user_password_confirmation {
+  color: black;
+  margin-top: 5px;
+    vertical-align: bottom;
+}
+
+#registerheader {
+  font-size: 1.2em;
+  margin-top: 30px;
+
+}
+
+table {
+  text-align: left;
+  margin: auto;
+
+}
+
+td {
+  padding-left: 10px;
+}
+
+#msg {
+  margin-top: 25px;
+  margin-bottom: -30px;
+}
+
+
+#hello {
+  font-size: 1.2em;
+  margin-bottom: 40px;
 }
