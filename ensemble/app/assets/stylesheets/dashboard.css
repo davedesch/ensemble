@@ -1,4 +1,4 @@
-body {
+xbody {
   background-image: url("norwegian_rose.png");
 }
 
@@ -84,10 +84,10 @@ div[title]:hover:after {
 }
 */
 
-/*.rating-form {
+.rating-form {
   display: none;
 }
-
+/*
 .newbuttons {
   padding: 5px;
   color: white;
@@ -95,8 +95,8 @@ div[title]:hover:after {
 
 .outfitform {
   margin-top: 1px;
-}
-*/
+}*/
+
 
 #hanger{
   display: none;
