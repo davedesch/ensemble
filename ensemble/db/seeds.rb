@@ -59,31 +59,36 @@ puts
 puts "*" * 100
 puts 'finished importing csv'
 puts "*" * 100
+puts "*" * 100
+puts
+puts "users are rating the outfits"
+puts
+
+def generate_comment
+	pronouns =['your', 'that']
+	nouns = ['look', 'style', 'outfit', 'getup']
+	adjective = ['fabulous', 'great', 'horrible', 'fantastic', 'wretched', 'glamorous']
+	"#{pronouns.sample} #{nouns.sample} is #{adjective.sample}"
+end
+
+def make_comment?
+	random_boolean = [true, false].sample
+end
 
 
-
-
-# outfits = Outfit.all
-# outfits.each do |outfit|
-#   puts "for each outfit"
-#   2.times do
-#     puts "making 2 ratings"
-#     n = User.count - 1
-#     id = rand(1..n)
-#     new_user = User.find(n)
-#     outfit.ratings.create(user: new_user, comment: Faker::Hacker.say_something_smart, stars: 3)
-#   end
-#   2.times do
-#     puts "making rating with stars only"
-#     n = User.count - 1
-#     id = rand(1..n)
-#     new_user = User.find(n)
-#     outfit.ratings.create(user: new_user, stars: 2)
-#   end
-#   puts "*" * 100
-# end
-
-
-
-
-
+users = User.all
+users.each do |user|
+	puts "#{user.username} is rating 10 outfits"
+	not_users_outfits = Outfit.where.not(user_id: user.id)
+	outfits = not_users_outfits.sample(10)
+	outfits.each do |outfit|
+		stars = rand(1..5)
+		if make_comment?
+			comment = generate_comment
+			outfit.ratings.create(user: user, stars: stars, comment: comment)
+		else
+			outfit.ratings.create(user: user, stars: stars)
+		end
+	end
+	puts "*" * 100
+end
