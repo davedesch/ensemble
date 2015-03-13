@@ -42,6 +42,8 @@ private
         newuser.auth_token = response.access_token
         newuser.instagram_name = response.user.full_name
       end
+      user.auth_token = response.access_token
+      user.save
     return user
   end
 
