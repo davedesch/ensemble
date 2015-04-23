@@ -1,5 +1,4 @@
 # ensemble
-Dev Bootcamp Phase 3 Final Project.
 
 TEAM:
 	- Dave Descheneaux (Team Lead)
